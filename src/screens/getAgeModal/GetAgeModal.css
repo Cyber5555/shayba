@@ -1,0 +1,72 @@
+.popup_parent {
+  background: #9898972c;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  backdrop-filter: blur(2px);
+  /* display: grid;
+  place-items: center; */
+}
+
+.popup_container {
+  width: 35%;
+  min-width: 300px;
+  background: url("../../components/3dImages/Shape-3.png") no-repeat 200px center / cover, #000;
+  border-radius: 20px;
+  position: relative;
+  padding: 50px;
+  overflow: hidden;
+  display: grid;
+  animation: popup 1s 1s forwards;
+  left: 50%;
+  top: -50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes popup {
+  0% {
+    left: 50%;
+    top: -50%;
+    transform: translate(-50%, -50%);
+  }
+
+  100% {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+}
+
+.popup_container>h2 {
+  color: #fff;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 40px;
+
+}
+
+.popup_container>p {
+  color: #fff;
+  text-align: left;
+}
+
+.buttons_parent {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50px;
+}
+
+.buttons {
+  background: #fff;
+  color: #000;
+  bottom: none;
+  outline: none;
+  width: 70px;
+  height: 30px;
+  border-radius: 5px;
+  font-family: 'Medium';
+}

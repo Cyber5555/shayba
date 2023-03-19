@@ -1,38 +1,40 @@
-.App {
-  text-align: center;
+@font-face {
+  font-family: 'Bold';
+  src: url('./components/fonts/Roboto/Roboto-Bold.ttf');
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@font-face {
+  font-family: 'Medium';
+  src: url('./components/fonts/Roboto/Roboto-Medium.ttf');
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+@font-face {
+  font-family: 'Regular';
+  src: url('./components/fonts/Roboto/Roboto-Regular.ttf');
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+@font-face {
+  font-family: 'Light';
+  src: url('./components/fonts/Roboto/Roboto-Light.ttf');
 }
 
-.App-link {
-  color: #61dafb;
+@font-face {
+  font-family: 'Thin';
+  src: url('./components/fonts/Roboto/Roboto-Thin.ttf');
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  background: transparent;
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: rgb(187, 183, 183);
 }

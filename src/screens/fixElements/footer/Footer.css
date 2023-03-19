@@ -1,0 +1,49 @@
+.top_footer {
+  width: 100%;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, 20%);
+  background: #F6F6F6;
+  height: 100px;
+}
+
+footer {
+  width: 100%;
+  background: url('../../../components/3dImages/Shape-24.png') no-repeat 75% center/ 60%, #020200;
+  padding: 30px 50px;
+  /* height: 300px; */
+}
+
+footer>div {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 33.3%);
+  margin-bottom: 10px;
+}
+
+.middle_box {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+footer>div>div>h2 {
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+footer>div>div>h4 {
+  color: #fff;
+  margin-bottom: 5px;
+}
+
+.info_box {
+  text-align: right;
+}
+
+.info_box>div {
+  margin-bottom: 20px;
+}
+
+.info_box>div>img {
+  margin-left: 20px;
+}

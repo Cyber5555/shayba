@@ -1,0 +1,64 @@
+.purchase_field {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 350px));
+  justify-content: center;
+  gap: 100px;
+  margin-top: 50px;
+}
+
+.rendered_item {
+  border-radius: 10px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.37);
+  padding: 10px;
+}
+
+.count_apt {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.item_image {
+  border-radius: 10px;
+  background: #F6F6F6;
+  margin-bottom: 5px;
+}
+
+.rendered_image {
+  width: 100%;
+  height: 100%;
+}
+
+.add_price_parent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.add_price {
+  background: #000;
+  display: flex;
+  align-items: center;
+  padding: 0 5px;
+  border-radius: 5px;
+}
+
+.buttons {
+  border: none;
+  background: #000;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+}
+
+.price_count {
+  width: 40px;
+  font-size: 20px;
+  color: #fff;
+  text-align: center;
+  margin-top: -3px;
+}

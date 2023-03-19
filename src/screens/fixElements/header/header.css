@@ -1,0 +1,71 @@
+.header_container {
+  width: 100%;
+  height: 70px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 50px;
+}
+
+.shayba_icon {
+  font-size: 50px;
+  font-family: 'Bold';
+}
+
+.search_on_header {
+  font-family: serif;
+}
+
+.search_parent {
+  width: 20%;
+  height: 40px;
+  position: relative;
+  background: #F6F6F6;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.search_on_header {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding-left: 10px;
+  font-size: 16px;
+}
+
+.search_on_header::placeholder {
+  font-family: 'Medium';
+  font-size: 16px;
+}
+
+.search_icon {
+  bottom: none;
+  outline: none;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.tell_number_parent {
+  display: flex;
+  align-items: center;
+  gap: 20px
+}
+
+.budget_container {
+  display: flex;
+  align-items: center;
+}
+
+.counter {
+  color: #D4D3D3;
+  margin-left: 10px;
+}
+
+.budget {
+  margin-left: 30px;
+}
