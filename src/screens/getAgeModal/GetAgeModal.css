@@ -7,8 +7,10 @@
   height: 100vh;
   z-index: 100;
   backdrop-filter: blur(2px);
-  /* display: grid;
-  place-items: center; */
+}
+
+.popup_parent_close {
+  display: none;
 }
 
 .popup_container {
@@ -63,7 +65,7 @@
 .buttons {
   background: #fff;
   color: #000;
-  bottom: none;
+  border: none;
   outline: none;
   width: 70px;
   height: 30px;

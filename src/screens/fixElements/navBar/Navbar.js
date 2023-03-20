@@ -6,7 +6,7 @@ export function Navbar() {
     <nav className="navbar">
       <ul className="navbar_ul">
         <li>
-          <Link to={"/"} className="navbar_links">
+          <Link to={"/catalog"} className="navbar_links">
             КАТАЛОГ
           </Link>
         </li>

@@ -10,13 +10,14 @@ import {
   faSearch,
 } from "@fortawesome/free-solid-svg-icons";
 import { TitleIcon } from "../../../components/svgIcons/SvgIcons";
+import { Link } from "react-router-dom";
 
 export const Header = () => {
   return (
     <header className="header_container">
-      <a className="shayba_icon" href="#">
+      <Link className="shayba_icon" to={"/"}>
         <TitleIcon />
-      </a>
+      </Link>
 
       <div className="search_parent">
         <input

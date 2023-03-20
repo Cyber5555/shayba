@@ -5,9 +5,10 @@ import "./GetAgeModal.css";
 
 export const GetAgeModal = () => {
   const dispatch = useDispatch();
+  const check_age = useSelector((state) => state.toolkit.getAgeBool);
 
   return (
-    <section className="popup_parent">
+    <section className={!check_age ? "popup_parent" : "popup_parent_close"}>
       <div className="popup_container">
         <h2>ВАМ УЖЕ ЕСТЬ 18?</h2>
         <p>
