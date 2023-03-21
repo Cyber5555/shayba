@@ -4,9 +4,6 @@ import "./Footer.css";
 export const Footer = () => {
   return (
     <React.Fragment>
-      <div className="top_footer">
-        <div></div>
-      </div>
       <footer>
         <div>
           <div>

@@ -6,21 +6,21 @@ import { VariousProducts } from "../../variousProducts/VariousProducts";
 import { GetAgeModal } from "../getAgeModal/GetAgeModal";
 import { PurchaseField } from "../../purchaseField/PurchaseField";
 import { RenderPurchase } from "../../purchaseField/renderPurchase";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMinus } from "@fortawesome/free-solid-svg-icons";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { data } from './../../globalTestData';
-
+import { data } from "./../../globalTestData";
+import { BottomBar } from "./../fixElements/bottomBar/bottomBar";
 
 export default function Layout() {
   return (
-    <main className="layout_home_screen">
-      <GetAgeModal />
-      <Slider />
-      <VariousProducts />
-      <PurchaseField>
-        <RenderPurchase data={data} />
-      </PurchaseField>
-    </main>
+    <React.Fragment>
+      <main className="layout_home_screen">
+        <GetAgeModal />
+        <Slider />
+        <VariousProducts />
+        <PurchaseField>
+          <RenderPurchase data={data} />
+        </PurchaseField>
+      </main>
+      <BottomBar />
+    </React.Fragment>
   );
 }

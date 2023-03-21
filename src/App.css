@@ -1,4 +1,8 @@
 @font-face {
+  font-family: 'Black';
+  src: url('./components/fonts/Roboto/Roboto-Black.ttf');
+}
+@font-face {
   font-family: 'Bold';
   src: url('./components/fonts/Roboto/Roboto-Bold.ttf');
 }

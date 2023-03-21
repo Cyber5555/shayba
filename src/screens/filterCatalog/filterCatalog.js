@@ -20,8 +20,8 @@ export const FilterCatalog = () => {
       <article className="brand_name_menu">
         <h2 className="brand_title">ОДНОРАЗОВЫЕ POD</h2>
         <div className="brand_box">
-          {brands.map((brand) => (
-            <div className="rendered_brand">
+          {brands.map((brand, index) => (
+            <div key={index} className="rendered_brand">
               <h3>{brand}</h3>
             </div>
           ))}
