@@ -1,6 +1,5 @@
 import React, { Component, useEffect, useRef, useState } from "react";
 import styles from "./slider.module.css";
-import "react-image-gallery/styles/css/image-gallery.css";
 import Carousel from "./carousel.js";
 
 const data = [

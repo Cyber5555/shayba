@@ -6,6 +6,7 @@ import { Header } from "./screens/fixElements/header/Header";
 import { Navbar } from "./screens/fixElements/navBar/Navbar";
 import { Footer } from "./screens/fixElements/footer/Footer";
 import { Catalog } from "./screens/catalog/catalog";
+import { FilterCatalog } from "./screens/filterCatalog/filterCatalog";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route path="/" exact element={<HomeScreen />} />
           <Route path="/catalog" element={<Catalog />} />
+          <Route path="/filter-catalog" element={<FilterCatalog />} />
         </Routes>
         <Footer />
       </div>

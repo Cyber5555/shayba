@@ -1,0 +1,70 @@
+.main_container_filter {
+  width: 100%;
+  display: flex;
+  padding: 50px;
+}
+
+.brand_name_menu {
+  width: 17%;
+  min-width: 220px;
+  height: 80vh;
+  display: grid;
+  grid-template-rows: 60px 1fr;
+}
+
+.brand_box {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+  overflow: auto;
+}
+
+.rendered_brand {
+  padding-left: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: 2px solid grey;
+}
+
+.container_filter {
+  width: 80%;
+  height: 80vh;
+  display: grid;
+  grid-template-rows: 40px 1fr;
+}
+
+.catalog_list_ul {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 30px;
+  position: relative;
+}
+
+.catalog_lists {
+  cursor: pointer;
+}
+
+.component_whit_catalog {
+  width: 100%;
+  height: auto;
+  overflow-y: scroll;
+  padding-bottom: 50px;
+}
+
+
+.catalog_info {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.catalog_info::after {
+  content: '';
+  width: 10px;
+  height: 1px;
+  background: #000;
+  position: absolute;
+  right: -10px;
+  top: 50%;
+}

@@ -22,10 +22,10 @@ export const GetAgeModal = () => {
           табачных изделий.
         </p>
         <div className="buttons_parent">
-          <button onClick={() => dispatch(getAgeTrue())} className="buttons">
+          <button onClick={() => dispatch(getAgeTrue())} className="button">
             ДА
           </button>
-          <button onClick={() => dispatch(getAgeFalse())} className="buttons">
+          <button onClick={() => dispatch(getAgeFalse())} className="button">
             НЕТ
           </button>
         </div>

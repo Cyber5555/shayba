@@ -1,16 +1,23 @@
 .purchase_field {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 350px));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 300px));
+  grid-template-rows: auto;
   justify-content: center;
-  gap: 100px;
-  margin-top: 50px;
+  gap: 50px;
+  padding: 20px 0;
 }
-
 .rendered_item {
   border-radius: 10px;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.37);
   padding: 10px;
+  transition: .5s;
+  cursor: alias;
+  color: #000;
+}
+
+.rendered_item:hover {
+  transform: scale(1.1);
 }
 
 .count_apt {
@@ -61,4 +68,5 @@
   color: #fff;
   text-align: center;
   margin-top: -3px;
+  
 }
