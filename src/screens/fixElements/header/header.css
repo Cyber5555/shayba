@@ -61,6 +61,12 @@
   align-items: center;
 }
 
+.bug_header {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
 .counter {
   color: #D4D3D3;
   margin-left: 10px;

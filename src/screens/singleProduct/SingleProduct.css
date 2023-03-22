@@ -69,7 +69,7 @@
   padding: 5px 10px;
   border-radius: 5px;
   cursor: pointer;
-  font-family: 'Black';
+  font-family: 'Black_';
   font-size: 26px;
 }
 
@@ -92,7 +92,7 @@
 
 .product_price {
   font-size: 51px;
-  font-family: 'Black';
+  font-family: 'Black_';
 }
 
 .info_for_products {
@@ -104,4 +104,20 @@
 .info_for_products>span {
   font-family: 'Regular';
   font-size: 18px;
+}
+
+.total_price {
+  font-family: 'Black_';
+  font-size: 40px;
+}
+
+.checkout_button {
+  background: #000;
+  color: #fff;
+  font-family: "Medium";
+  border: none;
+  padding: 8px 20px;
+  font-size: 20px;
+  border-radius: 5px;
+  cursor: pointer;
 }

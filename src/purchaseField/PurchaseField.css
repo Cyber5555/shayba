@@ -7,6 +7,7 @@
   gap: 50px;
   padding: 20px 0;
 }
+
 .rendered_item {
   border-radius: 10px;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.37);
@@ -14,6 +15,7 @@
   transition: .5s;
   cursor: alias;
   color: #000;
+  background: #fff;
 }
 
 .rendered_item:hover {
@@ -68,5 +70,5 @@
   color: #fff;
   text-align: center;
   margin-top: -3px;
-  
+
 }

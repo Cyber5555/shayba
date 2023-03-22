@@ -1,14 +1,7 @@
 import React from "react";
 import "./header.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faFaceSmile,
-  faFaceSmileWink,
-  faPhoneVolume,
-  fas,
-  faS,
-  faSearch,
-} from "@fortawesome/free-solid-svg-icons";
+import { faPhoneVolume, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { TitleIcon } from "../../../components/svgIcons/SvgIcons";
 import { Link } from "react-router-dom";
 
@@ -44,13 +37,14 @@ export const Header = () => {
           alt=""
           style={{ width: "20px", height: "20px", marginRight: "30px" }}
         />
-        <img
-          src={require("../../../components/icons/box.png")}
-          alt=""
-          style={{ width: "20px", height: "20px" }}
-        />
-        <p className="counter">20</p>
-
+        <Link to={'/basket'} className="bug_header">
+          <img
+            src={require("../../../components/icons/box.png")}
+            alt=""
+            style={{ width: "20px", height: "20px" }}
+          />
+          <p className="counter">20</p>
+        </Link>
         <p className="budget">17 000 ₽</p>
       </div>
     </header>
