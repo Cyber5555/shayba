@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
 import { createSlice } from "@reduxjs/toolkit";
 
-const toolkitSlice = createSlice({
-  name: "toolkit",
+const getAgeSlice = createSlice({
+  name: "get_age",
   initialState: {
-    getAgeBool: false,
+    getAgeBool: null,
   },
 
   reducers: {
@@ -17,6 +17,6 @@ const toolkitSlice = createSlice({
   },
 });
 
-export default toolkitSlice.reducer;
+export default getAgeSlice.reducer;
 
-export const { getAgeTrue, getAgeFalse } = toolkitSlice.actions;
+export const { getAgeTrue, getAgeFalse } = getAgeSlice.actions;

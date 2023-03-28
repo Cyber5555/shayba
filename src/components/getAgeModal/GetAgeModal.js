@@ -1,11 +1,11 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAgeFalse, getAgeTrue } from "../../store/toolkitSlice";
+import { getAgeFalse, getAgeTrue } from "../../store/getAgeSlice";
 import "./GetAgeModal.css";
 
 export const GetAgeModal = () => {
   const dispatch = useDispatch();
-  const check_age = useSelector((state) => state.toolkit.getAgeBool);
+  const check_age = useSelector((state) => state.get_age.getAgeBool);
 
   return (
     <section className={!check_age ? "popup_parent" : "popup_parent_close"}>

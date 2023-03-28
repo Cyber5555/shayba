@@ -18,7 +18,7 @@ export const BasketEmpty = ({ res }) => {
         </h3>
         <span className="box_for_empty_text">
           <img
-            src={require("../../components/icons/box.png")}
+            src={require("../../assets/icons/box.png")}
             alt=""
             className="empty_bug"
           />
@@ -27,7 +27,7 @@ export const BasketEmpty = ({ res }) => {
         <p className="recommendation">ПЕРСОНАЛЬНЫЕ РЕКОМЕНДАЦИИ</p>
       </div>
       <img
-        src={require("../../components/3dImages/Shape-25.png")}
+        src={require("../../assets/3dImages/Shape-25.png")}
         alt=""
         className="basket_image_empty"
       />

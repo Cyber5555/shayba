@@ -1,9 +1,11 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 // import toolkitReducer from "./toolkitReducer";
-import toolkitSlice from './toolkitSlice';
+import getAgeSlice from "./getAgeSlice";
+import registerReducer from "./registerSlice";
 
 const rootReducer = combineReducers({
-  toolkit: toolkitSlice,
+  get_age: getAgeSlice,
+  register: registerReducer,
 });
 
 export const store = configureStore({ reducer: rootReducer });

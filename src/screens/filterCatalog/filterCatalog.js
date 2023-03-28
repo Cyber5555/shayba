@@ -1,8 +1,8 @@
 import React from "react";
 import "./filterCatalog.css";
 import { data } from "./../../globalTestData";
-import { PurchaseField } from "./../../purchaseField/PurchaseField";
-import { RenderPurchase } from "./../../purchaseField/renderPurchase";
+import { PurchaseField } from "../../components/purchaseField/PurchaseField";
+import { RenderPurchase } from "../../components/purchaseField/renderPurchase";
 
 const brands = [
   "BRANDNAME #1",

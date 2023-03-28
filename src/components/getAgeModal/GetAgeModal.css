@@ -1,10 +1,7 @@
 .popup_parent {
   background: #9898972c;
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  inset: 0;
   z-index: 100;
   backdrop-filter: blur(2px);
 }
@@ -16,7 +13,7 @@
 .popup_container {
   width: 35%;
   min-width: 300px;
-  background: url("../../components/3dImages/Shape-3.png") no-repeat 200px center / cover, #000;
+  background: url("../../assets/3dImages/Shape-3.png") no-repeat 200px center / cover, #000;
   border-radius: 20px;
   position: relative;
   padding: 50px;

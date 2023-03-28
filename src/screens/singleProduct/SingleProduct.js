@@ -2,9 +2,10 @@ import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { InnerImageZoom } from "zoom-loading-detector";
 import { data } from "../../globalTestData";
-import { PurchaseField } from "../../purchaseField/PurchaseField";
-import { RenderPurchase } from "../../purchaseField/renderPurchase";
+import { PurchaseField } from '../../components/purchaseField/PurchaseField';
+import { RenderPurchase } from '../../components/purchaseField/renderPurchase';
 import "./SingleProduct.css";
+
 export const SingleProduct = () => {
   return (
     <main className="layout_home_screen">
@@ -15,7 +16,7 @@ export const SingleProduct = () => {
           </h2>
           <div className="single_product_image_parent">
             <InnerImageZoom
-              src={require("../../components/images/puff5.png")}
+              src={require("../../assets/images/puff5.png")}
               className="single_product_image"
             />
           </div>
@@ -34,7 +35,7 @@ export const SingleProduct = () => {
             <h2>HQD MANGO ICE 3% + ТЕКСТ ТЕКСТ ТЕКСТ</h2>
             <div className="net_parent">
               <img
-                src={require("../../components/icons/net.png")}
+                src={require("../../assets/icons/net.png")}
                 alt=""
                 style={{ width: "24px", height: "24px" }}
               />

@@ -5,37 +5,37 @@ const data = [
   {
     id: 1,
     text: "ЖЕВАТЕЛЬНЫЙ ТАБАК",
-    image: require("../components/images/IMG_5860 1.png"),
+    image: require("../../assets/images/IMG_5860 1.png"),
   },
   {
     id: 2,
     text: "ТАБАК ДЛЯ КАЛЬЯНА",
-    image: require("../components/images/IMG_5860 2.png"),
+    image: require("../../assets/images/IMG_5860 2.png"),
   },
   {
     id: 3,
     text: "УГОЛЬ",
-    image: require("../components/images/IMG_5860 3.png"),
+    image: require("../../assets/images/IMG_5860 3.png"),
   },
   {
     id: 4,
     text: "АКСЕССУАРЫ",
-    image: require("../components/images/IMG_5860 4.png"),
+    image: require("../../assets/images/IMG_5860 4.png"),
   },
   {
     id: 5,
     text: "ОДНОРАЗОВЫЕ ИСПАРИТЕЛИ",
-    image: require("../components/images/IMG_5860 5.png"),
+    image: require("../../assets/images/IMG_5860 5.png"),
   },
   {
     id: 6,
     text: "МНОГОРАЗОВЫЕ POD",
-    image: require("../components/images/IMG_5860 6.png"),
+    image: require("../../assets/images/IMG_5860 6.png"),
   },
   {
     id: 7,
     text: "ЖИДКОСТИ ДЛЯ POD",
-    image: require("../components/images/IMG_5860 7.png"),
+    image: require("../../assets/images/IMG_5860 7.png"),
   },
 ];
 

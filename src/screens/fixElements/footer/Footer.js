@@ -17,7 +17,7 @@ export const Footer = () => {
           </div>
           <div className="middle_box">
             <img
-              src={require("../../../components/icons/certificate.png")}
+              src={require("../../../assets/icons/certificate.png")}
               alt=""
               style={{ width: "20px", height: "25px", marginRight: "10px" }}
             />
@@ -29,22 +29,22 @@ export const Footer = () => {
           <div className="info_box">
             <div>
               <img
-                src={require("../../../components/icons/vk.png")}
+                src={require("../../../assets/icons/vk.png")}
                 alt="vk"
                 style={{ width: "26px", height: "26px" }}
               />
               <img
-                src={require("../../../components/icons/instagram.png")}
+                src={require("../../../assets/icons/instagram.png")}
                 alt="instagram"
                 style={{ width: "26px", height: "26px" }}
               />
               <img
-                src={require("../../../components/icons/whatsapp.png")}
+                src={require("../../../assets/icons/whatsapp.png")}
                 alt="whatsapp"
                 style={{ width: "26px", height: "26px" }}
               />
               <img
-                src={require("../../../components/icons/telegram.png")}
+                src={require("../../../assets/icons/telegram.png")}
                 alt="telegram"
                 style={{ width: "26px", height: "26px" }}
               />

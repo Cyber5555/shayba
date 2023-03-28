@@ -1,0 +1,125 @@
+.order_formation_parent {
+  padding: 50px;
+}
+
+.order_formation_input_container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.form_inputs {
+  min-width: 300px;
+  margin-top: 50px;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow:
+    0 0 5px rgba(0, 0, 0, 0.4),
+    0 8px 8px rgba(0, 0, 0, 0.4),
+    5px 12px 12px rgba(0, 0, 0, 0.4);
+}
+
+.control_order {
+  margin-top: 60px;
+  display: grid;
+  align-content: space-between;
+  justify-content: flex-end;
+  min-height: 400px;
+}
+
+.top_box_checkout {
+  text-align: right;
+}
+
+.your_order {
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 30px;
+}
+
+.top_box_checkout>p {
+  font-family: "Medium";
+}
+
+.order_price {
+  margin-bottom: 30px;
+}
+
+.edit_text {
+  font-size: 14px;
+  cursor: pointer;
+  color: #707070;
+}
+
+.order_formation_header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order_formation_header>ul {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.order_formation_header>ul>span {
+  background: #707070;
+  width: 20px;
+  height: 1px;
+}
+
+.address_shipping_order_formation {
+  margin-top: 60px;
+}
+
+.switch_checkbox {
+  appearance: none;
+  width: 50px;
+  min-width: 50px;
+  height: 20px;
+  border: 2px solid #000;
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+}
+
+.switch_checkbox::before {
+  content: "";
+  position: absolute;
+  background: #000;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  top: 1px;
+  left: 1px;
+}
+
+.switch_checkbox::after {
+  content: "\2716";
+  right: 2px;
+  top: -1px;
+  color: rgb(128, 128, 128);
+  position: absolute;
+  z-index: -1;
+}
+
+.switch_checkbox:checked::before {
+  left: calc(100% - 15px);
+  color: #000;
+}
+
+.switch_parent {
+  display: flex;
+  gap: 50px;
+  align-items: center;
+  margin-left: 50px;
+}
+
+.switch_parent>p {
+  font-family: 'Medium';
+}
+
+.baskets_render_box {
+  margin: 50px 0;
+}

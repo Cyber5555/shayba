@@ -14,7 +14,9 @@ export const RenderPurchase = ({ data }) => {
   if (location === "/" || location === "/catalog") {
     new_location = "/filter-catalog";
   } else if (location === "/filter-catalog") {
-    new_location = "/single-catalog";
+    new_location = "/single-product";
+  } else if (location === "/single-product") {
+    new_location = "/single-product";
   }
 
   if (data?.length > 0) {
