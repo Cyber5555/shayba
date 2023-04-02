@@ -10,11 +10,15 @@ import { Context } from "../../../context/Context";
 
 export const Header = () => {
   const value = useContext(Context);
-  const [user_token, setUserToken] = useState("");
+  const [user_token, setUserToken] = useState(null);
+
+  const getUserToken = async () => {
+    let token = await localStorage.getItem("userToken");
+    setUserToken(token);
+  };
 
   useEffect(() => {
-    let token = localStorage.getItem("authToken");
-    setUserToken(token);
+    getUserToken();
   }, []);
 
   console.log(user_token);

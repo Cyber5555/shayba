@@ -5,11 +5,12 @@ export const verifyPhoneRequest = createAsyncThunk(
   "confirmation",
   async (data, { rejectWithValue }) => {
     try {
-      const response = await axios.post(
+      let response = await axios.post(
         `${process.env.REACT_APP_API_URL}confirm_registration`,
         data
       );
-      return response.data;
+      console.log(response);
+      return response;
     } catch (error) {
       return rejectWithValue(error.response.data);
     }
@@ -30,18 +31,18 @@ const verifyPhoneSlice = createSlice({
     });
 
     builder.addCase(verifyPhoneRequest.fulfilled, (state, action) => {
-      console.log(action);
       if (action.payload.status) {
         state.loading = false;
         state.success = true;
+        localStorage.setItem("userToken", action.payload.token);
       }
     });
 
     builder.addCase(verifyPhoneRequest.rejected, (state, action) => {
-      console.log(action.payload);
       if (!action.payload.status) {
         state.verify_error = action.payload.message.phone_verify;
         state.loading = false;
+        localStorage.removeItem("userToken");
       }
     });
   },

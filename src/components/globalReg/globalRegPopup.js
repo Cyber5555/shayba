@@ -86,7 +86,7 @@ export const RegisterPopup = () => {
           <InputContainer
             id={formData.name}
             inputTitle={"ИМЯ *"}
-            inputType={"password"}
+            inputType={"text"}
             required={true}
             TitleStyle={{
               color: "white",

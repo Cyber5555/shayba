@@ -11,27 +11,25 @@ export const VerifyCode = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
   const { loading, success, verify_error } = state.verify;
-  const [formData, setFormData] = useState({
-    verify_code: "",
-    phone: localStorage.getItem("phone"),
-  });
+  const [verify_code, setVerify] = useState();
+  const [phone] = useState(localStorage.getItem("phone"));
 
   const handleInputChange = (event) => {
-    if (event.target.name === "verify_code") {
-      event.target.value = event.target.value.replace(/[^0-9]/g, "");
-    }
-    const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
+    event.target.value = event.target.value.replace(/[^0-9]/g, "");
+
+    const { value } = event.target;
+    setVerify(value);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    let form_data = new FormData();
+
+    form_data.append("phone_verify", verify_code);
+    form_data.append("phone", phone);
 
     dispatch(
-      verifyPhoneRequest({
-        verify_code: formData.verify_code,
-        phone: formData.phone,
-      })
+      verifyPhoneRequest(form_data)
     );
   };
 
@@ -39,9 +37,7 @@ export const VerifyCode = () => {
     if (success) {
       value.setPopupVerifyPhone(false);
       localStorage.removeItem("phone");
-      setFormData({
-        verify_code: "",
-      });
+      setVerify("");
     }
   }, [success]);
 
@@ -87,7 +83,7 @@ export const VerifyCode = () => {
             name="verify_code"
             autoFocus={true}
             onChange={handleInputChange}
-            inputValue={formData.verify_code}
+            inputValue={verify_code}
             error={verify_error}
           />
           <div className="register_button_parent">
