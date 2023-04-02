@@ -15,7 +15,7 @@
   padding: 50px;
   overflow: hidden;
   display: grid;
-  animation: popup 1s 1s forwards;
+  animation: popup .5s .5s forwards;
   left: 50%;
   top: -50%;
   transform: translate(-50%, -50%);

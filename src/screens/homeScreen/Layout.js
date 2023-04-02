@@ -19,7 +19,7 @@ export default function Layout() {
   return (
     <React.Fragment>
       <main className="layout_home_screen">
-        <GetAgeModal />
+        {/* <GetAgeModal /> */}
         <RegisterPopup />
         <VerifyCode />
         <ForgotPassword />

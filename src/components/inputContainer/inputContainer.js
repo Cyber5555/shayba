@@ -16,6 +16,7 @@ export const InputContainer = ({
   inputValue,
   autoFocus,
   name,
+  error,
   id,
 }) => {
   return (
@@ -37,6 +38,7 @@ export const InputContainer = ({
         value={inputValue}
         autoFocus={autoFocus}
       />
+      <p className={styles.ErrorMessage}>{error}</p>
     </div>
   );
 };
@@ -70,9 +72,10 @@ export const PhoneInputFunc = ({
   inputStyle,
   dropdownStyle,
   onChange,
+  error,
 }) => {
   return (
-    <div>
+    <div style={{ marginBottom: 20 }}>
       <label style={TitleStyle} className={styles.InputTitle}>
         {inputTitle}
       </label>
@@ -87,11 +90,11 @@ export const PhoneInputFunc = ({
         dropdownStyle={dropdownStyle}
         containerStyle={{
           width: "100%",
-          marginBottom: 20,
           position: "relative",
           marginTop: 10,
         }}
       />
+      <p className={styles.ErrorMessage}>{error}</p>
     </div>
   );
 };

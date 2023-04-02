@@ -38,7 +38,7 @@ export const ForgotPassword = () => {
             <img
               src={require("../../assets/icons/close_cross.png")}
               alt="close_cross"
-              onClick={() => value.setPopupRegister(false)}
+              onClick={() => value.setForgotPassword(false)}
             />
           </div>
 

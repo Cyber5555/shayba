@@ -11,6 +11,8 @@ import styles from "./slider.module.css";
 
 const Carousel = ({ children }) => {
   const containerRef = useRef();
+  const [targetClick, setTargetClick] = useState(0);
+  const [accept, setAccept] = useState(false);
   const intervalRef = useRef(null);
   const [current, setCurrent] = useState(1);
   const [translateX, setTranslateX] = useState(0);
@@ -74,6 +76,20 @@ const Carousel = ({ children }) => {
     };
   }, [actionHandler]);
 
+  const toucheHandler = (e) => {
+    if (e.targetTouches[0].clientX < targetClick) {
+      if (accept) {
+        actionHandler("next");
+        return setAccept(false);
+      }
+    } else if (e.targetTouches[0].clientX > targetClick) {
+      if (accept) {
+        actionHandler("prev");
+        return setAccept(false);
+      }
+    }
+  };
+
   const slides = useMemo(() => {
     if (children.length > 1) {
       let items = Children.map(children, (child, index) => (
@@ -111,6 +127,9 @@ const Carousel = ({ children }) => {
         style={{
           transform: `translateX(${-translateX}px)`,
         }}
+        onTouchStart={(e) => setTargetClick(e.targetTouches[0].clientX)}
+        onTouchMove={toucheHandler}
+        onTouchEnd={() => setAccept(true)}
       >
         {slides}
       </ul>

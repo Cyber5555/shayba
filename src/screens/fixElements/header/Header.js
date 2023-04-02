@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./header.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhoneVolume, faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -10,6 +10,14 @@ import { Context } from "../../../context/Context";
 
 export const Header = () => {
   const value = useContext(Context);
+  const [user_token, setUserToken] = useState("");
+
+  useEffect(() => {
+    let token = localStorage.getItem("authToken");
+    setUserToken(token);
+  }, []);
+
+  console.log(user_token);
   return (
     <header className="header_container">
       <Link className="shayba_icon" to={"/"}>
@@ -35,48 +43,39 @@ export const Header = () => {
         <h2 className="tell_number">8 800 999 88 99</h2>
       </div>
 
-      <div className="budget_container">
-        <img
-          src={require("../../../assets/icons/smile.png")}
-          alt=""
-          style={{ width: "20px", height: "20px", marginRight: "30px" }}
-        />
-        <Link to={"/basket"} className="bug_header">
+      {user_token ? (
+        <div className="budget_container">
           <img
-            src={require("../../../assets/icons/box.png")}
+            src={require("../../../assets/icons/smile.png")}
             alt=""
-            style={{ width: "20px", height: "20px" }}
+            style={{ width: "20px", height: "20px", marginRight: "30px" }}
           />
-          <p className="counter">20</p>
-        </Link>
-        <p className="budget">17 000 ₽</p>
-        <button
-          style={{
-            marginLeft: 20,
-            border: "none",
-            color: "white",
-            background: "black",
-            padding: "5px 10px",
-            cursor: "pointer",
-          }}
-          onClick={() => value.setLoginPopup(true)}
-        >
-          войти
-        </button>
-        <button
-          style={{
-            marginLeft: 20,
-            border: "none",
-            color: "white",
-            background: "black",
-            padding: "5px 10px",
-            cursor: "pointer",
-          }}
-          onClick={() => value.setPopupRegister(true)}
-        >
-          Регистрация
-        </button>
-      </div>
+          <Link to={"/basket"} className="bug_header">
+            <img
+              src={require("../../../assets/icons/box.png")}
+              alt=""
+              style={{ width: "20px", height: "20px" }}
+            />
+            <p className="counter">20</p>
+          </Link>
+          <p className="budget">17 000 ₽</p>
+        </div>
+      ) : (
+        <div className="budget_container">
+          <button
+            className="reg_button"
+            onClick={() => value.setLoginPopup(true)}
+          >
+            войти
+          </button>
+          <button
+            className="reg_button"
+            onClick={() => value.setPopupRegister(true)}
+          >
+            Регистрация
+          </button>
+        </div>
+      )}
     </header>
   );
 };

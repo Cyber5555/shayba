@@ -56,11 +56,11 @@ export const LoginPopup = () => {
           autoCapitalize="off"
         >
           <div className="popup_title_and_close_button">
-            <h2 style={{ textTransform: "uppercase" }}>Регистрация</h2>
+            <h2 style={{ textTransform: "uppercase" }}>ВХОД</h2>
             <img
               src={require("../../assets/icons/close_cross.png")}
               alt="close_cross"
-              onClick={() => value.setPopupRegister(false)}
+              onClick={() => value.setLoginPopup(false)}
             />
           </div>
 

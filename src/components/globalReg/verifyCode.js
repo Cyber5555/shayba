@@ -1,19 +1,19 @@
-import React, { useState } from "react";
-
-import {
-  InputContainer,
-  PhoneInputFunc,
-} from "../inputContainer/inputContainer";
+import React, { useEffect, useState } from "react";
+import { InputContainer } from "../inputContainer/inputContainer";
 import "./globalRegPopup.css";
-
 import { useContext } from "react";
 import { Context } from "../../context/Context";
+import { useDispatch, useSelector } from "react-redux";
+import { verifyPhoneRequest } from "../../store/verifyPhoneSlice";
+import { SyncLoader } from "react-spinners";
 
 export const VerifyCode = () => {
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state);
+  const { loading, success, verify_error } = state.verify;
   const [formData, setFormData] = useState({
-    password_confirmation: "",
-    password: "",
     verify_code: "",
+    phone: localStorage.getItem("phone"),
   });
 
   const handleInputChange = (event) => {
@@ -26,12 +26,24 @@ export const VerifyCode = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    value.setPopupVerifyPhone(false);
-    // grum en api n
-    setFormData({
-      verify_code: "",
-    });
+
+    dispatch(
+      verifyPhoneRequest({
+        verify_code: formData.verify_code,
+        phone: formData.phone,
+      })
+    );
   };
+
+  useEffect(() => {
+    if (success) {
+      value.setPopupVerifyPhone(false);
+      localStorage.removeItem("phone");
+      setFormData({
+        verify_code: "",
+      });
+    }
+  }, [success]);
 
   const value = useContext(Context);
 
@@ -59,8 +71,8 @@ export const VerifyCode = () => {
             inputType={"text"}
             required={true}
             minimum={4}
-            maximum={6}
-            maxLength={6}
+            maximum={4}
+            maxLength={4}
             TitleStyle={{
               color: "white",
             }}
@@ -76,11 +88,24 @@ export const VerifyCode = () => {
             autoFocus={true}
             onChange={handleInputChange}
             inputValue={formData.verify_code}
+            error={verify_error}
           />
           <div className="register_button_parent">
-            <button type="submit" className="register_button">
-              ПРОДОЛЖАТЬ
-            </button>
+            <SyncLoader
+              color={"white"}
+              loading={loading}
+              cssOverride={{
+                borderColor: "white",
+              }}
+              size={10}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
+            {!loading && (
+              <button type="submit" className="register_button">
+                РЕГИСТРАЦИЯ
+              </button>
+            )}
           </div>
         </form>
       </section>

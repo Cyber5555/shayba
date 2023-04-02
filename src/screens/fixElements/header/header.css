@@ -75,3 +75,13 @@
 .budget {
   margin-left: 30px;
 }
+
+.reg_button {
+  margin-left: 20px;
+  border: none;
+  color: white;
+  background: black;
+  padding: 5px 10px;
+  border-radius: 5;
+  cursor: pointer;
+}
