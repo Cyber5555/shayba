@@ -15,6 +15,11 @@
   font-family: 'Regular';
 }
 
+.Input::-webkit-outer-spin-button,
+.Input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
 .TextArea {
   width: 100%;
   min-height: 100px;

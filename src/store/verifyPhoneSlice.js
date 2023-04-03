@@ -9,7 +9,6 @@ export const verifyPhoneRequest = createAsyncThunk(
         `${process.env.REACT_APP_API_URL}confirm_registration`,
         data
       );
-      console.log(response);
       return response;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -32,9 +31,9 @@ const verifyPhoneSlice = createSlice({
 
     builder.addCase(verifyPhoneRequest.fulfilled, (state, action) => {
       if (action.payload.status) {
+        localStorage.setItem("userToken", action.payload.data.token);
         state.loading = false;
         state.success = true;
-        localStorage.setItem("userToken", action.payload.token);
       }
     });
 
@@ -42,7 +41,7 @@ const verifyPhoneSlice = createSlice({
       if (!action.payload.status) {
         state.verify_error = action.payload.message.phone_verify;
         state.loading = false;
-        localStorage.removeItem("userToken");
+        // localStorage.removeItem("userToken");
       }
     });
   },

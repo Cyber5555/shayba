@@ -33,7 +33,6 @@ const registerSlice = createSlice({
     });
 
     builder.addCase(registerRequest.fulfilled, (state, action) => {
-      console.log(action);
       if (action.payload.status) {
         state.loading = false;
         state.success = true;
@@ -41,7 +40,6 @@ const registerSlice = createSlice({
     });
 
     builder.addCase(registerRequest.rejected, (state, action) => {
-      console.log(action.payload);
       if (!action.payload.status) {
         state.phone_error = action.payload.message.phone;
         state.name_error = action.payload.message.name;

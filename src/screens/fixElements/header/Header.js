@@ -21,7 +21,7 @@ export const Header = () => {
     getUserToken();
   }, []);
 
-  console.log(user_token);
+  // console.log(user_token, 'userToken');
   return (
     <header className="header_container">
       <Link className="shayba_icon" to={"/"}>

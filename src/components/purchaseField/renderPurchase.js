@@ -7,7 +7,6 @@ import "./PurchaseField.css";
 import { Link } from "react-router-dom";
 
 export const RenderPurchase = ({ data }) => {
-  // console.log(window.location.pathname);
   let location = window.location.pathname;
   let new_location;
 

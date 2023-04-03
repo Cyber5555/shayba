@@ -11,14 +11,11 @@ export const VerifyCode = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
   const { loading, success, verify_error } = state.verify;
-  const [verify_code, setVerify] = useState();
+  const [verify_code, setVerify] = useState("");
   const [phone] = useState(localStorage.getItem("phone"));
 
   const handleInputChange = (event) => {
-    event.target.value = event.target.value.replace(/[^0-9]/g, "");
-
-    const { value } = event.target;
-    setVerify(value);
+    setVerify(event.target.value.replace(/[^0-9]/g, ""));
   };
 
   const handleSubmit = (event) => {
@@ -28,9 +25,7 @@ export const VerifyCode = () => {
     form_data.append("phone_verify", verify_code);
     form_data.append("phone", phone);
 
-    dispatch(
-      verifyPhoneRequest(form_data)
-    );
+    dispatch(verifyPhoneRequest(form_data));
   };
 
   useEffect(() => {
@@ -66,8 +61,8 @@ export const VerifyCode = () => {
             inputTitle={"Код подтверждения"}
             inputType={"text"}
             required={true}
-            minimum={4}
-            maximum={4}
+            // minimum={4}
+            // maximum={4}
             maxLength={4}
             TitleStyle={{
               color: "white",
