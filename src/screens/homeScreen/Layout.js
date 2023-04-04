@@ -1,12 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Slider } from "../../components/slider/slider";
 import "./layout.css";
-
 import { VariousProducts } from "../../components/variousProducts/VariousProducts";
-
 import { PurchaseField } from "../../components/purchaseField/PurchaseField";
 import { RenderPurchase } from "../../components/purchaseField/renderPurchase";
-import { data } from "./../../globalTestData";
 import { BottomBar } from "./../fixElements/bottomBar/bottomBar";
 import { GetAgeModal } from "./../../components/getAgeModal/GetAgeModal";
 import { RegisterPopup } from "../../components/globalReg/globalRegPopup";
@@ -14,8 +11,27 @@ import { VerifyCode } from "../../components/globalReg/verifyCode";
 import { ForgotPassword } from "../../components/globalReg/forgotPassword";
 import { LoginPopup } from "../../components/globalReg/loginPopup";
 import { PhoneForgot } from "../../components/globalReg/phoneForgot";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllProductsRequest } from "../../store/getAllProductsSlice";
 
 export default function Layout() {
+  const state = useSelector((state) => state);
+  const { data } = state.allProducts;
+  const dispatch = useDispatch();
+  let location = window.location.pathname;
+  let new_location;
+
+  useEffect(() => {
+    if (location === "/" || location === "/catalog") {
+      dispatch(getAllProductsRequest());
+    } else if (location === "/filter-catalog") {
+      new_location = "/single-product";
+    } else if (location === "/single-product") {
+      new_location = "/single-product";
+    }
+    console.log(data);
+  }, []);
+
   return (
     <React.Fragment>
       <main className="layout_home_screen">

@@ -1,50 +1,45 @@
-import React, { useState } from "react";
-
+import React, { useEffect, useState } from "react";
 import {
   InputContainer,
   PhoneInputFunc,
 } from "../inputContainer/inputContainer";
 import "./globalRegPopup.css";
-
 import { useContext } from "react";
 import { Context } from "../../context/Context";
+import { useDispatch, useSelector } from "react-redux";
+import { loginRequest } from "../../store/loglnSlice";
+
 
 export const LoginPopup = () => {
+  const dispatch = useDispatch();
   const [checked, setChecked] = useState(false);
-
-  const [formData, setFormData] = useState({
-    password: "",
-    name: "",
-  });
-
+  const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
-
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
-  };
+  const success = useSelector((state) => state.login.success);
+  const value = useContext(Context);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    value.setPopupVerifyPhone(false);
-    value.setLoginPopup(false);
-    // grum en api n
-    setFormData({
-      password: "",
-    });
+    dispatch(loginRequest({ phone: phone, password: password }));
   };
+
+  useEffect(() => {
+    if (success) {
+      value.setPopupVerifyPhone(false);
+      value.setLoginPopup(false);
+      localStorage.setItem("phone", phone);
+      setPassword("");
+      setPhone("");
+    }
+  }, [success]);
 
   const forgotPassword = (event) => {
     event.preventDefault();
     value.setPhoneForgot(true);
     value.setLoginPopup(false);
     // grum en api n
-    setFormData({
-      password: "",
-    });
+    setPassword("");
   };
-
-  const value = useContext(Context);
 
   if (value.login_popup) {
     return (
@@ -94,7 +89,7 @@ export const LoginPopup = () => {
           />
 
           <InputContainer
-            id={formData.password}
+            id={password}
             inputTitle={"ПАРОЛЬ *"}
             inputType={"password"}
             required={true}
@@ -109,8 +104,8 @@ export const LoginPopup = () => {
               color: "white",
             }}
             name="password"
-            onChange={handleInputChange}
-            inputValue={formData.password}
+            onChange={(e) => setPassword(e.target.value)}
+            inputValue={password}
           />
 
           <div className="switch_parent_reg">

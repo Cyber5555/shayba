@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
-
 import {
   InputContainer,
   PhoneInputFunc,
 } from "../inputContainer/inputContainer";
 import "./globalRegPopup.css";
-
 import { useContext } from "react";
 import { Context } from "../../context/Context";
 import { useDispatch, useSelector } from "react-redux";

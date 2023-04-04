@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const getSliderRequest = createAsyncThunk("slider", async () => {
   let response = await axios.get(`${process.env.REACT_APP_API_URL}all_slider`);
-  console.log(response);
+
   return response.data;
 });
 

@@ -1,6 +1,8 @@
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+
 export const BasketsProducts = () => {
   return (
     <div className="baskets_products">

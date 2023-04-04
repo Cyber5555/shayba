@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./header.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPhoneVolume, faSearch } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPhoneVolume,
+  faRightFromBracket,
+  faSearch,
+} from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { TitleIcon } from "./../../../assets/svgIcons/SvgIcons";
-import { useDispatch } from "react-redux";
 import { useContext } from "react";
 import { Context } from "../../../context/Context";
 
@@ -19,9 +22,8 @@ export const Header = () => {
 
   useEffect(() => {
     getUserToken();
-  }, []);
+  });
 
-  // console.log(user_token, 'userToken');
   return (
     <header className="header_container">
       <Link className="shayba_icon" to={"/"}>
@@ -63,6 +65,10 @@ export const Header = () => {
             <p className="counter">20</p>
           </Link>
           <p className="budget">17 000 ₽</p>
+          <FontAwesomeIcon
+            icon={faRightFromBracket}
+            style={{ marginLeft: 20, cursor: "pointer" }}
+          />
         </div>
       ) : (
         <div className="budget_container">

@@ -10,7 +10,7 @@ export const Slider = () => {
 
   useEffect(() => {
     dispatch(getSliderRequest());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className={styles.SliderParent}>
@@ -22,12 +22,16 @@ export const Slider = () => {
               <h3 className={styles.RenderedDate}>{item.sub_title}</h3>
               <h4 className={styles.RenderedInfo}>{item.description}</h4>
             </div>
-            <img
-              src={process.env.REACT_APP_API_URL + item.photo}
-              alt={`Shape${index + 1}`}
-              key={index}
-              className={styles.SliderImages}
-            />
+            {item.photo ? (
+              <img
+                src={"https://admin.shayba.store/uploads/" + item.photo}
+                alt={`Shape${index + 1}`}
+                key={index}
+                className={styles.SliderImages}
+              />
+            ) : (
+              ""
+            )}
           </React.Fragment>
         ))}
       </Carousel>
