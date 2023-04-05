@@ -26,7 +26,7 @@ const getAllProductSlice = createSlice({
       })
       .addCase(getAllProductsRequest.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = action.payload.data;
+        state.data = action.payload.data.data;
       })
       .addCase(getAllProductsRequest.rejected, (state, action) => {
         state.loading = false;

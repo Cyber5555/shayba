@@ -17,21 +17,21 @@ export const RenderPurchase = ({ data }) => {
   } else if (location === "/single-product") {
     new_location = "/single-product";
   }
-
+  
   if (data?.length > 0) {
-    return data.data.map((item, index) => {
-      console.log(item);
+    return data.map((item, index) => {
+      console.log(item.category);
 
       return (
         <Link to={new_location} className="rendered_item" key={item.id}>
           <div className="item_image" onClick={(e) => e.preventDefault()}>
             <InnerImageZoom
-              src={item.photo}
+              src={"https://admin.shayba.store/uploads/" + item?.category?.photo}
               alt=""
               className="rendered_image"
             />
           </div>
-          <h3>{item.text}</h3>
+          <h3>{item.name}</h3>
           <div className="count_apt">
             <p>{item.apt}</p>
             <p>{item.count}</p>

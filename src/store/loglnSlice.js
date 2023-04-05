@@ -28,17 +28,17 @@ const loginSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(loginRequest.pending, (state) => {
       state.loading = true;
-    });
+    })
 
-    builder.addCase(loginRequest.fulfilled, (state, action) => {
+    .addCase(loginRequest.fulfilled, (state, action) => {
       if (action.payload.status) {
         localStorage.setItem("userToken", action.payload.token);
         state.loading = false;
         state.success = true;
       }
-    });
+    })
 
-    builder.addCase(loginRequest.rejected, (state, action) => {
+    .addCase(loginRequest.rejected, (state, action) => {
       if (!action.payload.status) {
         state.phone_error = action.payload.message.phone;
         state.password_error = action.payload.message.password;

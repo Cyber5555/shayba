@@ -10,10 +10,13 @@ import { Link } from "react-router-dom";
 import { TitleIcon } from "./../../../assets/svgIcons/SvgIcons";
 import { useContext } from "react";
 import { Context } from "../../../context/Context";
+import { useDispatch } from "react-redux";
+import { logoutRequest } from "../../../store/logoutSlice";
 
 export const Header = () => {
   const value = useContext(Context);
   const [user_token, setUserToken] = useState(null);
+  const dispatch = useDispatch();
 
   const getUserToken = async () => {
     let token = await localStorage.getItem("userToken");
@@ -22,7 +25,8 @@ export const Header = () => {
 
   useEffect(() => {
     getUserToken();
-  });
+    console.log('=')
+  }, [dispatch]);
 
   return (
     <header className="header_container">
@@ -68,6 +72,17 @@ export const Header = () => {
           <FontAwesomeIcon
             icon={faRightFromBracket}
             style={{ marginLeft: 20, cursor: "pointer" }}
+            onClick={() => {
+              dispatch(
+                logoutRequest({
+                  user_token,
+                  // headers: {
+                  //   Authorization: `Bearer ${user_token}`,
+                  //   "Content-Type": "application/json",
+                  // },
+                })
+              );
+            }}
           />
         </div>
       ) : (

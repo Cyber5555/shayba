@@ -5,6 +5,7 @@ import verifyPhoneSlice from "./verifyPhoneSlice";
 import getSliderSlice from "./getSliderSlice";
 import loglnSlice from "./loglnSlice";
 import getAllProductsSlice from "./getAllProductsSlice";
+import logoutSlice from "./logoutSlice";
 
 const rootReducer = combineReducers({
   get_age: getAgeSlice,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   slider: getSliderSlice,
   login: loglnSlice,
   allProducts: getAllProductsSlice,
+  logout: logoutSlice,
 });
 
 export const store = configureStore({
