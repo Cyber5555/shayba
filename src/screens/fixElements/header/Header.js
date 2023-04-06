@@ -25,7 +25,7 @@ export const Header = () => {
 
   useEffect(() => {
     getUserToken();
-    console.log('=')
+    console.log("=");
   }, [dispatch]);
 
   return (
@@ -73,13 +73,14 @@ export const Header = () => {
             icon={faRightFromBracket}
             style={{ marginLeft: 20, cursor: "pointer" }}
             onClick={() => {
+              // console.log(user_token);
               dispatch(
                 logoutRequest({
-                  user_token,
-                  // headers: {
-                  //   Authorization: `Bearer ${user_token}`,
-                  //   "Content-Type": "application/json",
-                  // },
+                  // user_token,
+                  headers: {
+                    Authorization: `Bearer ${user_token}`,
+                    "Content-Type": "application/json",
+                  },
                 })
               );
             }}

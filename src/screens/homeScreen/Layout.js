@@ -29,7 +29,7 @@ export default function Layout() {
     } else if (location === "/single-product") {
       new_location = "/single-product";
     }
-    console.log(data);
+    // console.log(data);
   }, []);
 
   return (

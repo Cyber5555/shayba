@@ -7,7 +7,7 @@ export const getAllProductsRequest = createAsyncThunk(
     let response = await axios.get(
       `${process.env.REACT_APP_API_URL}all_products?page=1`
     );
-
+    console.log(response.data, "productsss");
     return response.data;
   }
 );
