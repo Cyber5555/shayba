@@ -5,14 +5,8 @@ import { VariousProducts } from "../../components/variousProducts/VariousProduct
 import { PurchaseField } from "../../components/purchaseField/PurchaseField";
 import { RenderPurchase } from "../../components/purchaseField/renderPurchase";
 import { BottomBar } from "./../fixElements/bottomBar/bottomBar";
-import { GetAgeModal } from "./../../components/getAgeModal/GetAgeModal";
-import { RegisterPopup } from "../../components/globalReg/globalRegPopup";
-import { VerifyCode } from "../../components/globalReg/verifyCode";
-import { ForgotPassword } from "../../components/globalReg/forgotPassword";
-import { LoginPopup } from "../../components/globalReg/loginPopup";
-import { PhoneForgot } from "../../components/globalReg/phoneForgot";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllProductsRequest } from "../../store/getAllProductsSlice";
+import { getAllProductsRequest } from "../../store/reducer/getAllProductsSlice";
 
 export default function Layout() {
   const state = useSelector((state) => state);
@@ -26,21 +20,13 @@ export default function Layout() {
       dispatch(getAllProductsRequest());
     } else if (location === "/filter-catalog") {
       new_location = "/single-product";
-    } else if (location === "/single-product") {
-      new_location = "/single-product";
     }
-    // console.log(data);
   }, []);
 
   return (
     <React.Fragment>
       <main className="layout_home_screen">
         {/* <GetAgeModal /> */}
-        <RegisterPopup />
-        <VerifyCode />
-        <ForgotPassword />
-        <LoginPopup />
-        <PhoneForgot />
         <Slider />
         <VariousProducts />
         <PurchaseField>

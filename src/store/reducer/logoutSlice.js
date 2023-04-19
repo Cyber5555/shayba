@@ -5,6 +5,12 @@ export const logoutRequest = createAsyncThunk(
   "logout",
   async (data, { rejectWithValue }) => {
     try {
+      // localStorage.getItem()
+      // headers: {
+      //   Authorization: `Bearer ${user_token}`,
+      //   "Content-Type": "application/json",
+      // },
+
       const response = await axios.get(
         `${process.env.REACT_APP_API_URL}logout`,
         data
@@ -20,7 +26,7 @@ const logoutSlice = createSlice({
   name: "logout",
   initialState: {
     loading: false,
-    success: false,
+    logout: false,
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -31,8 +37,9 @@ const logoutSlice = createSlice({
 
       .addCase(logoutRequest.fulfilled, (state, action) => {
         if (action.payload.status) {
-          localStorage.clear();
+          state.logout = true;
           state.loading = false;
+          localStorage.clear();
         }
       })
 

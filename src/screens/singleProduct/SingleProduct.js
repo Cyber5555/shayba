@@ -1,22 +1,32 @@
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { InnerImageZoom } from "zoom-loading-detector";
-import { data } from "../../globalTestData";
-import { PurchaseField } from '../../components/purchaseField/PurchaseField';
-import { RenderPurchase } from '../../components/purchaseField/renderPurchase';
+import { PurchaseField } from "../../components/purchaseField/PurchaseField";
+import { RenderPurchase } from "../../components/purchaseField/renderPurchase";
 import "./SingleProduct.css";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getSingleProductRequest } from "../../store/reducer/getSingleProductSlice";
 
 export const SingleProduct = () => {
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state);
+  const { data, is_random_data } = state.getSingleProduct;
+
+  useEffect(() => {
+    dispatch(getSingleProductRequest(localStorage.getItem("item_id")));
+  }, []);
+  console.log("====================================");
+  console.log(data);
+  console.log("====================================");
   return (
     <main className="layout_home_screen">
       <section className="single_product_box_parent">
         <div className="single_product_left_box">
-          <h2 className="single_product_title">
-            HQD MANGO ICE 3% + ТЕКСТ ТЕКСТ ТЕКСТ
-          </h2>
+          <h2 className="single_product_title">{data?.name}</h2>
           <div className="single_product_image_parent">
             <InnerImageZoom
-              src={require("../../assets/images/puff5.png")}
+              src={'https://admin.shayba.store/uploads/'+ data?.photo[0]?.photo}
               className="single_product_image"
             />
           </div>
@@ -32,7 +42,7 @@ export const SingleProduct = () => {
             <li>HQD MANGO ICE 3%</li>
           </ul>
           <div className="product_info">
-            <h2>HQD MANGO ICE 3% + ТЕКСТ ТЕКСТ ТЕКСТ</h2>
+            <h2>{data?.name}</h2>
             <div className="net_parent">
               <img
                 src={require("../../assets/icons/net.png")}
@@ -70,7 +80,7 @@ export const SingleProduct = () => {
             ОДНОРАЗОВЫЕ ЭЛЕКТРОННЫЕ ИСПАРИТЕЛИ — <span>ДА</span>
           </p>
           <div className="add_price_product_parent">
-            <p className="product_price">950 ₽</p>
+            <p className="product_price">{data?.price} ₽</p>
 
             <div className="add_price">
               <button className="buttons" name="minus">
@@ -86,7 +96,7 @@ export const SingleProduct = () => {
         </div>
       </section>
       <PurchaseField>
-        <RenderPurchase data={data} />
+        <RenderPurchase data={is_random_data} />
       </PurchaseField>
     </main>
   );

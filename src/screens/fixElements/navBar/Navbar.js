@@ -12,7 +12,7 @@ export function Navbar() {
         </li>
         <li>
           <Link to={"/about"} className="navbar_links">
-            ОПЛАТА
+            ИСТОРИЯ
           </Link>
         </li>
         <li>
@@ -20,11 +20,11 @@ export function Navbar() {
             КАК ПОЛУЧИТЬ
           </Link>
         </li>
-        <li>
+        {/* <li>
           <Link to={"/feedback"} className="navbar_links">
             ОПТ
           </Link>
-        </li>
+        </li> */}
         <li>
           <Link to={"/contact"} className="navbar_links">
             КОНТАКТЫ

@@ -4,45 +4,42 @@ import "./globalRegPopup.css";
 import { useContext } from "react";
 import { Context } from "../../context/Context";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  setPopupVerifyPhone,
-  verifyPhoneRequest,
-} from "../../store/reducer/verifyPhoneSlice";
 import { SyncLoader } from "react-spinners";
+import { verifyForgotRequest } from "../../store/reducer/verifyForgotSlice";
 
-export const VerifyCode = () => {
+export const VerifyCodeForgot = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
-  const { loading, success, verify_error, popup_verify_phone } = state.verify;
+  const { loading, success, verify_error } = state.verifyForgot;
   const [verify_code, setVerify] = useState("");
-
+  let phone;
   const handleInputChange = (event) => {
     setVerify(event.target.value.replace(/[^0-9]/g, ""));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    let form_data = new FormData();
-    console.log("====================================");
-    console.log(localStorage.getItem("phone"));
-    console.log("====================================");
-    form_data.append("phone_verify", verify_code);
-    form_data.append("phone", localStorage.getItem("phone"));
 
-    dispatch(verifyPhoneRequest(form_data));
+    dispatch(
+      verifyForgotRequest({
+        phone_verify: verify_code,
+        phone: localStorage.getItem("phone"),
+      })
+    );
   };
 
   const value = useContext(Context);
 
   useEffect(() => {
     if (success) {
-      dispatch(setPopupVerifyPhone(false));
-      localStorage.removeItem("phone");
+      value.setNewPassword(true);
+      value.setVerifyPhoneForgot(false);
+      localStorage.setItem("phone_verify", verify_code);
       setVerify("");
     }
   }, [success]);
 
-  if (popup_verify_phone) {
+  if (value.verify_phone_forgot) {
     return (
       <section className="global_reg_popup">
         <form
@@ -51,13 +48,13 @@ export const VerifyCode = () => {
           autoComplete={"off"}
         >
           <div className="popup_title_and_close_button">
-            <h2>
+            <h2 style={{ textTransform: "uppercase" }}>
               Подтверждение номера <br /> телефона
             </h2>
             <img
               src={require("../../assets/icons/close_cross.png")}
               alt="close_cross"
-              onClick={() => dispatch(setPopupVerifyPhone(false))}
+              onClick={() => value.setVerifyPhoneForgot(false)}
             />
           </div>
 
@@ -98,8 +95,12 @@ export const VerifyCode = () => {
               data-testid="loader"
             />
             {!loading && (
-              <button type="submit" className="register_button">
-                РЕГИСТРАЦИЯ
+              <button
+                type="submit"
+                className="register_button"
+                style={{ textTransform: "uppercase" }}
+              >
+                Подтвердить
               </button>
             )}
           </div>

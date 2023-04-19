@@ -16,6 +16,9 @@
   cursor: alias;
   color: #000;
   background: #fff;
+  display: grid;
+  align-content: space-between;
+
 }
 
 .rendered_item:hover {

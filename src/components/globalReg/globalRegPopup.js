@@ -4,11 +4,16 @@ import {
   PhoneInputFunc,
 } from "../inputContainer/inputContainer";
 import "./globalRegPopup.css";
-import { useContext } from "react";
-import { Context } from "../../context/Context";
 import { useDispatch, useSelector } from "react-redux";
-import { registerRequest } from "../../store/registerSlice";
+import {
+  registerRequest,
+  resetState,
+  setPopupRegister,
+} from "../../store/reducer/registerSlice";
 import { SyncLoader } from "react-spinners";
+import { setPopupVerifyPhone } from "../../store/reducer/verifyPhoneSlice";
+
+// register
 
 export const RegisterPopup = () => {
   const [checked, setChecked] = useState(false);
@@ -20,8 +25,10 @@ export const RegisterPopup = () => {
     name_error,
     password_error,
     password_confirmation_error,
-    success,
+    registerSuccess,
+    popup_register,
   } = state.register;
+
   const [formData, setFormData] = useState({
     password_confirmation: "",
     password: "",
@@ -48,9 +55,10 @@ export const RegisterPopup = () => {
   };
 
   useEffect(() => {
-    if (success) {
-      value.setPopupVerifyPhone(true);
-      value.setPopupRegister(false);
+    if (registerSuccess) {
+      // localStorage.removeItem("phone");
+      dispatch(setPopupRegister());
+      dispatch(setPopupVerifyPhone());
       localStorage.setItem("phone", phone);
       setFormData({
         name: "",
@@ -58,12 +66,13 @@ export const RegisterPopup = () => {
         password: "",
       });
       setPhone("");
+      dispatch(resetState());
     }
-  }, [success]);
+  }, [registerSuccess]);
 
-  const value = useContext(Context);
+  // const value = useContext(Context);
 
-  if (value.popup_register) {
+  if (popup_register) {
     return (
       <section className="global_reg_popup">
         <form
@@ -77,7 +86,10 @@ export const RegisterPopup = () => {
             <img
               src={require("../../assets/icons/close_cross.png")}
               alt="close_cross"
-              onClick={() => value.setPopupRegister(false)}
+              onClick={() => {
+                dispatch(resetState());
+                dispatch(setPopupRegister());
+              }}
             />
           </div>
 
@@ -85,7 +97,6 @@ export const RegisterPopup = () => {
             id={formData.name}
             inputTitle={"ИМЯ *"}
             inputType={"text"}
-            required={true}
             TitleStyle={{
               color: "white",
             }}
@@ -135,7 +146,6 @@ export const RegisterPopup = () => {
             id={formData.password}
             inputTitle={"ПАРОЛЬ *"}
             inputType={"password"}
-            required={true}
             minimum={6}
             TitleStyle={{
               color: "white",
@@ -155,7 +165,6 @@ export const RegisterPopup = () => {
           <InputContainer
             inputTitle={"Подтверждение пароля *"}
             inputType={"password"}
-            required={true}
             minimum={6}
             TitleStyle={{
               color: "white",

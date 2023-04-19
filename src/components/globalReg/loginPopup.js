@@ -7,15 +7,16 @@ import "./globalRegPopup.css";
 import { useContext } from "react";
 import { Context } from "../../context/Context";
 import { useDispatch, useSelector } from "react-redux";
-import { loginRequest } from "../../store/loglnSlice";
-
+import { loginRequest } from "../../store/reducer/loginSlice";
+import { SyncLoader } from "react-spinners";
 
 export const LoginPopup = () => {
   const dispatch = useDispatch();
   const [checked, setChecked] = useState(false);
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
-  const success = useSelector((state) => state.login.success);
+  const state = useSelector((state) => state.login);
+  const { success, phone_error, password_error, loading } = state;
   const value = useContext(Context);
 
   const handleSubmit = (event) => {
@@ -37,7 +38,7 @@ export const LoginPopup = () => {
     event.preventDefault();
     value.setPhoneForgot(true);
     value.setLoginPopup(false);
-    // grum en api n
+
     setPassword("");
   };
 
@@ -86,13 +87,13 @@ export const LoginPopup = () => {
               zIndex: 10,
               background: "white",
             }}
+            error={phone_error}
           />
 
           <InputContainer
             id={password}
             inputTitle={"ПАРОЛЬ *"}
             inputType={"password"}
-            required={true}
             minimum={6}
             TitleStyle={{
               color: "white",
@@ -106,6 +107,7 @@ export const LoginPopup = () => {
             name="password"
             onChange={(e) => setPassword(e.target.value)}
             inputValue={password}
+            error={password_error}
           />
 
           <div className="switch_parent_reg">
@@ -128,10 +130,23 @@ export const LoginPopup = () => {
               ПАРОЛЬ?
             </p>
           </div>
+
           <div className="register_button_parent">
-            <button type="submit" className="login_button">
-              ВОЙТИ
-            </button>
+            <SyncLoader
+              color={"white"}
+              loading={loading}
+              cssOverride={{
+                borderColor: "white",
+              }}
+              size={10}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
+            {!loading && (
+              <button type="submit" className="login_button">
+                ВОЙТИ
+              </button>
+            )}
           </div>
         </form>
       </section>

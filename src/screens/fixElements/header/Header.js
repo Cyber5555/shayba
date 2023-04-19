@@ -10,23 +10,28 @@ import { Link } from "react-router-dom";
 import { TitleIcon } from "./../../../assets/svgIcons/SvgIcons";
 import { useContext } from "react";
 import { Context } from "../../../context/Context";
-import { useDispatch } from "react-redux";
-import { logoutRequest } from "../../../store/logoutSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutRequest } from "../../../store/reducer/logoutSlice";
+import { setPopupRegister } from "../../../store/reducer/registerSlice";
 
 export const Header = () => {
   const value = useContext(Context);
   const [user_token, setUserToken] = useState(null);
   const dispatch = useDispatch();
-
-  const getUserToken = async () => {
-    let token = await localStorage.getItem("userToken");
-    setUserToken(token);
-  };
+  const state = useSelector((state) => state);
+  const { logout } = state.logout;
+  const { success } = state.login || state.verify || state.register;
 
   useEffect(() => {
-    getUserToken();
-    console.log("=");
-  }, [dispatch]);
+    let token = localStorage.getItem("userToken");
+    setUserToken(token);
+  }, []);
+
+  useEffect(() => {
+    if (logout || success) {
+      window.location.reload();
+    }
+  }, [logout, success]);
 
   return (
     <header className="header_container">
@@ -73,12 +78,12 @@ export const Header = () => {
             icon={faRightFromBracket}
             style={{ marginLeft: 20, cursor: "pointer" }}
             onClick={() => {
-              // console.log(user_token);
               dispatch(
                 logoutRequest({
-                  // user_token,
                   headers: {
-                    Authorization: `Bearer ${user_token}`,
+                    Authorization: `Bearer ${localStorage.getItem(
+                      "userToken"
+                    )}`,
                     "Content-Type": "application/json",
                   },
                 })
@@ -96,7 +101,7 @@ export const Header = () => {
           </button>
           <button
             className="reg_button"
-            onClick={() => value.setPopupRegister(true)}
+            onClick={() => dispatch(setPopupRegister())}
           >
             Регистрация
           </button>

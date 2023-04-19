@@ -22,6 +22,20 @@
   z-index: 10;
 }
 
+@keyframes popup {
+  0% {
+    left: 50%;
+    top: -50%;
+    transform: translate(-50%, -50%);
+  }
+
+  100% {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+}
 
 .switch_checkbox_reg {
   appearance: none;

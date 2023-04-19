@@ -8,7 +8,6 @@ export const InputContainer = ({
   inputTitle,
   minimum,
   maximum,
-  required,
   maxLength,
   onChange,
   inputStyle,
@@ -28,7 +27,6 @@ export const InputContainer = ({
         id={id}
         name={name}
         type={inputType}
-        required={required}
         min={minimum}
         max={maximum}
         maxLength={maxLength}
@@ -84,9 +82,6 @@ export const PhoneInputFunc = ({
         value={phoneValue}
         onChange={onChange}
         inputStyle={inputStyle}
-        inputProps={{
-          required: true,
-        }}
         dropdownStyle={dropdownStyle}
         containerStyle={{
           width: "100%",

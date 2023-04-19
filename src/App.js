@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import HomeScreen from "./screens/homeScreen/Layout";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
@@ -12,31 +11,45 @@ import { Basket } from "./screens/basket/basket";
 import { OrderFormation } from "./screens/orderFormation/orderFormation";
 import { Context } from "./context/Context";
 import { useState } from "react";
+import { RegisterPopup } from "./components/globalReg/globalRegPopup";
+import { VerifyCode } from "./components/globalReg/verifyCode";
+import { NewPassword } from "./components/globalReg/newPassword";
+import { VerifyCodeForgot } from "./components/globalReg/verifyCodeForgot";
+import { LoginPopup } from "./components/globalReg/loginPopup";
+import { PhoneForgot } from "./components/globalReg/phoneForgot";
 
 function App() {
-  const [popup_register, setPopupRegister] = useState(false);
-  const [popup_verify_phone, setPopupVerifyPhone] = useState(false);
   const [phone_forgot, setPhoneForgot] = useState(false);
   const [login_popup, setLoginPopup] = useState(false);
-  const [forgot_password, setForgotPassword] = useState(false);
+  const [new_password, setNewPassword] = useState(false);
+  const [verify_phone_forgot, setVerifyPhoneForgot] = useState(false);
 
   const contextValue = {
-    popup_register,
-    setPopupRegister,
-    popup_verify_phone,
-    setPopupVerifyPhone,
-    forgot_password,
-    setForgotPassword,
-    phone_forgot,
+    
+
+    phone_forgot, // bacuma forgot i popup y
     setPhoneForgot,
+
     login_popup,
-    setLoginPopup,
+    setLoginPopup, // login
+
+    verify_phone_forgot,
+    setVerifyPhoneForgot, //forgot verify
+
+    new_password,
+    setNewPassword, // taza parol
   };
 
   return (
     <Context.Provider value={contextValue}>
       <Router>
         <div className="App">
+          <RegisterPopup />
+          <VerifyCode />
+          <NewPassword />
+          <VerifyCodeForgot />
+          <LoginPopup />
+          <PhoneForgot />
           <Header />
           <Navbar />
           <Routes>

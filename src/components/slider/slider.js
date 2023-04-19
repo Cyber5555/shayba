@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import styles from "./slider.module.css";
 import Carousel from "./carousel.js";
 import { useDispatch, useSelector } from "react-redux";
-import { getSliderRequest } from "../../store/getSliderSlice";
+import { getSliderRequest } from "../../store/reducer/getSliderSlice";
 
 export const Slider = () => {
   const dispatch = useDispatch();
@@ -12,7 +12,7 @@ export const Slider = () => {
     dispatch(getSliderRequest());
   }, [dispatch]);
 
-  return (
+  return state.length ? (
     <div className={styles.SliderParent}>
       <Carousel>
         {state.map((item, index) => (
@@ -36,5 +36,7 @@ export const Slider = () => {
         ))}
       </Carousel>
     </div>
+  ) : (
+    ""
   );
 };
