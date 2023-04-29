@@ -2,6 +2,9 @@ import React from "react";
 import styles from "./inputContainer.module.css";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 
 export const InputContainer = ({
   inputType,
@@ -90,6 +93,28 @@ export const PhoneInputFunc = ({
         }}
       />
       <p className={styles.ErrorMessage}>{error}</p>
+    </div>
+  );
+};
+
+export const Search = ({ onChange, value, margin, onClick }) => {
+  return (
+    <div className={styles.SearchParent} style={{ margin: margin }}>
+      <input
+        type="search"
+        name="search"
+        className={styles.SearchOnHeader}
+        placeholder="Поиск"
+        onChange={onChange}
+        value={value}
+      />
+      <Link to={"/filter-catalog"}>
+        <FontAwesomeIcon
+          icon={faSearch}
+          color={"grey"}
+          className={styles.SearchIcon}
+        />
+      </Link>
     </div>
   );
 };

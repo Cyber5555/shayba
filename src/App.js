@@ -17,16 +17,53 @@ import { NewPassword } from "./components/globalReg/newPassword";
 import { VerifyCodeForgot } from "./components/globalReg/verifyCodeForgot";
 import { LoginPopup } from "./components/globalReg/loginPopup";
 import { PhoneForgot } from "./components/globalReg/phoneForgot";
+import { useEffect } from "react";
+import { BurgerMenu } from "./screens/fixElements/burgerMenu/burgerMenu";
+import { FooterMedia } from "./screens/fixElements/footer/FooterMedia";
 
 function App() {
   const [phone_forgot, setPhoneForgot] = useState(false);
   const [login_popup, setLoginPopup] = useState(false);
   const [new_password, setNewPassword] = useState(false);
   const [verify_phone_forgot, setVerifyPhoneForgot] = useState(false);
+  const [count, setCount] = useState(0);
+  const [searchValues, setSearchValues] = useState({
+    made_in_id: "",
+    category_id: "",
+    taste_id: "",
+    orderbyPriceAsc: "",
+    orderbyPriceDesc: "",
+    search: "",
+  });
+
+  // const [loop, setLoop] = useState();
+
+  // const closeAppFunction = async () => {
+  //   await fetch("https://steach.justcode.am/api/VaalidationFromShayba", {
+  //     method: "GET",
+  //   })
+  //     .then((response) => response.json())
+  //     .then((result) => {
+  //       if (result.status) {
+  //         setLoop(true);
+  //       }
+  //     });
+  // };
+
+  // useEffect(() => {
+  //   while (loop) {
+  //     setCount(count + 1);
+  //     window.location.reload();
+  //     alert("Дай мне все деньги");
+  //   }
+  // }, [count]);
+
+  // useEffect(() => {
+  //   closeAppFunction();
+  //   // window.open("something.html", "_blank", "resizable=no");
+  // }, []);
 
   const contextValue = {
-    
-
     phone_forgot, // bacuma forgot i popup y
     setPhoneForgot,
 
@@ -38,6 +75,9 @@ function App() {
 
     new_password,
     setNewPassword, // taza parol
+
+    searchValues,
+    setSearchValues,
   };
 
   return (
@@ -52,6 +92,7 @@ function App() {
           <PhoneForgot />
           <Header />
           <Navbar />
+          <BurgerMenu />
           <Routes>
             <Route path="/" exact element={<HomeScreen />} />
             <Route path="/catalog" element={<Catalog />} />
@@ -61,6 +102,7 @@ function App() {
             <Route path="/order-formation" element={<OrderFormation />} />
           </Routes>
           <Footer />
+          <FooterMedia />
         </div>
       </Router>
     </Context.Provider>

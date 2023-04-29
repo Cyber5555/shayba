@@ -23,9 +23,6 @@ export const VerifyCode = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     let form_data = new FormData();
-    console.log("====================================");
-    console.log(localStorage.getItem("phone"));
-    console.log("====================================");
     form_data.append("phone_verify", verify_code);
     form_data.append("phone", localStorage.getItem("phone"));
 
@@ -37,6 +34,7 @@ export const VerifyCode = () => {
   useEffect(() => {
     if (success) {
       dispatch(setPopupVerifyPhone(false));
+      window.location.reload()
       localStorage.removeItem("phone");
       setVerify("");
     }

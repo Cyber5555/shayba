@@ -20,6 +20,8 @@
   -webkit-appearance: none;
 }
 
+
+
 .TextArea {
   width: 100%;
   min-height: 100px;
@@ -36,4 +38,53 @@
 
 .ErrorMessage {
   color: red;
+}
+
+
+
+.SearchParent {
+  width: 100%;
+  height: 40px;
+  background: #F6F6F6;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.SearchOnHeader {
+  width: 85%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding-left: 10px;
+  font-size: 16px;
+}
+
+.SearchOnHeader::placeholder {
+  font-family: 'Medium';
+  font-size: 16px;
+}
+
+.SearchOnHeader::-webkit-search-decoration,
+.SearchOnHeader::-webkit-search-cancel-button,
+.SearchOnHeader::-webkit-search-results-button,
+.SearchOnHeader::-webkit-search-results-decoration {
+  display: none;
+}
+
+
+.SearchIcon {
+  bottom: none;
+  outline: none;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .SearchParent {
+    width: 80%;
+  }
 }

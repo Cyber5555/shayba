@@ -65,6 +65,7 @@
   font-size: 20px;
   color: white;
   cursor: pointer;
+  position: relative;
 }
 
 .price_count {
@@ -74,4 +75,35 @@
   text-align: center;
   margin-top: -3px;
 
+}
+
+.tooltip {
+  position: absolute;
+  background: #000;
+  white-space: pre;
+  left: 50%;
+  top: -10px;
+  transform: translateX(-50%);
+  padding: 5px 15px;
+  border-radius: 10px;
+  opacity: 0;
+  transition: .5s;
+}
+
+.tooltip.active {
+  opacity: 1;
+  top: -80px;
+
+}
+
+.tooltip::before {
+  content: '';
+  width: 20px;
+  height: 20px;
+  transform: rotateZ(45deg);
+  position: absolute;
+  background: rgb(0, 0, 0);
+  left: 50%;
+  top: 22px;
+  z-index: 10;
 }

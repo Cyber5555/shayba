@@ -7,27 +7,27 @@ export const BottomBar = () => {
       <img
         src={require("../../../assets/bottom1.png")}
         alt=""
-        style={{ width: "150px",height: '60px' }}
+        className="bottom_bar_images"
       />
       <img
         src={require("../../../assets/bottom2.png")}
         alt=""
-        style={{ width: "150px",height: '60px' }}
+        className="bottom_bar_images"
       />
       <img
         src={require("../../../assets/bottom1.png")}
         alt=""
-        style={{ width: "150px",height: '60px' }}
+        className="bottom_bar_images"
       />
       <img
         src={require("../../../assets/bottom2.png")}
         alt=""
-        style={{ width: "150px",height: '60px' }}
+        className="bottom_bar_images"
       />{" "}
       <img
         src={require("../../../assets/bottom1.png")}
         alt=""
-        style={{ width: "150px",height: '60px' }}
+        className="bottom_bar_images"
       />
     </div>
   );

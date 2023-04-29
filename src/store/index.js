@@ -12,6 +12,10 @@ import forgotPasswordSlice from "./reducer/forgotPasswordSlice";
 import newPasswordSlice from "./reducer/newPasswordSlice";
 import authUserInfoSlice from "./authReducer/authUserInfoSlice";
 import getSingleProductSlice from "./reducer/getSingleProductSlice";
+import headerFooterInfoSlice from "./authReducer/headerFooterInfoSlice";
+import filterSlice from "./reducer/filterSlice";
+import addInBasketSlice from "./authReducer/addInBasketSlice";
+import getBasketSlice from "./authReducer/getBasketSlice";
 
 const rootReducer = combineReducers({
   getAgeSlice,
@@ -26,7 +30,11 @@ const rootReducer = combineReducers({
   verifyForgot: verifyForgotSlice,
   newPassword: newPasswordSlice,
   authUserInfo: authUserInfoSlice,
-  getSingleProduct: getSingleProductSlice
+  getSingleProduct: getSingleProductSlice,
+  headerFooterInfo: headerFooterInfoSlice,
+  filterSlice: filterSlice,
+  addInBasketSlice: addInBasketSlice,
+  getBasketSlice: getBasketSlice,
 });
 
 export const store = configureStore({

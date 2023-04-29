@@ -3,7 +3,7 @@
   width: 100%;
   margin-top: 50px;
   grid-template-columns: repeat(auto-fit, 120px);
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
   margin-bottom: 100px;
   gap: 100px 50px;

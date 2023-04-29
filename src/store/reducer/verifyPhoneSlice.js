@@ -9,9 +9,6 @@ export const verifyPhoneRequest = createAsyncThunk(
         `${process.env.REACT_APP_API_URL}confirm_registration`,
         data
       );
-      console.log('====================================');
-      console.log(response.data);
-      console.log('====================================');
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -40,7 +37,7 @@ const verifyPhoneSlice = createSlice({
 
       .addCase(verifyPhoneRequest.fulfilled, (state, action) => {
         if (action.payload.status) {
-          localStorage.setItem("userToken", action.payload.data.token);
+          localStorage.setItem("userToken", action.payload.token);
           state.loading = false;
           state.success = true;
         }

@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import "./filterCatalog.css";
-import { data } from "./../../globalTestData";
 import { PurchaseField } from "../../components/purchaseField/PurchaseField";
 import { RenderPurchase } from "../../components/purchaseField/renderPurchase";
+import { useDispatch, useSelector } from "react-redux";
+import { filterRequest } from "../../store/reducer/filterSlice";
+import { Context } from "../../context/Context";
 
 const brands = [
   "BRANDNAME #1",
@@ -15,6 +17,18 @@ const brands = [
 ];
 
 export const FilterCatalog = () => {
+  const state = useSelector((state) => state);
+  const { data } = state.filterSlice;
+  const value = useContext(Context);
+  const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(filterRequest(value.searchValues));
+  // }, []);
+  
+  useEffect(() => {
+    dispatch(filterRequest(value.searchValues));
+  }, [value.searchValues]);
+
   return (
     <main className="main_container_filter">
       <article className="brand_name_menu">

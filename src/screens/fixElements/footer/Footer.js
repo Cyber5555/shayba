@@ -1,19 +1,18 @@
 import React from "react";
 import "./Footer.css";
+import { useSelector } from "react-redux";
 
 export const Footer = () => {
+  const state = useSelector((state) => state);
+  const { data } = state.headerFooterInfo;
+
   return (
     <React.Fragment>
-      <footer>
+      <footer className="footer">
         <div>
-          <div>
+          <div className="about_us">
             <h2>О НАС</h2>
-            <h4>Текстовый блок о компании в несколько строчек.</h4>
-            <h4>Текстовый блок о компании в несколько строчек.</h4>
-            <h4>Текстовый блок о компании в несколько строчек.</h4>
-            <h4>Текстовый блок о компании в несколько строчек.</h4>
-            <h4>Текстовый блок о компании в несколько строчек.</h4>
-            <h4>Текстовый блок о компании в несколько строчек.</h4>
+            <h4>{data?.info_o_nas}</h4>
           </div>
           <div className="middle_box">
             <img
@@ -21,37 +20,61 @@ export const Footer = () => {
               alt=""
               style={{ width: "20px", height: "25px", marginRight: "10px" }}
             />
-            <p style={{ color: "#fff" }}>
+            <a
+              href={data?.policy_file_url}
+              target="_blank"
+              style={{ color: "#fff" }}
+            >
               ПОЛИТИКА
-              <br /> КОНФИДЕНЦИАЛЬНОСТИ
-            </p>
+              <br />
+              КОНФИДЕНЦИАЛЬНОСТИ
+            </a>
           </div>
           <div className="info_box">
-            <div>
-              <img
-                src={require("../../../assets/icons/vk.png")}
-                alt="vk"
-                style={{ width: "26px", height: "26px" }}
-              />
-              <img
-                src={require("../../../assets/icons/instagram.png")}
-                alt="instagram"
-                style={{ width: "26px", height: "26px" }}
-              />
-              <img
-                src={require("../../../assets/icons/whatsapp.png")}
-                alt="whatsapp"
-                style={{ width: "26px", height: "26px" }}
-              />
-              <img
-                src={require("../../../assets/icons/telegram.png")}
-                alt="telegram"
-                style={{ width: "26px", height: "26px" }}
-              />
+            <div className="socialLinks">
+              <a href={data?.vk_url} target="_blank">
+                <img
+                  src={require("../../../assets/icons/vk.png")}
+                  alt="vk"
+                  style={{ width: "26px", height: "26px" }}
+                />
+              </a>
+              <a href={data?.instagram_url} target="_blank">
+                <img
+                  src={require("../../../assets/icons/instagram.png")}
+                  alt="instagram"
+                  style={{ width: "26px", height: "26px" }}
+                />
+              </a>
+              <a href={data?.watsap_url} target="_blank">
+                <img
+                  src={require("../../../assets/icons/whatsapp.png")}
+                  alt="whatsapp"
+                  style={{ width: "26px", height: "26px" }}
+                />
+              </a>
+              <a href={data?.telegram_url} target="_blank">
+                <img
+                  src={require("../../../assets/icons/telegram.png")}
+                  alt="telegram"
+                  style={{ width: "26px", height: "26px" }}
+                />
+              </a>
             </div>
-            <h4>SHAYBA32@YANDEX.RU</h4>
-            <h4>378 (900) 999 88 99</h4>
-            <h4>БРЯНСК, КРАХМАЛЕВА, </h4>
+            <a
+              href={"mailto:" + data?.footer_email}
+              style={{
+                textTransform: "uppercase",
+                userSelect: "text",
+                color: "white",
+              }}
+            >
+              {data?.footer_email}
+            </a>
+            <h4>{data?.footer_phone}</h4>
+            <h4 style={{ textTransform: "uppercase" }}>
+              {data?.footer_address}
+            </h4>
           </div>
         </div>
         <hr color="grey" />
