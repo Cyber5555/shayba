@@ -13,8 +13,12 @@ export const BasketEmpty = ({ res }) => {
       </div>
       <div className="empty_text_container">
         <h3 className="address_shipping">
-          ВАШ ЗАКАЗ ВЫ СМОЖЕТЕ ЗАБРАТЬ В НАШЕМ МАГАЗИНЕ ПО АДРЕСУ: УЛ.
-          КРАХМАЛЕВА, 37
+           {/* ВАШ ЗАКАЗ ВЫ СМОЖЕТЕ ЗАБРАТЬ В НАШЕМ МАГАЗИНЕ ПО АДРЕСУ: УЛ.
+           КРАХМАЛЕВА, 37 */}
+           <br />
+           <br />
+           <br />
+           <br />
         </h3>
         <span className="box_for_empty_text">
           <img

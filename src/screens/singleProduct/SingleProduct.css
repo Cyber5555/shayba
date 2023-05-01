@@ -128,3 +128,15 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
+@media screen and (max-width: 425px) {
+  .total_price {
+    font-size: 20px;
+  }
+
+  .checkout_button {
+    text-align: center;
+    font-size: 16px;
+    padding: 5px;
+  }
+}

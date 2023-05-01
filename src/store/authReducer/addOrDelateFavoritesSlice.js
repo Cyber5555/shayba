@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const addInBasketRequest = createAsyncThunk(
-  "add_in_basket",
+export const addOrDelateFavoritesRequest = createAsyncThunk(
+  "add_or_delete_in_favorite",
   async (data, { rejectWithValue }) => {
     try {
       let token = await localStorage.getItem("userToken");
@@ -13,7 +13,7 @@ export const addInBasketRequest = createAsyncThunk(
         },
       };
       let response = await axios.post(
-        `${process.env.REACT_APP_API_URL}add_in_basket`,
+        `${process.env.REACT_APP_API_URL}add_or_delete_in_favorite`,
         data,
         config
       );
@@ -24,32 +24,29 @@ export const addInBasketRequest = createAsyncThunk(
   }
 );
 
-const addInBasketSlice = createSlice({
-  name: "add_in_basket",
+const addOrDelateFavoritesSlice = createSlice({
+  name: "add_or_delete_in_favorite",
   initialState: {
     loading: false,
-    added_in_basket: false,
-    count: 0,
+    added_remove_favorite: false,
   },
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(addInBasketRequest.pending, (state) => {
+      .addCase(addOrDelateFavoritesRequest.pending, (state) => {
         state.loading = true;
-        state.added_in_basket = false;
+        state.added_remove_favorite = false;
       })
-      .addCase(addInBasketRequest.fulfilled, (state, action) => {
+      .addCase(addOrDelateFavoritesRequest.fulfilled, (state, action) => {
         if (action.payload.status) {
           state.loading = false;
-          state.added_in_basket = true;
-          state.count = action.payload.count.count;
+          state.added_remove_favorite = true;
         }
       })
-      .addCase(addInBasketRequest.rejected, (state, action) => {
+      .addCase(addOrDelateFavoritesRequest.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message;
       });
   },
 });
 
-export default addInBasketSlice.reducer;
+export default addOrDelateFavoritesSlice.reducer;

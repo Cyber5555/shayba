@@ -8,7 +8,9 @@ export const headerFooterInfoRequest = createAsyncThunk(
       let response = await axios.get(
         `${process.env.REACT_APP_API_URL}saite_header_and_footer_info`,
         {
-          headers: { Authorization: `Bearer ${token.token}` },
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+          },
         }
       );
       return response.data;

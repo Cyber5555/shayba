@@ -20,6 +20,7 @@ import { PhoneForgot } from "./components/globalReg/phoneForgot";
 import { useEffect } from "react";
 import { BurgerMenu } from "./screens/fixElements/burgerMenu/burgerMenu";
 import { FooterMedia } from "./screens/fixElements/footer/FooterMedia";
+import { OrderIsGenerated } from "./screens/orderFormation/orderIsGenerated";
 
 function App() {
   const [phone_forgot, setPhoneForgot] = useState(false);
@@ -100,6 +101,7 @@ function App() {
             <Route path="/single-product" element={<SingleProduct />} />
             <Route path="/basket" element={<Basket />} />
             <Route path="/order-formation" element={<OrderFormation />} />
+            <Route path="/order-is-generated" element={<OrderIsGenerated />} />
           </Routes>
           <Footer />
           <FooterMedia />

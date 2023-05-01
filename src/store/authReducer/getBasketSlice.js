@@ -3,27 +3,18 @@ import axios from "axios";
 
 export const getBasketRequest = createAsyncThunk(
   "get_my_basket",
-  async ({ rejectWithValue }) => {
-    alert()
+  async (token, { rejectWithValue }) => {
     try {
-      const config = {
+      const response = await axios({
+        url: `${process.env.REACT_APP_API_URL}get_my_basket`,
+        method: "post",
         headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+          Authorization: `Bearer ${token}`,
         },
-      };
-      let response = await axios.post(
-        `${process.env.REACT_APP_API_URL}get_my_basket`,
-        config
-      );
-      console.log("====================================");
-      console.log(response.data, "response.data");
-      console.log("====================================");
+      });
+
       return response.data;
     } catch (error) {
-      console.log("====================================");
-      console.log(error.response.data, "error.response.data");
-      console.log("====================================");
       return rejectWithValue(error.response.data);
     }
   }
@@ -39,9 +30,11 @@ const getBasketSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+
       .addCase(getBasketRequest.pending, (state) => {
         state.loading = true;
       })
+
       .addCase(getBasketRequest.fulfilled, (state, action) => {
         if (action.payload.status) {
           state.loading = false;
@@ -49,6 +42,7 @@ const getBasketSlice = createSlice({
           state.random_product = action.payload.random_product;
         }
       })
+
       .addCase(getBasketRequest.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;

@@ -37,6 +37,7 @@
   border-radius: 10px;
   background: #F6F6F6;
   margin-bottom: 5px;
+  position: relative;
 }
 
 .rendered_image {
@@ -69,11 +70,12 @@
 }
 
 .price_count {
-  width: 40px;
+  /* width: 40px; */
   font-size: 20px;
   color: #fff;
   text-align: center;
   margin-top: -3px;
+  margin: -3px 5px 0 5px;
 
 }
 
@@ -92,8 +94,14 @@
 
 .tooltip.active {
   opacity: 1;
-  top: -80px;
+  top: -60px;
 
+}
+
+.favorite_image {
+  position: absolute;
+  left: 0;
+  width: 30px;
 }
 
 .tooltip::before {

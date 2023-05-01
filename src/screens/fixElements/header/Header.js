@@ -17,17 +17,21 @@ import { authUserInfoRequest } from "./../../../store/authReducer/authUserInfoSl
 import { headerFooterInfoRequest } from "../../../store/authReducer/headerFooterInfoSlice";
 import { Search } from "../../../components/inputContainer/inputContainer";
 import { filterRequest } from "../../../store/reducer/filterSlice";
+import { getBasketRequest } from "../../../store/authReducer/getBasketSlice";
 
 export const Header = ({}) => {
   const value = useContext(Context);
   const [user_token, setUserToken] = useState(null);
-  const [searchValue, setSearchValue] = useState("");
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
   const { logout } = state.logout;
   const { success } = state.login || state.verify || state.register;
   const { BasketCount, BasketSum, Favorite_Count } = state.authUserInfo;
   const { data } = state.headerFooterInfo;
+  const { count, added_in_basket } = state.addInBasketSlice;
+  const { reduce_in_basket } = state.reduceInBasketSlice;
+
+  const { delate } = state.delateAllBasketsSlice;
 
   useEffect(() => {
     let token = localStorage.getItem("userToken");
@@ -42,12 +46,13 @@ export const Header = ({}) => {
 
   useEffect(() => {
     if (user_token) {
-      dispatch(authUserInfoRequest({ token: user_token }));
+      dispatch(authUserInfoRequest(localStorage.getItem("userToken")));
+      dispatch(getBasketRequest(localStorage.getItem("userToken")));
     }
-  }, [user_token]);
+  }, [user_token, added_in_basket, reduce_in_basket, count, delate]);
 
   useEffect(() => {
-    dispatch(headerFooterInfoRequest({ token: user_token }));
+    dispatch(headerFooterInfoRequest());
   }, []);
 
   const openBurgerMenu = () => {

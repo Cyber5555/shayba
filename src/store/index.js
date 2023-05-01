@@ -16,6 +16,10 @@ import headerFooterInfoSlice from "./authReducer/headerFooterInfoSlice";
 import filterSlice from "./reducer/filterSlice";
 import addInBasketSlice from "./authReducer/addInBasketSlice";
 import getBasketSlice from "./authReducer/getBasketSlice";
+import delateAllBasketsSlice from "./authReducer/delateAllBasketsSlice";
+import reduceInBasketSlice from "./authReducer/reduceInBasketSlice";
+import checkoutProductsSlice from "./authReducer/checkoutProductsSlice";
+import addOrDelateFavoritesSlice from "./authReducer/addOrDelateFavoritesSlice";
 
 const rootReducer = combineReducers({
   getAgeSlice,
@@ -35,6 +39,10 @@ const rootReducer = combineReducers({
   filterSlice: filterSlice,
   addInBasketSlice: addInBasketSlice,
   getBasketSlice: getBasketSlice,
+  delateAllBasketsSlice: delateAllBasketsSlice,
+  reduceInBasketSlice: reduceInBasketSlice,
+  checkoutProductsSlice: checkoutProductsSlice,
+  addOrDelateFavoritesSlice: addOrDelateFavoritesSlice,
 });
 
 export const store = configureStore({

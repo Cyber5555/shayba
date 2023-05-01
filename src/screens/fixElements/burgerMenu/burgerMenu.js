@@ -3,11 +3,9 @@ import { Link } from "react-router-dom";
 import "./burgerMenu.css";
 import { Search } from "./../../../components/inputContainer/inputContainer";
 import { useDispatch, useSelector } from "react-redux";
-import { filterRequest } from "../../../store/reducer/filterSlice";
 import { Context } from "../../../context/Context";
 
 export function BurgerMenu() {
-  const [searchValue, setSearchValue] = useState("");
   const state = useSelector((state) => state);
   const { data } = state.headerFooterInfo;
   const value = useContext(Context);
@@ -58,7 +56,7 @@ export function BurgerMenu() {
           </Link>
         </li>
         <li>
-          <Link to={"/about"} className="burger_links">
+          <Link to={"/basket"} className="burger_links">
             <img
               src={require("../../../assets/icons/boxWhite.png")}
               alt=""

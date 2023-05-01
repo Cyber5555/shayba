@@ -1,21 +1,60 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BasketsProducts } from "../../components/basketsProducts/basketsProducts";
-import { InputContainer, TextArea } from "../../components/inputContainer/inputContainer";
+import {
+  InputContainer,
+  PhoneInputFunc,
+  TextArea,
+} from "../../components/inputContainer/inputContainer";
 import "./orderFormation.css";
+import { useDispatch, useSelector } from "react-redux";
+import { checkoutProductRequest } from "../../store/authReducer/checkoutProductsSlice";
+import { useNavigate } from "react-router-dom";
+import { authUserInfoRequest } from "./../../store/authReducer/authUserInfoSlice";
 
+export const OrderFormation = ({}) => {
+  const [checked, setChecked] = useState(true);
+  const [noChecked, setNoChecked] = useState(false);
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state);
+  const { data } = state.getBasketSlice;
+  const { BasketCount, BasketSum, userInfo } = state.authUserInfo;
+  const {
+    email_error,
+    phone_error,
+    order_type_error,
+    name_error,
+    order_is_added,
+  } = state.checkoutProductsSlice;
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [order_type, setOrderType] = useState(
+    "НАЛИЧНЫМИ ИЛИ КАРТОЙ В МАГАЗИНЕ"
+  );
+  const [promo_code, setPromoCode] = useState("");
+  const [comment, setComment] = useState("");
+  const navigate = useNavigate();
+  useEffect(() => {
+    setName(userInfo.name);
+    setEmail(userInfo.email);
+    setPhone(userInfo.phone);
+  }, []);
 
-
-export const OrderFormation = () => {
-  const [checked, setChecked] = useState(false);
+  useEffect(() => {
+    if (order_is_added) {
+      dispatch(authUserInfoRequest(localStorage.getItem("userToken")));
+      return navigate("/order-is-generated");
+    }
+  }, [order_is_added]);
 
   return (
     <main className="order_formation_parent">
       <div className="order_formation_header">
-        <h2>КОРЗИНА</h2>
+        <h2>ОФОРМЛЕНИЕ ЗАКАЗА</h2>
         <ul>
           <li>КАТАЛОГ</li>
           <span></span>
-          <li>КОРЗИНА</li>
+          <li>ОФОРМЛЕНИЕ ЗАКАЗА</li>
         </ul>
       </div>
 
@@ -26,20 +65,72 @@ export const OrderFormation = () => {
             КРАХМАЛЕВА, 37
           </h3>
           <form className="form_inputs">
-            <InputContainer inputTitle={"Ф. И. О.*"} />
-            <InputContainer inputTitle={"E-MAIL*"} />
-            <InputContainer inputTitle={"ТЕЛЕФОН*"} />
-            <InputContainer inputTitle={"ПРОМОКОД"} />
-            <TextArea inputTitle={"КОММЕНТАРИЙ К ЗАКАЗУ"} />
+            <InputContainer
+              inputTitle={"Ф. И. О.*"}
+              inputValue={name}
+              onChange={(e) => setName(e.target.value)}
+              error={name_error}
+            />
+            <InputContainer
+              inputTitle={"E-MAIL*"}
+              inputValue={email}
+              onChange={(e) => setEmail(e.target.value)}
+              error={email_error}
+            />
+            <PhoneInputFunc
+              inputTitle={"ТЕЛЕФОН*"}
+              inputStyle={{ width: "100%", background: "#E6E6E6" }}
+              phoneValue={phone}
+              onChange={(e) => setPhone(e)}
+              error={phone_error}
+            />
+            <InputContainer
+              inputTitle={"ПРОМОКОД"}
+              onChange={(e) => setPromoCode(e.target.value)}
+              inputValue={promo_code}
+            />
+
+            <TextArea
+              inputTitle={"КОММЕНТАРИЙ К ЗАКАЗУ"}
+              onChange={(e) => setComment(e.target.value)}
+              inputValue={comment}
+            />
             <div
               style={{
                 display: "flex",
                 justifyContent: "space-between",
+                alignItems: "center",
+                flexWrap: "wrap",
                 gap: 30,
+                marginTop: 20,
               }}
             >
               <p>ПОЛУЧЕНИЕ: САМОВЫВОЗ</p>
-              <p>ОПЛАТА: НАЛИЧНЫМИ/КАРТОЙ В МАГАЗИНЕ</p>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  flexWrap: "wrap",
+                }}
+              >
+                <p>ОПЛАТА:</p>
+                <select
+                  name=""
+                  id=""
+                  style={{
+                    background: "#E6E6E6",
+                    borderRadius: 10,
+                    height: 35,
+                    borderColor: order_type_error && "red",
+                  }}
+                  onChange={(e) => setOrderType(e.target.value)}
+                >
+                  <option value={"Shops"}>
+                    НАЛИЧНЫМИ ИЛИ КАРТОЙ В МАГАЗИНЕ
+                  </option>
+                  <option value={"Drugoi"}>Другой</option>
+                </select>
+              </div>
             </div>
           </form>
         </div>
@@ -49,26 +140,55 @@ export const OrderFormation = () => {
               <h3 className="your_order">ВАШ ЗАКАЗ</h3>
               <span className="edit_text">ИЗМЕНИТЬ</span>
             </div>
-            <p className="order_price">ТОВАРОВ НА СУММУ: {1900}₽ </p>
-            <button className="checkout_button">ОФОРМИТЬ ЗАКАЗ</button>
+            <p className="order_price">ТОВАРОВ НА СУММУ: {BasketSum} ₽</p>
+            <button
+              className="checkout_button"
+              onClick={() => {
+                if (checked) {
+                  setNoChecked(false);
+                  dispatch(
+                    checkoutProductRequest({
+                      name: name,
+                      email: email,
+                      phone: phone,
+                      order_type: order_type,
+                      promo_code: promo_code,
+                      comment: comment,
+                    })
+                  );
+                } else {
+                  setNoChecked(true);
+                }
+              }}
+            >
+              ОФОРМИТЬ ЗАКАЗ
+            </button>
           </div>
           <div className="switch_parent">
             <input
               type={"checkbox"}
               className="switch_checkbox"
+              name="checkbox"
+              id="checkbox"
               onChange={() => {
                 setChecked(!checked);
               }}
               checked={checked}
             />
-            <p>Я СОГЛАСЕН НА ОБРАБОТКУ ПЕРСОНАЛЬНЫХ ДАННЫХ</p>
+            <label
+              htmlFor="checkbox"
+              style={{ color: noChecked ? "red" : "black", cursor: "pointer" }}
+            >
+              Я СОГЛАСЕН НА ОБРАБОТКУ ПЕРСОНАЛЬНЫХ ДАННЫХ
+            </label>
           </div>
         </div>
       </div>
 
       <div className="baskets_render_box">
-        <BasketsProducts />
-        <BasketsProducts />
+        {data.map((item, index) => (
+          <BasketsProducts key={index} item={item} />
+        ))}
       </div>
     </main>
   );

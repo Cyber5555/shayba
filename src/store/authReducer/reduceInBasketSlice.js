@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const addInBasketRequest = createAsyncThunk(
-  "add_in_basket",
+export const reduceInBasketRequest = createAsyncThunk(
+  "minus_basket_product",
   async (data, { rejectWithValue }) => {
     try {
       let token = await localStorage.getItem("userToken");
@@ -13,7 +13,7 @@ export const addInBasketRequest = createAsyncThunk(
         },
       };
       let response = await axios.post(
-        `${process.env.REACT_APP_API_URL}add_in_basket`,
+        `${process.env.REACT_APP_API_URL}minus_basket_product`,
         data,
         config
       );
@@ -24,32 +24,34 @@ export const addInBasketRequest = createAsyncThunk(
   }
 );
 
-const addInBasketSlice = createSlice({
-  name: "add_in_basket",
+const reduceInBasketSlice = createSlice({
+  name: "minus_basket_product",
   initialState: {
     loading: false,
-    added_in_basket: false,
+    reduce_in_basket: false,
     count: 0,
   },
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(addInBasketRequest.pending, (state) => {
+
+      .addCase(reduceInBasketRequest.pending, (state) => {
         state.loading = true;
-        state.added_in_basket = false;
+        state.reduce_in_basket = false;
       })
-      .addCase(addInBasketRequest.fulfilled, (state, action) => {
+
+      .addCase(reduceInBasketRequest.fulfilled, (state, action) => {
         if (action.payload.status) {
           state.loading = false;
-          state.added_in_basket = true;
+          state.reduce_in_basket = true;
           state.count = action.payload.count.count;
         }
       })
-      .addCase(addInBasketRequest.rejected, (state, action) => {
+
+      .addCase(reduceInBasketRequest.rejected, (state) => {
         state.loading = false;
-        state.error = action.error.message;
       });
   },
 });
 
-export default addInBasketSlice.reducer;
+export default reduceInBasketSlice.reducer;

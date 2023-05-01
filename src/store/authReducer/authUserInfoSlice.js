@@ -8,7 +8,7 @@ export const authUserInfoRequest = createAsyncThunk(
       let response = await axios.get(
         `${process.env.REACT_APP_API_URL}auth_user_info`,
         {
-          headers: { Authorization: `Bearer ${token.token}` },
+          headers: { Authorization: `Bearer ${token}` },
         }
       );
       return response.data;
@@ -25,6 +25,7 @@ const authUserInfoSlice = createSlice({
     BasketSum: 0,
     Favorite_Count: 0,
     loading: false,
+    userInfo: {},
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -38,6 +39,7 @@ const authUserInfoSlice = createSlice({
           state.BasketCount = action.payload.BasketCount;
           state.BasketSum = action.payload.BasketSum;
           state.Favorite_Count = action.payload.Favorite_Count;
+          state.userInfo = action.payload.data;
         }
       })
       .addCase(authUserInfoRequest.rejected, (state, action) => {

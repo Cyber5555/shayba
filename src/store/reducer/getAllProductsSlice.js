@@ -4,8 +4,16 @@ import axios from "axios";
 export const getAllProductsRequest = createAsyncThunk(
   "allProducts",
   async () => {
+    let token = localStorage.getItem("userToken");
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
     let response = await axios.get(
-      `${process.env.REACT_APP_API_URL}all_products?page=1`
+      `${process.env.REACT_APP_API_URL}all_products?page=1`,
+      config
     );
     return response.data;
   }
