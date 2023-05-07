@@ -1,70 +1,93 @@
 .main_container_filter {
-  width: 100%;
-  display: flex;
-  padding: 50px;
+    width: 100%;
+    /*display: flex;*/
+    padding: 50px;
+}
+
+.rendered_parent {
+    display: flex;
+    justify-content: space-between;
 }
 
 .brand_name_menu {
-  width: 17%;
-  min-width: 220px;
-  height: 80vh;
-  display: grid;
-  grid-template-rows: 60px 1fr;
+    width: 20%;
+    min-width: 250px;
+    height: 80vh;
 }
 
 .brand_box {
-  display: grid;
-  gap: 8px;
-  align-content: start;
-  overflow: auto;
+    display: grid;
+    gap: 8px;
+    align-content: start;
+    overflow: auto;
+}
+
+.brand_title {
+    white-space: pre;
 }
 
 .rendered_brand {
-  padding-left: 15px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  border: 2px solid grey;
+    padding-left: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 2px solid grey;
+    cursor: pointer;
+    font-family: 'Medium';
+}
+
+.rendered_brand.active {
+    box-shadow: inset 0 0 20px #d0bebe;
 }
 
 .container_filter {
-  width: 80%;
-  height: 80vh;
-  display: grid;
-  grid-template-rows: 40px 1fr;
+    width: 80%;
+    height: 80vh;
 }
 
 .catalog_list_ul {
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  padding-bottom: 30px;
-  position: relative;
+    width: 100% !important;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-bottom: 30px;
+    position: relative;
 }
 
 .catalog_lists {
-  cursor: pointer;
+    cursor: pointer;
+    position: relative;
 }
-
+.sub_catalog_lists {
+    position: absolute;
+    width: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 35px;
+    text-align: center;
+    background: #f1e7e7;
+    padding: 10px;
+    border-radius: 5px;
+}
 .component_whit_catalog {
-  width: 100%;
-  height: auto;
-  overflow-y: scroll;
-  padding-bottom: 50px;
+    width: 90%;
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding-bottom: 50px;
 }
 
 
 .catalog_info {
-  position: absolute;
-  left: 0;
-  top: 0;
+    position: relative;
+
 }
 
 .catalog_info::after {
-  content: '';
-  width: 10px;
-  height: 1px;
-  background: #000;
-  position: absolute;
-  right: -10px;
-  top: 50%;
+    content: '';
+    width: 10px;
+    height: 1px;
+    background: #000;
+    position: absolute;
+    right: -50%;
+    top: 50%;
 }

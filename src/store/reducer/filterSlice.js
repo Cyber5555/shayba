@@ -20,6 +20,8 @@ const filterSlice = createSlice({
   name: "filter",
   initialState: {
     data: [],
+    category: [],
+    taste: [],
     loading: false,
     success: false,
   },
@@ -34,6 +36,8 @@ const filterSlice = createSlice({
       .addCase(filterRequest.fulfilled, (state, action) => {
         if (action.payload.status) {
           state.data = action.payload.data.data;
+          state.category = action.payload.category;
+          state.taste = action.payload.taste;
           state.loading = false;
           state.success = true;
         }

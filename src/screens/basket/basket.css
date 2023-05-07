@@ -136,7 +136,8 @@
 
 .baskets_products_left_parent {
   display: flex;
-  gap: 20px
+  gap: 20px;
+  position: relative;
 }
 
 

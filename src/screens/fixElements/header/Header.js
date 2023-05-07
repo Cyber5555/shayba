@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./header.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faPhoneVolume,
-  faRightFromBracket,
-  faSearch,
-} from "@fortawesome/free-solid-svg-icons";
+import { FaPhoneVolume } from "react-icons/fa";
+import { BiExit } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { TitleIcon } from "./../../../assets/svgIcons/SvgIcons";
 import { useContext } from "react";
@@ -30,8 +26,13 @@ export const Header = ({}) => {
   const { data } = state.headerFooterInfo;
   const { count, added_in_basket } = state.addInBasketSlice;
   const { reduce_in_basket } = state.reduceInBasketSlice;
-
   const { delate } = state.delateAllBasketsSlice;
+  const [isOpen, setIsOpen] = useState(false);
+  const profileNavElements = [
+    { name: "МОЙ КАБИНЕТ" },
+    { name: "СМЕНИТЬ ПАРОЛЬ" },
+    { name: "ИСТОРИЯ ЗАКАЗОВ" },
+  ];
 
   useEffect(() => {
     let token = localStorage.getItem("userToken");
@@ -58,6 +59,13 @@ export const Header = ({}) => {
   const openBurgerMenu = () => {
     document.querySelector(".burger_menu_aside").classList.add("active");
   };
+  document.body.onclick = (e) => {
+    if (
+      e.target.className !== "catalog_lists" &&
+      e.target.className !== "bug_header"
+    )
+      setIsOpen(false);
+  };
 
   return (
     <header className="header_container">
@@ -81,13 +89,13 @@ export const Header = ({}) => {
       </span>
 
       <div className="tell_number_parent">
-        <FontAwesomeIcon icon={faPhoneVolume} />
+        <FaPhoneVolume style={{ transform: "rotateZ(-45deg)" }} />
         <h2 className="tell_number">{data?.header_phone}</h2>
       </div>
 
       {user_token ? (
         <div className="budget_container">
-          <Link to={"/basket"} className="bug_header">
+          <Link to={"/favorites"} className="bug_header">
             <img
               src={require("../../../assets/icons/favorite.png")}
               alt=""
@@ -95,13 +103,29 @@ export const Header = ({}) => {
             />
             <p style={{ marginRight: "30px" }}>{Favorite_Count}</p>
           </Link>
-          <Link className="bug_header">
+          <div
+            className="bug_header smile"
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsOpen(!isOpen);
+            }}
+          >
             <img
               src={require("../../../assets/icons/smile.png")}
               alt=""
               style={{ width: "20px", height: "20px", marginRight: "30px" }}
             />
-          </Link>
+            {isOpen && (
+              <ul
+                className={"sub_smile_lists"}
+                onClick={(event) => event.stopPropagation()}
+              >
+                {profileNavElements.map((element, _) => (
+                  <li key={_}>{element.name}</li>
+                ))}
+              </ul>
+            )}
+          </div>
           <Link to={"/basket"} className="bug_header">
             <img
               src={require("../../../assets/icons/box.png")}
@@ -111,9 +135,9 @@ export const Header = ({}) => {
             <p className="counter">{BasketCount > 0 && BasketCount}</p>
           </Link>
           <p className="budget">{BasketSum} ₽</p>
-          <FontAwesomeIcon
-            icon={faRightFromBracket}
+          <BiExit
             style={{ marginLeft: 20, cursor: "pointer" }}
+            size={20}
             onClick={() => {
               dispatch(
                 logoutRequest({

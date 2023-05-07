@@ -1,8 +1,5 @@
-import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Link } from "react-router-dom";
-
 import "./basket.css";
 import { BasketsProducts } from "./../../components/basketsProducts/basketsProducts";
 import { delateAllBasketsRequest } from "../../store/authReducer/delateAllBasketsSlice";

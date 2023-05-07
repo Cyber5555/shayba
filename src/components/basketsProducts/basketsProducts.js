@@ -1,12 +1,13 @@
-import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { reduceInBasketRequest } from "../../store/authReducer/reduceInBasketSlice";
 import { addInBasketRequest } from "./../../store/authReducer/addInBasketSlice";
+import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 
 export const BasketsProducts = ({ item }) => {
   const dispatch = useDispatch();
+  const state = useSelector((state) => state);
+  const { maximum_error } = state.addInBasketSlice;
   return (
     <React.Fragment>
       <h2 style={{ marginBottom: 20, textTransform: "uppercase" }}>
@@ -15,7 +16,6 @@ export const BasketsProducts = ({ item }) => {
       {item.product.map((element, index) => (
         <div className="baskets_products" key={index}>
           <div className={"baskets_products_left_parent"}>
-            {console.log(element)}
             <img
               src={
                 "https://admin.shayba.store/uploads/" + element.photo[0].photo
@@ -38,30 +38,33 @@ export const BasketsProducts = ({ item }) => {
             <p className="baskets_products_price">
               {element.basket_count * element.price} ₽
             </p>
-            <div className="add_price">
-              <button
-                className="buttons"
-                name="minus"
-                onClick={() =>
-                  dispatch(reduceInBasketRequest({ product_id: element.id }))
-                }
-              >
-                <FontAwesomeIcon icon={faMinus} fill="#fff" color="white" />
-              </button>
-              <p className="price_count">{element.basket_count}</p>
-              <button
-                className="buttons"
-                name="plus"
-                onClick={() =>
-                  dispatch(addInBasketRequest({ product_id: element.id }))
-                }
-              >
-                <FontAwesomeIcon icon={faPlus} />
-              </button>
-            </div>
+            {window.location.pathname !== "/order-formation" && (
+              <div className="add_price">
+                <button
+                  className="buttons"
+                  name="minus"
+                  onClick={() =>
+                    dispatch(reduceInBasketRequest({ product_id: element.id }))
+                  }
+                >
+                  <AiOutlineMinus fill="#fff" color="white" />
+                </button>
+                <p className="price_count">{element.basket_count}</p>
+                <button
+                  className="buttons"
+                  name="plus"
+                  onClick={() =>
+                    dispatch(addInBasketRequest({ product_id: element.id }))
+                  }
+                >
+                  <AiOutlinePlus fill="#fff" color="white" />
+                </button>
+              </div>
+            )}
           </div>
         </div>
       ))}
+      {maximum_error && <p style={{ color: "red" }}>{maximum_error}</p>}
     </React.Fragment>
   );
 };

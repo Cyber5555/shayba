@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const getAllProductsRequest = createAsyncThunk(
   "allProducts",
-  async () => {
+  async (page) => {
     let token = localStorage.getItem("userToken");
     const config = {
       headers: {
@@ -12,7 +12,7 @@ export const getAllProductsRequest = createAsyncThunk(
       },
     };
     let response = await axios.get(
-      `${process.env.REACT_APP_API_URL}all_products?page=1`,
+      `${process.env.REACT_APP_API_URL}all_products?page=${page}`,
       config
     );
     return response.data;
@@ -23,6 +23,7 @@ const getAllProductSlice = createSlice({
   name: "allProducts",
   initialState: {
     data: [],
+    favorite_data: [],
     loading: false,
   },
   reducers: {},
@@ -33,7 +34,8 @@ const getAllProductSlice = createSlice({
       })
       .addCase(getAllProductsRequest.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = action.payload.data.data;
+        state.data = action.payload.data;
+        state.favorite_data = action.payload.data.auth_user_favorite;
       })
       .addCase(getAllProductsRequest.rejected, (state, action) => {
         state.loading = false;

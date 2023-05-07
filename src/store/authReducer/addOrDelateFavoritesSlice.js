@@ -29,6 +29,7 @@ const addOrDelateFavoritesSlice = createSlice({
   initialState: {
     loading: false,
     added_remove_favorite: false,
+    favorite_id: [],
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -41,6 +42,7 @@ const addOrDelateFavoritesSlice = createSlice({
         if (action.payload.status) {
           state.loading = false;
           state.added_remove_favorite = true;
+          state.favorite_id = action.payload.product_id;
         }
       })
       .addCase(addOrDelateFavoritesRequest.rejected, (state, action) => {

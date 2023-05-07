@@ -2,9 +2,8 @@ import React from "react";
 import styles from "./inputContainer.module.css";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AiOutlineSearch } from "react-icons/ai";
 
 export const InputContainer = ({
   inputType,
@@ -97,7 +96,13 @@ export const PhoneInputFunc = ({
   );
 };
 
-export const Search = ({ onChange, value, margin, onClick }) => {
+export const Search = ({ onChange, value, margin }) => {
+  const navigate = useNavigate();
+  document.body.onkeydown = (e) => {
+    if (e.key === "Enter") {
+      navigate("/filter-catalog");
+    }
+  };
   return (
     <div className={styles.SearchParent} style={{ margin: margin }}>
       <input
@@ -109,11 +114,7 @@ export const Search = ({ onChange, value, margin, onClick }) => {
         value={value}
       />
       <Link to={"/filter-catalog"}>
-        <FontAwesomeIcon
-          icon={faSearch}
-          color={"grey"}
-          className={styles.SearchIcon}
-        />
+        <AiOutlineSearch color={"grey"} className={styles.SearchIcon} />
       </Link>
     </div>
   );

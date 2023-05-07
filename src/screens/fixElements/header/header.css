@@ -1,129 +1,144 @@
 .header_container {
-  width: 100%;
-  height: 70px;
-  background: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 50px;
+    width: 100%;
+    height: 70px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 50px;
 }
 
 .shayba_icon {
-  font-size: 50px;
-  font-family: 'Bold';
+    font-size: 50px;
+    font-family: 'Bold';
 }
 
+.smile {
+    position: relative;
+}
+.sub_smile_lists {
+    position: absolute;
+    width: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 35px;
+    text-align: center;
+    background: #f1e7e7;
+    padding: 10px;
+    border-radius: 5px;
+}
+.sub_smile_lists>li {
+    padding: 10px;
+}
 
 .tell_number_parent {
-  display: flex;
-  align-items: center;
-  gap: 20px
+    display: flex;
+    align-items: center;
+    gap: 20px
 }
 
 .budget_container {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .bug_header {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
 }
 
 .counter {
-  color: #D4D3D3;
-  margin-left: 10px;
+    color: #D4D3D3;
+    margin-left: 10px;
 }
 
 .budget {
-  margin-left: 20px;
-  white-space: pre;
-  /* display: flex;
-  flex-wrap: nowrap; */
+    margin-left: 20px;
+    white-space: pre;
+    /* display: flex;
+    flex-wrap: nowrap; */
 }
 
 .reg_button {
-  margin-left: 20px;
-  border: none;
-  color: white;
-  background: black;
-  padding: 5px 10px;
-  border-radius: 5;
-  cursor: pointer;
+    margin-left: 20px;
+    border: none;
+    color: white;
+    background: black;
+    padding: 5px 10px;
+    border-radius: 5;
+    cursor: pointer;
 }
 
 .search_on_header {
-  width: 30%;
+    width: 30%;
 }
 
 @media screen and (max-width: 768px) {
-  .burger_menu {
-    width: 40px;
-    height: 40px;
-    border: none;
-    outline: none;
-    margin-right: 30px;
-    /* position: relative; */
-    background: transparent;
-    display: grid;
-  }
+    .burger_menu {
+        width: 40px;
+        height: 40px;
+        border: none;
+        outline: none;
+        margin-right: 30px;
+        /* position: relative; */
+        background: transparent;
+        display: grid;
+    }
 
-  .burger_menu>span {
-    /* position: absolute; */
-    width: 98%;
-    height: 5px;
-    /* left: 0;
-    top: calc(var(--i) * 14px - 10px);
-    transform: translateY(-50%); */
-    border-radius: 4px;
-    background: #000;
-  }
-
-
+    .burger_menu > span {
+        /* position: absolute; */
+        width: 98%;
+        height: 5px;
+        /* left: 0;
+        top: calc(var(--i) * 14px - 10px);
+        transform: translateY(-50%); */
+        border-radius: 4px;
+        background: #000;
+    }
 
 
-  .burger_menu>span:last-of-type {
-    width: 80%;
-  }
+    .burger_menu > span:last-of-type {
+        width: 80%;
+    }
 
-  .header_container {
-    padding: 0 30px;
-  }
+    .header_container {
+        padding: 0 30px;
+    }
 
-  .tell_number_parent {
-    display: none;
-  }
+    .tell_number_parent {
+        display: none;
+    }
 
-  .search_on_header {
-    display: none;
-  }
+    .search_on_header {
+        display: none;
+    }
 
 }
 
 @media screen and (max-width: 425px) {
 
-  .shayba_icon {
-    font-size: 35px;
-  }
+    .shayba_icon {
+        font-size: 35px;
+    }
 
-  .budget {
-    white-space: pre;
-  }
+    .budget {
+        white-space: pre;
+    }
 
-  .burger_menu {
-    width: 25px;
-    height: 25px;
-  }
+    .burger_menu {
+        width: 25px;
+        height: 25px;
+    }
 
-  .bug_header {
-    display: none;
-  }
+    .bug_header {
+        display: none;
+    }
 
-  .reg_button {
-    margin-left: 10px;
-    padding: 3px 6px;
-    font-size: 12px;
-  }
+    .reg_button {
+        margin-left: 10px;
+        padding: 3px 6px;
+        font-size: 12px;
+    }
 
 }

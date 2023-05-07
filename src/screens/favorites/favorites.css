@@ -1,0 +1,160 @@
+.basket_layout {
+    padding: 50px;
+    padding-bottom: 0;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.full_basket_layout {
+    padding: 50px;
+    padding-bottom: 0;
+}
+
+.basket_header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.basket_header > ul {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.basket_header > ul > span {
+    background: #707070;
+    width: 20px;
+    height: 1px;
+}
+
+.empty_text_container {
+    width: 45%;
+}
+
+.full_text_container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 60px;
+}
+
+.basket_image_empty {
+    width: 55%;
+    position: absolute;
+    right: 0;
+    top: -20%;
+    z-index: -1;
+}
+
+.empty_bug_text {
+    font-size: 50px;
+    font-family: "Black_";
+}
+
+.empty_bug {
+    width: 100px;
+    height: 100px;
+}
+
+.address_shipping {
+    margin-top: 60px;
+}
+
+.box_for_empty_text {
+    margin: 50px 0;
+    display: flex;
+    align-items: center;
+    gap: 20px
+}
+
+.recommendation {
+    font-size: 25px;
+    font-family: 'Bold';
+}
+
+.recommendation_full {
+    font-size: 25px;
+    font-family: 'Bold';
+    margin-top: 50px;
+}
+
+
+.baskets_products {
+    width: 100%;
+    height: 150px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    margin-bottom: 30px;
+}
+
+.baskets_products_left_image {
+    height: 100%;
+    background: #F2F2F2;
+    border-radius: 20px
+}
+
+.baskets_products_left_child {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.baskets_products_all_count {
+    font-family: 'Medium';
+    color: #FD4A27;
+}
+
+.baskets_products_right_child {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.baskets_products_price {
+    font-size: 30px;
+    font-family: 'Black_';
+}
+
+.baskets_products_left_parent {
+    display: flex;
+    gap: 20px
+}
+
+
+@media screen and (max-width: 425px) {
+    .baskets_products {
+        flex-wrap: wrap;
+        height: auto;
+    }
+
+    .baskets_products_left_image {
+        width: 100%;
+        height: 50%;
+    }
+
+    .baskets_products_left_parent {
+        flex-wrap: wrap;
+    }
+
+    .baskets_products_left_child {
+        flex-wrap: wrap;
+    }
+
+    .baskets_products_right_child {
+        flex-direction: row;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+
+    .full_basket_layout {
+        padding: 30px;
+    }
+}

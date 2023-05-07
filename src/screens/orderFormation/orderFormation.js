@@ -60,10 +60,10 @@ export const OrderFormation = ({}) => {
 
       <div className="order_formation_input_container">
         <div>
-          <h3 className="address_shipping_order_formation">
-            ВАШ ЗАКАЗ ВЫ СМОЖЕТЕ ЗАБРАТЬ В НАШЕМ МАГАЗИНЕ ПО АДРЕСУ: УЛ.
-            КРАХМАЛЕВА, 37
-          </h3>
+          {/*<h3 className="address_shipping_order_formation">*/}
+          {/*  ВАШ ЗАКАЗ ВЫ СМОЖЕТЕ ЗАБРАТЬ В НАШЕМ МАГАЗИНЕ ПО АДРЕСУ: УЛ.*/}
+          {/*  КРАХМАЛЕВА, 37*/}
+          {/*</h3>*/}
           <form className="form_inputs">
             <InputContainer
               inputTitle={"Ф. И. О.*"}
@@ -105,14 +105,14 @@ export const OrderFormation = ({}) => {
                 marginTop: 20,
               }}
             >
-              <p>ПОЛУЧЕНИЕ: САМОВЫВОЗ</p>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  flexWrap: "wrap",
-                }}
-              >
+              {/*<p>ПОЛУЧЕНИЕ: САМОВЫВОЗ</p>*/}
+              {/*<div*/}
+              {/*  style={{*/}
+              {/*    display: "flex",*/}
+              {/*    alignItems: "center",*/}
+              {/*    flexWrap: "wrap",*/}
+              {/*  }}*/}
+              {/*>*/}
                 <p>ОПЛАТА:</p>
                 <select
                   name=""
@@ -130,7 +130,7 @@ export const OrderFormation = ({}) => {
                   </option>
                   <option value={"Drugoi"}>Другой</option>
                 </select>
-              </div>
+              {/*</div>*/}
             </div>
           </form>
         </div>

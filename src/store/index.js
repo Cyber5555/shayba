@@ -20,6 +20,7 @@ import delateAllBasketsSlice from "./authReducer/delateAllBasketsSlice";
 import reduceInBasketSlice from "./authReducer/reduceInBasketSlice";
 import checkoutProductsSlice from "./authReducer/checkoutProductsSlice";
 import addOrDelateFavoritesSlice from "./authReducer/addOrDelateFavoritesSlice";
+import getMyFavoriteSlice from "./authReducer/getMyFavoriteSlice";
 
 const rootReducer = combineReducers({
   getAgeSlice,
@@ -43,6 +44,7 @@ const rootReducer = combineReducers({
   reduceInBasketSlice: reduceInBasketSlice,
   checkoutProductsSlice: checkoutProductsSlice,
   addOrDelateFavoritesSlice: addOrDelateFavoritesSlice,
+  getMyFavoriteSlice: getMyFavoriteSlice,
 });
 
 export const store = configureStore({
