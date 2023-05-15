@@ -11,7 +11,7 @@ export const Footer = () => {
       <footer className="footer">
         <div>
           <div className="about_us">
-            <h2>О НАС</h2>
+            <h2 style={{ color: "white" }}>О НАС</h2>
             <h4>{data?.info_o_nas}</h4>
           </div>
           <div className="middle_box">

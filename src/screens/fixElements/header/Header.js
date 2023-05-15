@@ -12,7 +12,6 @@ import { setPopupRegister } from "../../../store/reducer/registerSlice";
 import { authUserInfoRequest } from "./../../../store/authReducer/authUserInfoSlice";
 import { headerFooterInfoRequest } from "../../../store/authReducer/headerFooterInfoSlice";
 import { Search } from "../../../components/inputContainer/inputContainer";
-import { filterRequest } from "../../../store/reducer/filterSlice";
 import { getBasketRequest } from "../../../store/authReducer/getBasketSlice";
 
 export const Header = ({}) => {
@@ -28,11 +27,6 @@ export const Header = ({}) => {
   const { reduce_in_basket } = state.reduceInBasketSlice;
   const { delate } = state.delateAllBasketsSlice;
   const [isOpen, setIsOpen] = useState(false);
-  const profileNavElements = [
-    { name: "МОЙ КАБИНЕТ" },
-    { name: "СМЕНИТЬ ПАРОЛЬ" },
-    { name: "ИСТОРИЯ ЗАКАЗОВ" },
-  ];
 
   useEffect(() => {
     let token = localStorage.getItem("userToken");
@@ -105,9 +99,9 @@ export const Header = ({}) => {
           </Link>
           <div
             className="bug_header smile"
-            onClick={(e) => {
-              e.stopPropagation();
-              setIsOpen(!isOpen);
+            onMouseEnter={(e) => {
+              // e.stopPropagation();
+              setIsOpen(true);
             }}
           >
             <img
@@ -120,9 +114,9 @@ export const Header = ({}) => {
                 className={"sub_smile_lists"}
                 onClick={(event) => event.stopPropagation()}
               >
-                {profileNavElements.map((element, _) => (
-                  <li key={_}>{element.name}</li>
-                ))}
+                <Link to={"/profile"}>МОЙ КАБИНЕТ</Link>
+                <Link to={"/change_password"}>СМЕНИТЬ ПАРОЛЬ</Link>
+                <Link to={"/history"}>ИСТОРИЯ ЗАКАЗОВ</Link>
               </ul>
             )}
           </div>

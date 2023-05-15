@@ -14,6 +14,7 @@ export const InputContainer = ({
   onChange,
   inputStyle,
   TitleStyle,
+  inputParentStyle,
   inputValue,
   autoFocus,
   name,
@@ -21,7 +22,7 @@ export const InputContainer = ({
   id,
 }) => {
   return (
-    <div style={{ marginBottom: 20 }}>
+    <div style={inputParentStyle} className={styles.InputParent}>
       <label htmlFor={id} style={TitleStyle} className={styles.InputTitle}>
         {inputTitle}
       </label>

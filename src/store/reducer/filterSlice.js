@@ -6,8 +6,8 @@ export const filterRequest = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       let response = await axios.post(
-        `${process.env.REACT_APP_API_URL}filtered_product`,
-        data
+        `${process.env.REACT_APP_API_URL}filtered_product?page=${data.page}`,
+        data.value
       );
       return response.data;
     } catch (error) {
@@ -22,10 +22,19 @@ const filterSlice = createSlice({
     data: [],
     category: [],
     taste: [],
+    current_page_filter: 1,
     loading: false,
-    success: false,
+    leftButtonFilter: false,
+    rightButtonFilter: false,
   },
-  reducers: {},
+  reducers: {
+    nextPageFilter(state) {
+      state.current_page_filter = state.current_page_filter + 1;
+    },
+    prevPageFilter(state) {
+      state.current_page_filter = state.current_page_filter - 1;
+    },
+  },
   extraReducers: (builder) => {
     builder
 
@@ -35,11 +44,22 @@ const filterSlice = createSlice({
 
       .addCase(filterRequest.fulfilled, (state, action) => {
         if (action.payload.status) {
+          state.loading = false;
+
+          if (action.payload.data.next_page_url !== null) {
+            state.rightButtonFilter = false;
+          } else if (action.payload.data.next_page_url === null) {
+            state.rightButtonFilter = true;
+          }
+          if (action.payload.data.prev_page_url !== null) {
+            state.leftButtonFilter = false;
+          } else if (action.payload.data.prev_page_url == null) {
+            state.leftButtonFilter = true;
+          }
           state.data = action.payload.data.data;
           state.category = action.payload.category;
           state.taste = action.payload.taste;
-          state.loading = false;
-          state.success = true;
+          state.made_in = action.payload.made_in;
         }
       })
 
@@ -50,3 +70,4 @@ const filterSlice = createSlice({
 });
 
 export default filterSlice.reducer;
+export const { nextPageFilter, prevPageFilter } = filterSlice.actions;

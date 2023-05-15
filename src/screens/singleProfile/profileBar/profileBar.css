@@ -1,0 +1,24 @@
+.profile_container {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    padding: 50px;
+    min-height: 55vh;
+}
+
+.profile_navbar {
+    margin-top: 30px;
+    display: grid;
+    justify-content: flex-start;
+}
+
+.profile_navbar_links {
+    padding: 10px;
+    font-family: Regular;
+
+}
+
+.profile_navbar_links.active {
+    background: #000;
+    color: white;
+}
+

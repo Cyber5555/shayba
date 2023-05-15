@@ -1,15 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import "./variousProducts.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCategoryRequest } from "../../store/reducer/getAllCategorySlice";
+import { useNavigate } from "react-router-dom";
+import { Context } from "../../context/Context";
 
 export const VariousProducts = () => {
   const dispatch = useDispatch();
-  const state = useSelector((state) => state.allCategory);
-  const { data, loading } = state;
+  const state = useSelector((state) => state);
+  const { data, loading } = state.allCategory;
+  const value = useContext(Context);
   useEffect(() => {
     dispatch(getAllCategoryRequest());
   }, []);
+  const navigate = useNavigate();
 
   return (
     <section className="various_products">
@@ -20,6 +24,10 @@ export const VariousProducts = () => {
             <div
               className="rendered_item_parent"
               key={item.id}
+              onClick={() => {
+                value.setSearchValues({ category_id: item.id });
+                navigate("/filter-catalog");
+              }}
               style={
                 index % 2 === 1
                   ? { borderRadius: "50%" }

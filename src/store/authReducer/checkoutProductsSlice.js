@@ -43,19 +43,17 @@ const checkoutProductsSlice = createSlice({
           state.loading = false;
           state.success_message = action.payload.message;
           state.order_is_added = true;
-          if (window.location.pathname !== "/order-is-generated") {
-            setTimeout(() => {
-              state.success_message = "";
-              state.order_is_added = false;
-            }, 2000);
-          }
+          // if (window.location.pathname !== "/order-is-generated") {
+          //   state.success_message = "";
+          //   state.order_is_added = false;
+          // }
         } else {
           state.loading = false;
           state.email_error = action.payload?.message?.email;
           state.phone_error = action.payload?.message?.phone;
           state.order_type_error = action.payload?.message?.order_type;
           state.name_error = action.payload?.message?.name;
-          state.success_message = "";
+          // state.success_message = "";
           state.order_is_added = false;
         }
       })

@@ -102,7 +102,8 @@
     position: absolute;
     left: 0;
     top: 0;
-    width: 30px
+    width: 30px;
+    cursor: pointer;
 }
 
 .tooltip::before {
@@ -138,4 +139,10 @@
     box-shadow: 0 0 10px rgb(207, 188, 188),
     0 0 15px rgb(207, 188, 188);
     cursor: pointer;
+}
+
+@media screen and (max-width: 425px) {
+    .next_prev_buttons_parent {
+        padding: 0;
+    }
 }

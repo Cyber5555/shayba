@@ -28,9 +28,7 @@ export const OrderFormation = ({}) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [order_type, setOrderType] = useState(
-    "НАЛИЧНЫМИ ИЛИ КАРТОЙ В МАГАЗИНЕ"
-  );
+  const [order_type, setOrderType] = useState("Shops");
   const [promo_code, setPromoCode] = useState("");
   const [comment, setComment] = useState("");
   const navigate = useNavigate();
@@ -113,33 +111,31 @@ export const OrderFormation = ({}) => {
               {/*    flexWrap: "wrap",*/}
               {/*  }}*/}
               {/*>*/}
-                <p>ОПЛАТА:</p>
-                <select
-                  name=""
-                  id=""
-                  style={{
-                    background: "#E6E6E6",
-                    borderRadius: 10,
-                    height: 35,
-                    borderColor: order_type_error && "red",
-                  }}
-                  onChange={(e) => setOrderType(e.target.value)}
-                >
-                  <option value={"Shops"}>
-                    НАЛИЧНЫМИ ИЛИ КАРТОЙ В МАГАЗИНЕ
-                  </option>
-                  <option value={"Drugoi"}>Другой</option>
-                </select>
+              <p>ОПЛАТА:</p>
+              <select
+                name=""
+                id=""
+                style={{
+                  background: "#E6E6E6",
+                  borderRadius: 10,
+                  height: 35,
+                  borderColor: order_type_error && "red",
+                }}
+                onChange={(e) => setOrderType(e.target.value)}
+              >
+                <option value={"Shops"}>НАЛИЧНЫМИ ИЛИ КАРТОЙ В МАГАЗИНЕ</option>
+                <option value={"Drugoi"}>Другой</option>
+              </select>
               {/*</div>*/}
             </div>
           </form>
         </div>
         <div className="control_order">
           <div className="top_box_checkout">
-            <div>
-              <h3 className="your_order">ВАШ ЗАКАЗ</h3>
-              <span className="edit_text">ИЗМЕНИТЬ</span>
-            </div>
+            {/*<div>*/}
+            {/*  <h3 className="your_order">ВАШ ЗАКАЗ</h3>*/}
+            {/*  <span className="edit_text">ИЗМЕНИТЬ</span>*/}
+            {/*</div>*/}
             <p className="order_price">ТОВАРОВ НА СУММУ: {BasketSum} ₽</p>
             <button
               className="checkout_button"

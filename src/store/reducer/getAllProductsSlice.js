@@ -25,8 +25,18 @@ const getAllProductSlice = createSlice({
     data: [],
     favorite_data: [],
     loading: false,
+    current_page: 1,
+    leftButton: false,
+    rightButton: false,
   },
-  reducers: {},
+  reducers: {
+    nextPage(state) {
+      state.current_page = state.current_page + 1;
+    },
+    prevPage(state) {
+      state.current_page = state.current_page - 1;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getAllProductsRequest.pending, (state) => {
@@ -34,7 +44,19 @@ const getAllProductSlice = createSlice({
       })
       .addCase(getAllProductsRequest.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = action.payload.data;
+        if (action.payload.data.next_page_url !== null) {
+          state.rightButton = false;
+          state.data = action.payload.data;
+        } else if (action.payload.data.next_page_url === null) {
+          state.rightButton = true;
+        }
+        if (action.payload.data.prev_page_url !== null) {
+          state.data = action.payload.data;
+          state.leftButton = false;
+        } else if (action.payload.data.prev_page_url == null) {
+          state.leftButton = true;
+        }
+
         state.favorite_data = action.payload.data.auth_user_favorite;
       })
       .addCase(getAllProductsRequest.rejected, (state, action) => {
@@ -45,3 +67,4 @@ const getAllProductSlice = createSlice({
 });
 
 export default getAllProductSlice.reducer;
+export const { nextPage, prevPage } = getAllProductSlice.actions;

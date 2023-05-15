@@ -11,11 +11,10 @@ export const Favorites = ({}) => {
   const { my_favorites } = state.getMyFavoriteSlice;
   const { added_remove_favorite } = state.addOrDelateFavoritesSlice;
   const dispatch = useDispatch();
-  console.log(my_favorites);
+
   useEffect(() => {
     dispatch(getMyFavoriteRequest({}));
   }, []);
-
 
   return (
     <main className="full_basket_layout">

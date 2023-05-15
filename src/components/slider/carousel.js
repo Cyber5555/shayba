@@ -62,19 +62,19 @@ const Carousel = ({ children }) => {
     };
   }, [current, children]);
 
-  // useEffect(() => {
-  //   if (intervalRef.current) {
-  //     clearInterval(intervalRef.current);
-  //   }
-  //   intervalRef.current = setInterval(() => {
-  //     actionHandler("next");
-  //   }, 3000);
-  //   return () => {
-  //     if (intervalRef.current) {
-  //       clearInterval(intervalRef.current);
-  //     }
-  //   };
-  // }, [actionHandler]);
+  useEffect(() => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+    intervalRef.current = setInterval(() => {
+      actionHandler("next");
+    }, 3000);
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [actionHandler]);
 
   const toucheHandler = (e) => {
     if (e.targetTouches[0].clientX < targetClick) {

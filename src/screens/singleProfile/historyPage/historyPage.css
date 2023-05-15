@@ -1,0 +1,54 @@
+.history_product_details {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.37);
+    display: grid;
+    gap: 20px;
+    border-radius: 20px;
+}
+
+.history_items {
+    min-height: 50px;
+    background: rgba(0, 0, 0, 0.02);
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.fieldset_items {
+    margin-top: 10px;
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: flex-start;
+    cursor: alias;
+    font-family: Regular;
+}
+
+.legend {
+    margin-left: 20px;
+    font-size: 20px;
+    font-family: Medium;
+}
+
+.status_history {
+    color: #F5A05F;
+    text-align: right;
+}
+
+.history_images {
+    width: 20%;
+    background: rgba(0, 0, 0, 0.13);
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.13);
+}
+
+.history_elements {
+    margin-left: 10px;
+    display: grid;
+    gap: 20px;
+}
+
+summary {
+    display: flex;
+    justify-content: space-between;
+    font-family: Medium;
+}

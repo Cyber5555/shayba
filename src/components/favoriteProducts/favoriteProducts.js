@@ -23,10 +23,11 @@ export const FavoriteProducts = ({ item }) => {
   const [event_id, setEventId] = useState("");
   const { maximum_error } = state.addInBasketSlice;
   const value = useContext(Context);
+
   useEffect(() => {
     dispatch(getMyFavoriteRequest({}));
     setUserToken(localStorage.getItem("userToken"));
-  }, [added_remove_favorite, added_in_basket]);
+  }, [added_in_basket]);
 
   useEffect(() => {
     dispatch(authUserInfoRequest(localStorage.getItem("userToken")));
@@ -40,6 +41,7 @@ export const FavoriteProducts = ({ item }) => {
       }
     });
   }, [added_in_basket, reduce_in_basket, count]);
+
   return (
     item.product && (
       <React.Fragment>

@@ -1,16 +1,21 @@
 import "./App.css";
 import HomeScreen from "./screens/homeScreen/Layout";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  RouterProvider,
+} from "react-router-dom";
 import { Header } from "./screens/fixElements/header/Header";
 import { Navbar } from "./screens/fixElements/navBar/Navbar";
 import { Footer } from "./screens/fixElements/footer/Footer";
-import { Catalog } from "./screens/catalog/catalog";
 import { FilterCatalog } from "./screens/filterCatalog/filterCatalog";
 import { SingleProduct } from "./screens/singleProduct/SingleProduct";
 import { Basket } from "./screens/basket/basket";
 import { OrderFormation } from "./screens/orderFormation/orderFormation";
 import { Context } from "./context/Context";
-import { useState } from "react";
+import React, { useState } from "react";
 import { RegisterPopup } from "./components/globalReg/globalRegPopup";
 import { VerifyCode } from "./components/globalReg/verifyCode";
 import { NewPassword } from "./components/globalReg/newPassword";
@@ -21,14 +26,18 @@ import { useEffect } from "react";
 import { BurgerMenu } from "./screens/fixElements/burgerMenu/burgerMenu";
 import { FooterMedia } from "./screens/fixElements/footer/FooterMedia";
 import { OrderIsGenerated } from "./screens/orderFormation/orderIsGenerated";
-import {Favorites} from "./screens/favorites/favorites";
+import { Favorites } from "./screens/favorites/favorites";
+import { Profile } from "./screens/singleProfile/profile/profile";
+import { ProfileRouter } from "./screens/singleProfile/profileRouter";
+import { VerifyEmailCode } from "./components/globalReg/verifyEmailCode";
 
 function App() {
   const [phone_forgot, setPhoneForgot] = useState(false);
   const [login_popup, setLoginPopup] = useState(false);
   const [new_password, setNewPassword] = useState(false);
   const [verify_phone_forgot, setVerifyPhoneForgot] = useState(false);
-  const [countRequest, setCountRequest] = useState(0);
+  const [email_code, setEmailCode] = useState(false);
+
   const [searchValues, setSearchValues] = useState({
     made_in_id: "",
     category_id: "",
@@ -36,6 +45,8 @@ function App() {
     orderbyPriceAsc: "",
     orderbyPriceDesc: "",
     search: "",
+    max_price: "",
+    min_price: "",
   });
 
   // const [loop, setLoop] = useState();
@@ -81,8 +92,8 @@ function App() {
     searchValues,
     setSearchValues,
 
-    countRequest,
-    setCountRequest, // pagination
+    email_code,
+    setEmailCode,
   };
 
   return (
@@ -98,15 +109,16 @@ function App() {
           <Header />
           <Navbar />
           <BurgerMenu />
+          <VerifyEmailCode />
           <Routes>
             <Route path="/" exact element={<HomeScreen />} />
-            <Route path="/catalog" element={<Catalog />} />
             <Route path="/filter-catalog" element={<FilterCatalog />} />
             <Route path="/single-product" element={<SingleProduct />} />
             <Route path="/basket" element={<Basket />} />
             <Route path="/order-formation" element={<OrderFormation />} />
             <Route path="/order-is-generated" element={<OrderIsGenerated />} />
             <Route path="/favorites" element={<Favorites />} />
+            <Route path="/*" element={<ProfileRouter />} />
           </Routes>
           <Footer />
           <FooterMedia />

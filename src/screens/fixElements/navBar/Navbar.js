@@ -6,20 +6,20 @@ export function Navbar() {
     <nav className="navbar">
       <ul className="navbar_ul">
         <li>
-          <Link to={"/catalog"} className="navbar_links">
+          <Link to={"/filter-catalog"} className="navbar_links">
             КАТАЛОГ
           </Link>
         </li>
         <li>
-          <Link to={"/about"} className="navbar_links">
+          <Link to={"/history"} className="navbar_links">
             ИСТОРИЯ
           </Link>
         </li>
-        <li>
-          <Link to={"/service"} className="navbar_links">
-            КАК ПОЛУЧИТЬ
-          </Link>
-        </li>
+        {/*<li>*/}
+        {/*  <Link to={"/service"} className="navbar_links">*/}
+        {/*    КАК ПОЛУЧИТЬ*/}
+        {/*  </Link>*/}
+        {/*</li>*/}
         {/* <li>
           <Link to={"/feedback"} className="navbar_links">
             ОПТ

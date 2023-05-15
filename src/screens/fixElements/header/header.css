@@ -26,9 +26,11 @@
     background: #f1e7e7;
     padding: 10px;
     border-radius: 5px;
+    z-index: 10;
 }
-.sub_smile_lists>li {
+.sub_smile_lists>a {
     padding: 10px;
+    display: block;
 }
 
 .tell_number_parent {
