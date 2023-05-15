@@ -26,6 +26,7 @@ const getBasketSlice = createSlice({
     loading: false,
     data: [],
     random_product: [],
+    cancel_random: false,
   },
   reducers: {},
   extraReducers: (builder) => {

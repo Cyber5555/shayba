@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./basket.css";
 import { BasketEmpty } from "./basketEmpty";
 import { RenderPurchase } from "../../components/purchaseField/renderPurchase";
@@ -13,8 +13,10 @@ export const Basket = () => {
   const state = useSelector((state) => state);
   const { data, random_product } = state.getBasketSlice;
   const { delate } = state.delateAllBasketsSlice;
-  const { count, added_in_basket } = state.addInBasketSlice;
-  const { reduce_in_basket } = state.reduceInBasketSlice;
+  const { count_plus, added_in_basket } = state.addInBasketSlice;
+  const { reduce_in_basket, count_minus } = state.reduceInBasketSlice;
+  const [first_render, setFirstRender] = useState(true);
+  const [random, setRandom] = useState();
 
   useEffect(() => {
     dispatch(getBasketRequest(localStorage.getItem("userToken")));
@@ -24,15 +26,34 @@ export const Basket = () => {
     dispatch(getBasketRequest(localStorage.getItem("userToken")));
 
     dispatch(authUserInfoRequest(localStorage.getItem("userToken")));
+    if (first_render) {
+      setRandom(random_product);
+      setFirstRender(false);
+    }
     // window.location.reload();
-  }, [added_in_basket, reduce_in_basket, count, delate]);
+  }, [
+    added_in_basket,
+    reduce_in_basket,
+    count_minus,
+    count_plus,
+    delate,
+    first_render,
+  ]);
+
+  window.onload = () => {
+    dispatch(getBasketRequest(localStorage.getItem("userToken")));
+    setRandom(random_product);
+    setFirstRender(true);
+
+
+  };
 
   return (
     <React.Fragment>
-      {data.length ? <BasketFull res={data} /> : <BasketEmpty res={null} />}
+      {data?.length ? <BasketFull res={data} /> : <BasketEmpty res={null} />}
       <div style={{ marginBottom: 20 }}>
         <PurchaseField>
-          <RenderPurchase data={random_product} />
+          <RenderPurchase data={random} />
         </PurchaseField>
       </div>
     </React.Fragment>

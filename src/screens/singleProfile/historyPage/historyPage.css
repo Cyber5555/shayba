@@ -52,3 +52,27 @@ summary {
     justify-content: space-between;
     font-family: Medium;
 }
+
+@media screen and (max-width: 1024px) {
+    summary {
+        gap: 50px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .status_history {
+        margin-top: 30px;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .status_history {
+        margin-top: 15px;
+    }
+
+    .history_images {
+        width: 25%;
+
+    }
+}
+

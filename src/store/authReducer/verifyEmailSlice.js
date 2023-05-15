@@ -13,7 +13,7 @@ export const verifyEmailRequest = createAsyncThunk(
       },
       data,
     };
-    console.log(data);
+
     try {
       let response = await axios(
         `${process.env.REACT_APP_API_URL}validation_email_condidate_code`,

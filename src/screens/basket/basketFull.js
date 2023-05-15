@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 export const BasketFull = ({ res }) => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
-  const { BasketCount, BasketSum, Favorite_Count } = state.authUserInfo;
+  const { BasketCount, BasketSum } = state.authUserInfo;
   return (
     <main className="full_basket_layout">
       <div className="basket_header">
@@ -51,7 +51,7 @@ export const BasketFull = ({ res }) => {
           />
         </li>
       </ul>
-      {res.map((item, index) => (
+      {res?.map((item, index) => (
         <BasketsProducts key={index} item={item} />
       ))}
       <p className="recommendation_full">ПЕРСОНАЛЬНЫЕ РЕКОМЕНДАЦИИ</p>

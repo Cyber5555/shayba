@@ -7,13 +7,15 @@ import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 export const BasketsProducts = ({ item }) => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
-  const { maximum_error } = state.addInBasketSlice;
+  const { maximum_error, count_plus, added_in_basket } = state.addInBasketSlice;
+  const { count_minus, reduce_in_basket } = state.reduceInBasketSlice;
+
   return (
     <React.Fragment>
       <h2 style={{ marginBottom: 20, textTransform: "uppercase" }}>
         {item.name}
       </h2>
-      {item.product.map((element, index) => (
+      {item?.product?.map((element, index) => (
         <div className="baskets_products" key={index}>
           <div className={"baskets_products_left_parent"}>
             <img
@@ -43,9 +45,13 @@ export const BasketsProducts = ({ item }) => {
                 <button
                   className="buttons"
                   name="minus"
-                  onClick={() =>
-                    dispatch(reduceInBasketRequest({ product_id: element.id }))
-                  }
+                  onClick={() => {
+                    dispatch(reduceInBasketRequest({ product_id: element.id }));
+
+                    // if (count ?? count) {
+                    //   item?.product?.splice(index, 1);
+                    // }
+                  }}
                 >
                   <AiOutlineMinus fill="#fff" color="white" />
                 </button>

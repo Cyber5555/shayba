@@ -78,6 +78,7 @@
     cursor: pointer;
     font-family: 'Black_';
     font-size: 26px;
+    position: relative;
 }
 
 .add_price_product_parent {

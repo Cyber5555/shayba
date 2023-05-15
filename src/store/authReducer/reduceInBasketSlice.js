@@ -29,7 +29,7 @@ const reduceInBasketSlice = createSlice({
   initialState: {
     loading: false,
     reduce_in_basket: false,
-    count: 0,
+    count_minus: null,
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -44,7 +44,11 @@ const reduceInBasketSlice = createSlice({
         if (action.payload.status) {
           state.loading = false;
           state.reduce_in_basket = true;
-          state.count = action.payload.count.count;
+          if (action.payload?.count?.count) {
+            state.count_minus = action.payload?.count?.count;
+          } else {
+            state.count_minus = null;
+          }
         }
       })
 

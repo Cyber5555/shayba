@@ -1,6 +1,7 @@
 import React from "react";
 import "./basket.css";
-export const BasketEmpty = ({ res }) => {
+
+export const BasketEmpty = () => {
   return (
     <main className="basket_layout">
       <div className="basket_header">
@@ -13,12 +14,12 @@ export const BasketEmpty = ({ res }) => {
       </div>
       <div className="empty_text_container">
         <h3 className="address_shipping">
-           {/* ВАШ ЗАКАЗ ВЫ СМОЖЕТЕ ЗАБРАТЬ В НАШЕМ МАГАЗИНЕ ПО АДРЕСУ: УЛ.
+          {/* ВАШ ЗАКАЗ ВЫ СМОЖЕТЕ ЗАБРАТЬ В НАШЕМ МАГАЗИНЕ ПО АДРЕСУ: УЛ.
            КРАХМАЛЕВА, 37 */}
-           <br />
-           <br />
-           <br />
-           <br />
+          <br />
+          <br />
+          <br />
+          <br />
         </h3>
         <span className="box_for_empty_text">
           <img

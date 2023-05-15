@@ -3,11 +3,12 @@ import { PurchaseField } from "../../components/purchaseField/PurchaseField";
 import { RenderPurchase } from "../../components/purchaseField/renderPurchase";
 import "./SingleProduct.css";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getSingleProductRequest } from "../../store/reducer/getSingleProductSlice";
 import PuffLoader from "react-spinners/PuffLoader";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
+import { addInBasketRequest } from "../../store/authReducer/addInBasketSlice";
 
 export const SingleProduct = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ export const SingleProduct = () => {
   useEffect(() => {
     dispatch(getSingleProductRequest(localStorage.getItem("item_id")));
   }, [localStorage.getItem("item_id")]);
-
+  const { count_plus, maximum_error } = state.addInBasketSlice;
   return data?.photo ? (
     <main className="layout_home_screen">
       <section className="single_product_box_parent">
@@ -281,7 +282,26 @@ export const SingleProduct = () => {
                 <FontAwesomeIcon icon={faPlus} />
               </button>
             </div> */}
-            {data?.count > 0 && <button className="add_card">В КОРЗИНУ</button>}
+            {data?.count > 0 && (
+              <button
+                className="add_card"
+                onClick={(e) => {
+
+                  dispatch(addInBasketRequest({ product_id: data.id }));
+                  document.querySelector('.tooltip')?.classList?.add("active");
+                  setTimeout(() => {
+                    document.querySelector('.tooltip')?.classList?.remove("active");
+                  }, 1000);
+                }}
+              >
+                В КОРЗИНУ
+                <span className="tooltip">
+                  {maximum_error != ""
+                    ? maximum_error
+                    : `корзине ${count_plus} штуки`}
+                </span>
+              </button>
+            )}
           </div>
         </div>
       </section>

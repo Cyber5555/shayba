@@ -48,7 +48,7 @@ const changeEmailSlice = createSlice({
       .addCase(changeEmailRequest.rejected, (state, action) => {
         if (!action.payload.status) {
           if (action.payload.message) {
-            console.log(action.payload);
+
             state.email_error = action.payload?.message?.email;
           }
         }

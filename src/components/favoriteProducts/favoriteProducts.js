@@ -18,8 +18,8 @@ export const FavoriteProducts = ({ item }) => {
   const state = useSelector((state) => state);
   const { added_remove_favorite } = state.addOrDelateFavoritesSlice;
   const [user_token, setUserToken] = useState(null);
-  const { count, added_in_basket } = state.addInBasketSlice;
-  const { reduce_in_basket } = state.reduceInBasketSlice;
+  const { count_plus, added_in_basket } = state.addInBasketSlice;
+  const { reduce_in_basket, count_minus } = state.reduceInBasketSlice;
   const [event_id, setEventId] = useState("");
   const { maximum_error } = state.addInBasketSlice;
   const value = useContext(Context);
@@ -27,20 +27,24 @@ export const FavoriteProducts = ({ item }) => {
   useEffect(() => {
     dispatch(getMyFavoriteRequest({}));
     setUserToken(localStorage.getItem("userToken"));
-  }, [added_in_basket]);
+  }, [added_in_basket, added_remove_favorite]);
 
   useEffect(() => {
     dispatch(authUserInfoRequest(localStorage.getItem("userToken")));
+  }, [added_in_basket, reduce_in_basket, count_plus, count_minus]);
 
-    document.querySelectorAll(".tooltip").forEach((event, $) => {
-      if (event_id === $) {
-        event.classList.add("active");
-        setTimeout(() => {
-          event.classList.remove("active");
-        }, 1000);
-      }
-    });
-  }, [added_in_basket, reduce_in_basket, count]);
+  const tooltipOpen = (id, event) => {
+    // const event = document.querySelectorAll(".tooltip");
+
+    if (id == item.product_id) {
+      console.log(event, "e.id");
+      event.target?.children[0]?.classList?.add("active");
+      setTimeout(() => {
+        event.target?.children[0]?.classList?.remove("active");
+      }, 1500);
+    }
+    // });
+  };
 
   return (
     item.product && (
@@ -51,7 +55,6 @@ export const FavoriteProducts = ({ item }) => {
               className="favorite_image"
               onClick={(e) => {
                 e.preventDefault();
-                console.log(item.product_id);
 
                 dispatch(
                   addOrDelateFavoritesRequest({
@@ -96,8 +99,7 @@ export const FavoriteProducts = ({ item }) => {
                 onClick={(e) => {
                   e.preventDefault();
                   if (user_token) {
-                    setEventId(item.product_id);
-
+                    tooltipOpen(item.product_id, e);
                     dispatch(
                       addInBasketRequest({
                         product_id: item.product_id,
@@ -109,14 +111,18 @@ export const FavoriteProducts = ({ item }) => {
                 }}
               >
                 +ДОБАВИТЬ
-                <span className="tooltip">В корзине {count} штуки</span>
+                <span className="tooltip">
+                  {maximum_error != ""
+                    ? maximum_error
+                    : `корзине ${count_plus} штуки`}
+                </span>
               </button>
             </div>
           </div>
         </div>
-        {maximum_error && (
-          <p style={{ color: "red", marginBottom: 20 }}>{maximum_error}</p>
-        )}
+        {/*{maximum_error && (*/}
+        {/*  <p style={{ color: "red", marginBottom: 20 }}>{maximum_error}</p>*/}
+        {/*)}*/}
       </React.Fragment>
     )
   );

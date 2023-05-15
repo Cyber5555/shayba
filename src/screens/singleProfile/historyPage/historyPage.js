@@ -47,7 +47,7 @@ export const HistoryPage = () => {
                 <div style={{ display: "flex", alignItems: "center" }}>
                   {/*{isOpen != item.id && <AiFillCaretDown />}*/}
                   {/*{isOpen == item.id && <AiFillCaretUp />}*/}
-                  {item?.order_product?.length > 0 && <AiFillCaretDown />}
+                  {item?.order_product?.length > 0 && <AiFillCaretDown  size={25}/>}
                   <p style={{ marginLeft: 20 }}>
                     <p style={{ marginBottom: 10 }}>
                       ЗАКАЗ №{item.order_id} ОТ{" "}

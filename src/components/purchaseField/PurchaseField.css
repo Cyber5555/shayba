@@ -82,20 +82,21 @@
 .tooltip {
     position: absolute;
     background: #000;
-    white-space: pre;
+    /*white-space: pre;*/
     left: 50%;
-    top: -10px;
+    bottom: 100%;
     transform: translateX(-50%);
     padding: 5px 15px;
     border-radius: 10px;
     opacity: 0;
     transition: .5s;
+    width: 200px;
+    height: auto;
 }
 
 .tooltip.active {
     opacity: 1;
-    top: -60px;
-
+    bottom: 200%;
 }
 
 .favorite_image {
@@ -114,8 +115,9 @@
     position: absolute;
     background: rgb(0, 0, 0);
     left: 50%;
-    top: 22px;
-    z-index: 10;
+    bottom: -10px;
+    z-index: -10;
+
 }
 
 

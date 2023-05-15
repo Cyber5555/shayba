@@ -29,8 +29,9 @@ const addInBasketSlice = createSlice({
   initialState: {
     loading: false,
     added_in_basket: false,
-    count: 0,
+    count_plus: null,
     maximum_error: "",
+
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -44,7 +45,7 @@ const addInBasketSlice = createSlice({
         if (action.payload.status) {
           state.loading = false;
           state.added_in_basket = true;
-          state.count = action.payload.count.count;
+          state.count_plus = action.payload.count.count;
           state.maximum_error = "";
         }
       })

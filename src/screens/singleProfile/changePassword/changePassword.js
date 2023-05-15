@@ -52,7 +52,7 @@ export const ChangePassword = () => {
         inputType={"password"}
         minimum={6}
         inputParentStyle={{
-          width: "60%",
+          width: "100%",
         }}
         TitleStyle={{
           color: "black",
@@ -77,7 +77,7 @@ export const ChangePassword = () => {
           color: "black",
         }}
         inputParentStyle={{
-          width: "60%",
+          width: "100%",
         }}
         inputStyle={{
           background: "#0000000a",
@@ -99,7 +99,7 @@ export const ChangePassword = () => {
           color: "black",
         }}
         inputParentStyle={{
-          width: "60%",
+          width: "100%",
         }}
         inputStyle={{
           background: "#0000000a",

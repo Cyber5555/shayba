@@ -5,7 +5,6 @@ export const changePasswordRequest = createAsyncThunk(
   "change_password",
   async (data, { rejectWithValue }) => {
     const token = localStorage.getItem("userToken");
-    console.log(data);
     try {
       let response = await axios({
         url: `${process.env.REACT_APP_API_URL}add_new_password2`,

@@ -9,6 +9,7 @@
 .full_basket_layout {
   padding: 50px;
   padding-bottom: 0;
+  min-height: 82vh;
 }
 
 .basket_header {

@@ -70,7 +70,7 @@ export const Profile = () => {
         inputType={"text"}
         minimum={6}
         inputParentStyle={{
-          width: "60%",
+          width: "100%",
         }}
         TitleStyle={{
           color: "black",
@@ -95,7 +95,7 @@ export const Profile = () => {
           color: "black",
         }}
         inputParentStyle={{
-          width: "60%",
+          width: "100%",
         }}
         inputStyle={{
           background: "#0000000a",

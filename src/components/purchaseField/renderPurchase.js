@@ -16,13 +16,13 @@ import { getSingleProductRequest } from "../../store/reducer/getSingleProductSli
 export const RenderPurchase = ({ data }) => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
-  const { count, added_in_basket } = state.addInBasketSlice;
-  const { reduce_in_basket } = state.reduceInBasketSlice;
+  const { count_plus, added_in_basket, maximum_error } = state.addInBasketSlice;
+  const { reduce_in_basket, count_minus } = state.reduceInBasketSlice;
   const { added_remove_favorite } = state.addOrDelateFavoritesSlice;
   const { my_favorites } = state.getMyFavoriteSlice;
   const [isFavorite, setIsFavorite] = useState([]);
-  const [event_id, setEventId] = useState("");
   const [user_token, setUserToken] = useState(null);
+
   const value = useContext(Context);
 
   useEffect(() => {
@@ -32,16 +32,13 @@ export const RenderPurchase = ({ data }) => {
 
   useEffect(() => {
     dispatch(authUserInfoRequest(localStorage.getItem("userToken")));
-
-    document.querySelectorAll(".tooltip").forEach((event, $) => {
-      if (event_id === $) {
-        event.classList.add("active");
-        setTimeout(() => {
-          event.classList.remove("active");
-        }, 1000);
-      }
-    });
-  }, [added_in_basket, reduce_in_basket, count]);
+  }, [
+    added_in_basket,
+    reduce_in_basket,
+    maximum_error,
+    count_plus,
+    count_minus,
+  ]);
 
   useEffect(() => {
     dispatch(authUserInfoRequest(localStorage.getItem("userToken")));
@@ -90,6 +87,19 @@ export const RenderPurchase = ({ data }) => {
     return find;
   };
 
+  const tooltipOpen = (id, event) => {
+    // const event = document.querySelectorAll(".tooltip");
+    data?.map((e, $) => {
+      if (id == e.id) {
+        console.log(e, "e.id");
+        event.target?.children[0]?.classList?.add("active");
+        setTimeout(() => {
+          event.target?.children[0]?.classList?.remove("active");
+        }, 1500);
+      }
+    });
+  };
+
   if (data?.length > 0) {
     return data.map((item, index) => {
       return (
@@ -124,7 +134,7 @@ export const RenderPurchase = ({ data }) => {
               className="favorite_image"
               onClick={(e) => {
                 e.stopPropagation();
-                e.preventDefault()
+                e.preventDefault();
                 takeFavorite(item.id);
               }}
             >
@@ -150,9 +160,10 @@ export const RenderPurchase = ({ data }) => {
                   name="minus"
                   onClick={(e) => {
                     e.preventDefault();
-                    e.stopPropagation()
+                    e.stopPropagation();
                     if (user_token) {
-                      setEventId(index);
+                      console.log(item);
+                      tooltipOpen(item.id, e);
                       dispatch(
                         addInBasketRequest({
                           product_id: item.id,
@@ -164,7 +175,11 @@ export const RenderPurchase = ({ data }) => {
                   }}
                 >
                   +ДОБАВИТЬ
-                  <span className="tooltip">В корзине {count} штуки</span>
+                  <span className="tooltip">
+                    {maximum_error != ""
+                      ? maximum_error
+                      : `корзине ${count_plus} штуки`}
+                  </span>
                 </button>
               ) : (
                 <p

@@ -44,6 +44,7 @@ export const Header = ({}) => {
       dispatch(authUserInfoRequest(localStorage.getItem("userToken")));
       dispatch(getBasketRequest(localStorage.getItem("userToken")));
     }
+
   }, [user_token, added_in_basket, reduce_in_basket, count, delate]);
 
   useEffect(() => {

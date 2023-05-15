@@ -1,14 +1,25 @@
 .profile_container {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
+    width: 100%;
+    display: flex;
     padding: 50px;
     min-height: 55vh;
+    gap: 10%;
+}
+
+.profile_bar_parent {
+    /*width: 20%;*/
+    white-space: pre;
+}
+
+.history_parent {
+    width: 70%;
 }
 
 .profile_navbar {
     margin-top: 30px;
-    display: grid;
-    justify-content: flex-start;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .profile_navbar_links {
@@ -22,3 +33,17 @@
     color: white;
 }
 
+@media screen and (max-width: 768px) {
+
+}
+
+@media screen and (max-width: 425px) {
+    .profile_container {
+        flex-direction: column;
+        row-gap: 40px;
+        padding: 30px;
+    }
+    .history_parent {
+        width: 100%;
+    }
+}
