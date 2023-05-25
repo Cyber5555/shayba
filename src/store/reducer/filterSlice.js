@@ -7,7 +7,7 @@ export const filterRequest = createAsyncThunk(
     try {
       let response = await axios.post(
         `${process.env.REACT_APP_API_URL}filtered_product?page=${data.page}`,
-        data.value
+        data
       );
       return response.data;
     } catch (error) {

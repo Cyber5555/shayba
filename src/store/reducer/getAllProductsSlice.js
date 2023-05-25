@@ -39,19 +39,22 @@ const getAllProductSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+
       .addCase(getAllProductsRequest.pending, (state) => {
         state.loading = true;
       })
+
       .addCase(getAllProductsRequest.fulfilled, (state, action) => {
         state.loading = false;
+        if (state.leftButton || state.rightButton) {
+          state.data = action.payload.data;
+        }
         if (action.payload.data.next_page_url !== null) {
           state.rightButton = false;
-          state.data = action.payload.data;
         } else if (action.payload.data.next_page_url === null) {
           state.rightButton = true;
         }
         if (action.payload.data.prev_page_url !== null) {
-          state.data = action.payload.data;
           state.leftButton = false;
         } else if (action.payload.data.prev_page_url == null) {
           state.leftButton = true;
@@ -59,6 +62,7 @@ const getAllProductSlice = createSlice({
 
         state.favorite_data = action.payload.data.auth_user_favorite;
       })
+
       .addCase(getAllProductsRequest.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;

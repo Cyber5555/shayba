@@ -3,7 +3,7 @@ import { PurchaseField } from "../../components/purchaseField/PurchaseField";
 import { RenderPurchase } from "../../components/purchaseField/renderPurchase";
 import "./SingleProduct.css";
 import { useDispatch, useSelector } from "react-redux";
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useRef, useState} from "react";
 import { getSingleProductRequest } from "../../store/reducer/getSingleProductSlice";
 import PuffLoader from "react-spinners/PuffLoader";
 import Lightbox from "yet-another-react-lightbox";
@@ -15,10 +15,21 @@ export const SingleProduct = () => {
   const state = useSelector((state) => state);
   const { data, is_random_data, loading } = state.getSingleProduct;
   const [open, setOpen] = useState(true);
+  const { count_plus, maximum_error } = state.addInBasketSlice;
+  const pageRef = useRef()
+
   useEffect(() => {
     dispatch(getSingleProductRequest(localStorage.getItem("item_id")));
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth"
+    });
   }, [localStorage.getItem("item_id")]);
-  const { count_plus, maximum_error } = state.addInBasketSlice;
+
+
+
+
   return data?.photo ? (
     <main className="layout_home_screen">
       <section className="single_product_box_parent">
@@ -271,7 +282,7 @@ export const SingleProduct = () => {
             ОДНОРАЗОВЫЕ ЭЛЕКТРОННЫЕ ИСПАРИТЕЛИ — <span>ДА</span>
           </p> */}
           <div className="add_price_product_parent">
-            <p className="product_price">{data?.price} ₽</p>
+            <p className="product_price">Цена: {data?.price} ₽</p>
 
             {/* <div className="add_price">
               <button className="buttons" name="minus">
@@ -286,11 +297,12 @@ export const SingleProduct = () => {
               <button
                 className="add_card"
                 onClick={(e) => {
-
                   dispatch(addInBasketRequest({ product_id: data.id }));
-                  document.querySelector('.tooltip')?.classList?.add("active");
+                  document.querySelector(".tooltip")?.classList?.add("active");
                   setTimeout(() => {
-                    document.querySelector('.tooltip')?.classList?.remove("active");
+                    document
+                      .querySelector(".tooltip")
+                      ?.classList?.remove("active");
                   }, 1000);
                 }}
               >
@@ -298,7 +310,7 @@ export const SingleProduct = () => {
                 <span className="tooltip">
                   {maximum_error != ""
                     ? maximum_error
-                    : `корзине ${count_plus} штуки`}
+                    : `В корзине ${count_plus}-штука`}
                 </span>
               </button>
             )}

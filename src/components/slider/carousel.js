@@ -77,12 +77,14 @@ const Carousel = ({ children }) => {
   }, [actionHandler]);
 
   const toucheHandler = (e) => {
-    if (e.targetTouches[0].clientX < targetClick) {
+    console.log(targetClick, "targetClick");
+    console.log(e.targetTouches[0].clientX, "e.targetTouches[0].clientX");
+    if (e.targetTouches[0].clientX < targetClick - 50) {
       if (accept) {
         actionHandler("next");
         return setAccept(false);
       }
-    } else if (e.targetTouches[0].clientX > targetClick) {
+    } else if (e.targetTouches[0].clientX > targetClick + 50) {
       if (accept) {
         actionHandler("prev");
         return setAccept(false);

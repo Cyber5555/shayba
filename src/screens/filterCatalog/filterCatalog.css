@@ -57,6 +57,7 @@
 .catalog_lists {
     cursor: pointer;
     position: relative;
+    text-transform: uppercase;
 }
 
 .sub_catalog_lists {
@@ -99,7 +100,7 @@
 
 .sub_price_range {
     position: absolute;
-    width: 150px;
+    width: 200px;
     top: 50px;
     left: 50%;
     transform: translateX(-50%);
@@ -109,9 +110,20 @@
     border-radius: 10px;
 }
 
+.sub_growth_select {
+    position: absolute;
+    width: 220px;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    background: #f1e7e7;
+    padding: 10px;
+    border-radius: 10px;
+}
+
 .taste_items {
     background: #ad8686;
-
 }
 
 .taste_items.active {
@@ -121,6 +133,27 @@
 
 .taste_items:not(:last-child) {
     margin-bottom: 10px;
+}
+
+.growth_label {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.growth_label:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.growth_label > label {
+    cursor: pointer;
+    font-size: 14px;
+
+}
+
+.growth {
+    cursor: pointer;
 }
 
 @media screen and (max-width: 425px) {

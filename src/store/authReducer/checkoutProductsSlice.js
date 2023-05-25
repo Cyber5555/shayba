@@ -25,10 +25,10 @@ const checkoutProductsSlice = createSlice({
   name: "add_new_order",
   initialState: {
     loading: false,
-    email_error: false,
-    phone_error: false,
-    order_type_error: false,
-    name_error: false,
+    email_error: "",
+    phone_error: "",
+    order_type_error: "",
+    name_error: "",
     success_message: "",
     order_is_added: false,
   },
@@ -37,6 +37,10 @@ const checkoutProductsSlice = createSlice({
     builder
       .addCase(checkoutProductRequest.pending, (state) => {
         state.loading = true;
+        state.email_error = "";
+        state.phone_error = "";
+        state.order_type_error = "";
+        state.name_error = "";
       })
       .addCase(checkoutProductRequest.fulfilled, (state, action) => {
         if (action.payload.status) {

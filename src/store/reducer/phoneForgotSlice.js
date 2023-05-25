@@ -28,6 +28,7 @@ const phoneForgotSlice = createSlice({
     builder
       .addCase(phoneForgotRequest.pending, (state) => {
         state.loading = true;
+        state.phone_error = "";
       })
 
       .addCase(phoneForgotRequest.fulfilled, (state, action) => {

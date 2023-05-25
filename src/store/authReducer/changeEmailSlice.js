@@ -28,19 +28,20 @@ const changeEmailSlice = createSlice({
   name: "change_email",
   initialState: {
     email_error: "",
-    loading: false,
+    loading_email: false,
     success: false,
   },
   reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(changeEmailRequest.pending, (state) => {
-        state.loading = true;
+        state.loading_email = true;
+        state.email_error = "";
       })
 
       .addCase(changeEmailRequest.fulfilled, (state, action) => {
         if (action.payload.status) {
-          state.loading = false;
+          state.loading_email = false;
           state.success = true;
         }
       })
@@ -48,11 +49,10 @@ const changeEmailSlice = createSlice({
       .addCase(changeEmailRequest.rejected, (state, action) => {
         if (!action.payload.status) {
           if (action.payload.message) {
-
             state.email_error = action.payload?.message?.email;
           }
         }
-        state.loading = false;
+        state.loading_email = false;
         // localStorage.removeItem("userToken");
       });
   },

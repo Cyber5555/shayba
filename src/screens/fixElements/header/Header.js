@@ -44,7 +44,6 @@ export const Header = ({}) => {
       dispatch(authUserInfoRequest(localStorage.getItem("userToken")));
       dispatch(getBasketRequest(localStorage.getItem("userToken")));
     }
-
   }, [user_token, added_in_basket, reduce_in_basket, count, delate]);
 
   useEffect(() => {
@@ -55,11 +54,7 @@ export const Header = ({}) => {
     document.querySelector(".burger_menu_aside").classList.add("active");
   };
   document.body.onclick = (e) => {
-    if (
-      e.target.className !== "catalog_lists" &&
-      e.target.className !== "bug_header"
-    )
-      setIsOpen(false);
+    if (e.target.className !== "catalog_lists") setIsOpen(false);
   };
 
   return (
@@ -78,14 +73,16 @@ export const Header = ({}) => {
 
       <span className="search_on_header">
         <Search
-          value={value.searchValues.search}
-          onChange={(e) => value.setSearchValues({ search: e.target.value })}
+          value={value.search}
+          onChange={(e) => value.setSearch(e.target.value)}
         />
       </span>
 
       <div className="tell_number_parent">
         <FaPhoneVolume style={{ transform: "rotateZ(-45deg)" }} />
-        <h2 className="tell_number">{data?.header_phone}</h2>
+        <a className="tell_number" href={`tel:${data?.header_phone}`}>
+          {data?.header_phone}
+        </a>
       </div>
 
       {user_token ? (
@@ -113,11 +110,11 @@ export const Header = ({}) => {
             {isOpen && (
               <ul
                 className={"sub_smile_lists"}
-                onClick={(event) => event.stopPropagation()}
+                // onClick={(event) => event.stopPropagation()}
               >
-                <Link to={"/profile"}>МОЙ КАБИНЕТ</Link>
-                <Link to={"/change_password"}>СМЕНИТЬ ПАРОЛЬ</Link>
-                <Link to={"/history"}>ИСТОРИЯ ЗАКАЗОВ</Link>
+                <Link to={"/single/profile"}>МОЙ КАБИНЕТ</Link>
+                <Link to={"/single/change_password"}>СМЕНИТЬ ПАРОЛЬ</Link>
+                <Link to={"/single/history"}>ИСТОРИЯ ЗАКАЗОВ</Link>
               </ul>
             )}
           </div>

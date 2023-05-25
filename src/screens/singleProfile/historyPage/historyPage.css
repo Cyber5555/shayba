@@ -24,7 +24,7 @@
 }
 
 .legend {
-    margin-left: 20px;
+    /*margin-left: 20px;*/
     font-size: 20px;
     font-family: Medium;
 }
@@ -53,6 +53,16 @@ summary {
     font-family: Medium;
 }
 
+summary > :first-child {
+    display: flex;
+    align-items: center;
+
+}
+
+summary > :first-child:first-child {
+    /*margin-left: 20px;*/
+}
+
 @media screen and (max-width: 1024px) {
     summary {
         gap: 50px;
@@ -73,6 +83,36 @@ summary {
     .history_images {
         width: 25%;
 
+    }
+
+    summary > :first-child:first-child {
+        /*margin-left: 10px;*/
+    }
+
+    .history_items {
+        padding: 15px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+
+
+    summary {
+        gap: 20px;
+    }
+
+    summary > :first-child {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    summary > :first-child:first-child {
+        margin: 0;
+    }
+
+    .history_items {
+        padding: 15px;
     }
 }
 

@@ -11,9 +11,13 @@ export const ProfileRouter = () => {
     <div className={"profile_container"}>
       <ProfileBar />
       <Routes>
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/change_password" element={<ChangePassword />} />
-        <Route path="/history" element={<HistoryPage />} />
+        <Route exact path="profile" element={<Profile />} />
+        <Route
+          exact
+          path="change_password"
+          element={<ChangePassword />}
+        />
+        <Route exact path="history" element={<HistoryPage />} />
       </Routes>
     </div>
   );

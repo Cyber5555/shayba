@@ -28,7 +28,6 @@ export const PurchaseField = ({ children }) => {
   useEffect(() => {
     if (window.location.pathname !== "/filter-catalog") {
       dispatch(getAllProductsRequest(current_page));
-    } else {
     }
   }, [current_page]);
 
@@ -91,7 +90,7 @@ export const PurchaseField = ({ children }) => {
                 }
               }}
             >
-              далье
+              далее
             </button>
           </div>
         )}

@@ -24,9 +24,8 @@ export const Basket = () => {
 
   useEffect(() => {
     dispatch(getBasketRequest(localStorage.getItem("userToken")));
-
     dispatch(authUserInfoRequest(localStorage.getItem("userToken")));
-    if (first_render) {
+    if (first_render || random.length == 0) {
       setRandom(random_product);
       setFirstRender(false);
     }
@@ -40,12 +39,10 @@ export const Basket = () => {
     first_render,
   ]);
 
-  window.onload = () => {
+  window.on = () => {
     dispatch(getBasketRequest(localStorage.getItem("userToken")));
     setRandom(random_product);
     setFirstRender(true);
-
-
   };
 
   return (
@@ -53,7 +50,7 @@ export const Basket = () => {
       {data?.length ? <BasketFull res={data} /> : <BasketEmpty res={null} />}
       <div style={{ marginBottom: 20 }}>
         <PurchaseField>
-          <RenderPurchase data={random} />
+          <RenderPurchase data={random?.length > 0 ? random : random_product} />
         </PurchaseField>
       </div>
     </React.Fragment>

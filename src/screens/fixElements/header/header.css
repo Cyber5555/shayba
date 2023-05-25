@@ -16,6 +16,7 @@
 .smile {
     position: relative;
 }
+
 .sub_smile_lists {
     position: absolute;
     width: 200px;
@@ -28,7 +29,8 @@
     border-radius: 5px;
     z-index: 10;
 }
-.sub_smile_lists>a {
+
+.sub_smile_lists > a {
     padding: 10px;
     display: block;
 }
@@ -37,6 +39,12 @@
     display: flex;
     align-items: center;
     gap: 20px
+}
+
+.tell_number {
+    font-size: 20px;
+    font-family: Bold;
+    color: black;
 }
 
 .budget_container {

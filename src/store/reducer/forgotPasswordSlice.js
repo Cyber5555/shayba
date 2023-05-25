@@ -30,6 +30,7 @@ const forgotPasswordSlice = createSlice({
     builder
       .addCase(forgotPasswordRequest.pending, (state) => {
         state.loading = true;
+        state.phone_error = "";
       })
 
       .addCase(forgotPasswordRequest.fulfilled, (state, action) => {

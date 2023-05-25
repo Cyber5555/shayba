@@ -30,6 +30,8 @@ const newPasswordSlice = createSlice({
     builder
       .addCase(newPasswordRequest.pending, (state) => {
         state.loading = true;
+        state.password_error = "";
+        state.password_confirmation_error = "";
       })
 
       .addCase(newPasswordRequest.fulfilled, (state, action) => {

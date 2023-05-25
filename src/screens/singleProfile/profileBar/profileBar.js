@@ -9,7 +9,7 @@ export const ProfileBar = () => {
           className={({ isActive }) =>
             isActive ? "profile_navbar_links active" : "profile_navbar_links"
           }
-          to={"/profile"}
+          to={"/single/profile"}
         >
           МОЙ КАБИНЕТ
         </NavLink>
@@ -17,7 +17,7 @@ export const ProfileBar = () => {
           className={({ isActive }) =>
             isActive ? "profile_navbar_links active" : "profile_navbar_links"
           }
-          to={"/change_password"}
+          to={"/single/change_password"}
         >
           СМЕНИТЬ ПАРОЛЬ
         </NavLink>
@@ -25,7 +25,7 @@ export const ProfileBar = () => {
           className={({ isActive }) =>
             isActive ? "profile_navbar_links active" : "profile_navbar_links"
           }
-          to={"/history"}
+          to={"/single/history"}
         >
           ИСТОРИЯ ЗАКАЗОВ
         </NavLink>

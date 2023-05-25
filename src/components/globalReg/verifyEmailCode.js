@@ -11,7 +11,7 @@ import { verifyEmailRequest } from "../../store/authReducer/verifyEmailSlice";
 export const VerifyEmailCode = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
-  const { loading, success, verify_error } = state.verifyEmailSlice;
+  const { loading, success_email, verify_error } = state.verifyEmailSlice;
   const [code, setCode] = useState("");
   const value = useContext(Context);
 
@@ -26,11 +26,11 @@ export const VerifyEmailCode = () => {
   };
 
   useEffect(() => {
-    if (success) {
+    if (success_email) {
       value.setEmailCode(false);
       setCode("");
     }
-  }, [success]);
+  }, [success_email]);
 
   if (value.email_code) {
     return (

@@ -23,9 +23,11 @@ import addOrDelateFavoritesSlice from "./authReducer/addOrDelateFavoritesSlice";
 import getMyFavoriteSlice from "./authReducer/getMyFavoriteSlice";
 import getAllHistorySlice from "./authReducer/getAllHistorySlice";
 import changeEmailSlice from "./authReducer/changeEmailSlice";
-import cgangePasswordSlice from "./authReducer/cangePasswordSlice";
+import cgangePasswordSlice from "./authReducer/changePasswordSlice";
 import verifyEmailSlice from "./authReducer/verifyEmailSlice";
 import changeFIOSlice from "./authReducer/changeFIOSlice";
+import changePasswordSlice from "./authReducer/changePasswordSlice";
+import feedbackSlice from "./authReducer/feedbackSlice";
 
 const rootReducer = combineReducers({
   getAgeSlice,
@@ -55,6 +57,8 @@ const rootReducer = combineReducers({
   cangePasswordSlice: cgangePasswordSlice,
   verifyEmailSlice: verifyEmailSlice,
   changeFIOSlice: changeFIOSlice,
+  changePasswordSlice: changePasswordSlice,
+  feedbackSlice: feedbackSlice,
 });
 
 export const store = configureStore({

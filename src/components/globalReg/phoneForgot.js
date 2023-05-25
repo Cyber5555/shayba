@@ -69,7 +69,7 @@ export const PhoneForgot = () => {
             dropdownStyle={{
               top: "100%",
               overflow: "scroll",
-              height: 300,
+              height: 120,
               left: 0,
               zIndex: 10,
               background: "white",

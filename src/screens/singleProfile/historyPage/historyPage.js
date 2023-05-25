@@ -44,11 +44,13 @@ export const HistoryPage = () => {
               onClick={() => setIsOpen(item.id)}
             >
               <summary>
-                <div style={{ display: "flex", alignItems: "center" }}>
+                <div>
                   {/*{isOpen != item.id && <AiFillCaretDown />}*/}
                   {/*{isOpen == item.id && <AiFillCaretUp />}*/}
-                  {item?.order_product?.length > 0 && <AiFillCaretDown  size={25}/>}
-                  <p style={{ marginLeft: 20 }}>
+                  {item?.order_product?.length > 0 && (
+                    <AiFillCaretDown size={25} style={{ marginRight: 10 }} />
+                  )}
+                  <p>
                     <p style={{ marginBottom: 10 }}>
                       ЗАКАЗ №{item.order_id} ОТ{" "}
                       {moment(item.created_at).format("MM. DD. YYYY")}
@@ -130,6 +132,16 @@ export const HistoryPage = () => {
           );
         })}
       </ul>
+      {data?.length == 0 && (
+        <p
+          style={{
+            textAlign: "center",
+            fontSize: 20,
+          }}
+        >
+          Сделайте свой первый заказ
+        </p>
+      )}
     </div>
   );
 };

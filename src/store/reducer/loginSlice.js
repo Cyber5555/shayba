@@ -26,9 +26,12 @@ const loginSlice = createSlice({
   },
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(loginRequest.pending, (state) => {
-      state.loading = true;
-    })
+    builder
+      .addCase(loginRequest.pending, (state) => {
+        state.loading = true;
+        state.password_error = "";
+        state.phone_error = "";
+      })
 
       .addCase(loginRequest.fulfilled, (state, action) => {
         if (action.payload.status) {
@@ -40,8 +43,10 @@ const loginSlice = createSlice({
 
       .addCase(loginRequest.rejected, (state, action) => {
         if (!action.payload.status) {
-          state.phone_error = action.payload.message.phone || action.payload.message;
-          state.password_error = action.payload.message.password || action.payload.message;
+          state.phone_error =
+            action.payload.message.phone || action.payload.message;
+          state.password_error =
+            action.payload.message.password || action.payload.message;
           state.loading = false;
         }
       });

@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { closeSuccessModalPassword } from "./changePasswordSlice";
 
 export const verifyEmailRequest = createAsyncThunk(
   "verify_email",
@@ -31,9 +32,13 @@ const verifyEmailSlice = createSlice({
   name: "verify_email",
   initialState: {
     loading: false,
-    success: false,
+    success_email: false,
   },
-  reducers: {},
+  reducers: {
+    closeSuccessModalEmail(state) {
+      state.success_email = false;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(verifyEmailRequest.pending, (state) => {
@@ -43,7 +48,7 @@ const verifyEmailSlice = createSlice({
       .addCase(verifyEmailRequest.fulfilled, (state, action) => {
         if (action.payload.status) {
           state.loading = false;
-          state.success = true;
+          state.success_email = true;
         }
       })
 
@@ -61,3 +66,4 @@ const verifyEmailSlice = createSlice({
 });
 
 export default verifyEmailSlice.reducer;
+export const {closeSuccessModalEmail} = verifyEmailSlice.actions

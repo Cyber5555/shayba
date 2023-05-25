@@ -101,6 +101,7 @@ export const OrderFormation = ({}) => {
                 flexWrap: "wrap",
                 gap: 30,
                 marginTop: 20,
+                marginBottom: 20,
               }}
             >
               {/*<p>ПОЛУЧЕНИЕ: САМОВЫВОЗ</p>*/}

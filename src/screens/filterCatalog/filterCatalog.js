@@ -18,32 +18,55 @@ export const FilterCatalog = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenPrice, setIsOpenPrice] = useState(false);
   const [isOpenBrend, setisOpenBrend] = useState(false);
-  const [changed, setChanged] = useState("");
-  const [rangeValue, setRangeValue] = useState([20, 100]);
+  const [isOpenGrowth, setisOpenGrowth] = useState(false);
+  const [rangeValue, setRangeValue] = useState([0, 30000]);
 
   const handleChange = (event, newValue) => {
     setRangeValue(newValue);
-    value.setSearchValues({
-      min_price: newValue[0],
-      max_price: newValue[1],
-    });
+    value.setMinPrice(newValue[0]);
+    value.setMaxPrice(newValue[1]);
   };
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
     dispatch(
-      filterRequest({ value: value.searchValues, page: current_page_filter })
+      filterRequest({
+        made_in_id: value.made_in_id,
+        category_id: value.category_id,
+        orderbyPriceAsc: value.orderbyPriceAsc,
+        orderbyPriceDesc: value.orderbyPriceDesc,
+        search: value.search,
+        max_price: value.max_price,
+        min_price: value.min_price,
+        taste_id: value.taste_id,
+        page: current_page_filter,
+      })
     );
-    console.log(value.searchValues)
-  }, [value.searchValues, current_page_filter]);
+  }, [
+    value.made_in_id,
+    value.category_id,
+    value.orderbyPriceAsc,
+    value.orderbyPriceDesc,
+    value.search,
+    value.max_price,
+    value.min_price,
+    value.taste_id,
+    current_page_filter,
+  ]);
 
   document.body.onclick = (e) => {
     if (
-      e.target.className !== "catalog_lists" &&
-      e.target.className !== "bug_header"
+      e.target.className !== "catalog_lists"
+      // e.target.className !== "sub_growth_select"
     ) {
       setIsOpenPrice(false);
       setIsOpen(false);
       setisOpenBrend(false);
+      setisOpenGrowth(false);
     }
   };
 
@@ -55,8 +78,10 @@ export const FilterCatalog = () => {
     document
       .querySelectorAll(".rendered_category")
       .forEach((element, index, i) => {
-        if (value.searchValues?.category_id == category[index].id) {
+        if (value?.category_id == category[index].id) {
           element.classList.add("active");
+        } else {
+          element.classList.remove("active");
         }
       });
   }, []);
@@ -66,7 +91,45 @@ export const FilterCatalog = () => {
       <ul className="catalog_list_ul">
         {/*<p className="catalog_info">КАТАЛОГ</p>*/}
         {/*<li className="catalog_lists">ОДНОРАЗОВЫЕ POD</li>*/}
-        <li className="catalog_lists">ПО ЦЕНЕ (ВОЗРАСТАНИЕ)</li>
+        <li
+          className="catalog_lists"
+          onClick={() => setisOpenGrowth(!isOpenGrowth)}
+        >
+          ПО ЦЕНЕ (ВОЗРАСТАНИЕ)
+          {isOpenGrowth && (
+            <ul
+              className={"sub_growth_select"}
+              onClick={(event) => event.stopPropagation()}
+            >
+              <div className={"growth_label"}>
+                <input
+                  type="radio"
+                  id={"growth1"}
+                  name={"growth"}
+                  className={"growth"}
+                  onClick={() => {
+                    value.setOrderbyPriceAsc("ASC");
+                    value.setOrderbyPriceDesc("");
+                  }}
+                />
+                <label htmlFor={"growth1"}>По возрастанию цены</label>
+              </div>
+              <div className={"growth_label"}>
+                <input
+                  type="radio"
+                  id={"growth2"}
+                  name={"growth"}
+                  className={"growth"}
+                  onChange={() => {
+                    value.setOrderbyPriceAsc("");
+                    value.setOrderbyPriceDesc("Desc");
+                  }}
+                />
+                <label htmlFor={"growth2"}>По убыванию цены</label>
+              </div>
+            </ul>
+          )}
+        </li>
         <li
           className="catalog_lists"
           onClick={() => setIsOpenPrice(!isOpenPrice)}
@@ -83,7 +146,8 @@ export const FilterCatalog = () => {
                 onChange={handleChange}
                 valueLabelDisplay="auto"
                 getAriaValueText={valuetext}
-                max={999999}
+                max={30000}
+                step={10}
               />
             </ul>
           )}
@@ -100,7 +164,7 @@ export const FilterCatalog = () => {
                   <li
                     key={$}
                     onClick={() => {
-                      value.setSearchValues({ made_in_id: element.id });
+                      value.setMadeInId(element.id);
                     }}
                   >
                     {element.name}
@@ -122,7 +186,7 @@ export const FilterCatalog = () => {
                   <li
                     key={$}
                     onClick={() => {
-                      value.setSearchValues({ taste_id: element.id });
+                      value.setTasteId(element.id);
                     }}
                   >
                     {element.name}
@@ -132,6 +196,28 @@ export const FilterCatalog = () => {
             )}
           </li>
         )}
+        <li
+          className={"catalog_lists"}
+          onClick={() => {
+            value.setCategoryId("");
+            value.setMadeInId("");
+            value.setTasteId("");
+            value.setOrderbyPriceAsc("");
+            value.setOrderbyPriceDesc("");
+            value.setSearch("");
+            value.setMaxPrice("");
+            value.setMinPrice("");
+            setRangeValue([0, 30000]);
+            document.querySelectorAll(".growth").forEach((e) => {
+              e.checked = false;
+            });
+            document
+              .querySelectorAll(".rendered_category")
+              .forEach((e) => e.classList?.remove("active"));
+          }}
+        >
+          сбросить фильтр
+        </li>
       </ul>
 
       <div className={"rendered_parent"}>
@@ -149,12 +235,12 @@ export const FilterCatalog = () => {
                       .forEach((element, i) => {
                         if (e.target.textContent !== element.textContent) {
                           element.classList.remove("active");
-                          value.setSearchValues({ category_id: "" });
+                          value.setCategoryId("");
                         }
                       });
 
                     if (!e.target.classList.contains("active")) {
-                      value.setSearchValues({ category_id: categorys.id });
+                      value.setCategoryId(categorys.id);
                     }
                     e.target.classList.toggle("active");
                   }}
@@ -165,7 +251,6 @@ export const FilterCatalog = () => {
             </div>
           </article>
         )}
-
         <section className="container_filter">
           <div className="component_whit_catalog">
             <PurchaseField>

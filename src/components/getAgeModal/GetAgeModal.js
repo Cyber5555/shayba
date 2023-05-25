@@ -3,12 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAgeFalse, getAgeTrue } from "../../store/reducer/getAgeSlice";
 import "./GetAgeModal.css";
 
-export const GetAgeModal = () => {
+export const GetAgeModal = ({ close }) => {
   const dispatch = useDispatch();
-  const check_age = useSelector((state) => state.get_age.getAgeBool);
+  const state = useSelector((state) => state);
+  const { getAgeBool } = state.getAgeSlice;
 
   return (
-    <section className={!check_age ? "popup_parent" : "popup_parent_close"}>
+    <section className={!getAgeBool ? "popup_parent" : "popup_parent_close"}>
       <div className="popup_container">
         <h2>ВАМ УЖЕ ЕСТЬ 18?</h2>
         <p>
@@ -25,7 +26,7 @@ export const GetAgeModal = () => {
           <button onClick={() => dispatch(getAgeTrue())} className="button">
             ДА
           </button>
-          <button onClick={() => dispatch(getAgeFalse())} className="button">
+          <button onClick={close} className="button">
             НЕТ
           </button>
         </div>

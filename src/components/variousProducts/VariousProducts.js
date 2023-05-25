@@ -25,7 +25,7 @@ export const VariousProducts = () => {
               className="rendered_item_parent"
               key={item.id}
               onClick={() => {
-                value.setSearchValues({ category_id: item.id });
+                value.setCategoryId(item.id);
                 navigate("/filter-catalog");
               }}
               style={

@@ -37,7 +37,6 @@ export const FavoriteProducts = ({ item }) => {
     // const event = document.querySelectorAll(".tooltip");
 
     if (id == item.product_id) {
-      console.log(event, "e.id");
       event.target?.children[0]?.classList?.add("active");
       setTimeout(() => {
         event.target?.children[0]?.classList?.remove("active");
@@ -93,30 +92,40 @@ export const FavoriteProducts = ({ item }) => {
               ₽
             </p>
             <div className="add_price">
-              <button
-                className="buttons"
-                name="minus"
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (user_token) {
-                    tooltipOpen(item.product_id, e);
-                    dispatch(
-                      addInBasketRequest({
-                        product_id: item.product_id,
-                      })
-                    );
-                  } else {
-                    value.setLoginPopup(true);
-                  }
-                }}
-              >
-                +ДОБАВИТЬ
-                <span className="tooltip">
-                  {maximum_error != ""
-                    ? maximum_error
-                    : `корзине ${count_plus} штуки`}
-                </span>
-              </button>
+              {item.product?.count > 0 ? (
+                <button
+                  className="buttons"
+                  name="minus"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (user_token) {
+                      tooltipOpen(item.product_id, e);
+                      dispatch(
+                        addInBasketRequest({
+                          product_id: item.product_id,
+                        })
+                      );
+                    } else {
+                      value.setLoginPopup(true);
+                    }
+                  }}
+                >
+                  +ДОБАВИТЬ
+                  <span className="tooltip">
+                    {maximum_error != ""
+                      ? maximum_error
+                      : `В корзине ${count_plus}-штука`}
+                  </span>
+                </button>
+              ) : (
+                <p
+                  className={"buttons"}
+                  style={{ cursor: "not-allowed" }}
+                  onClick={(e) => e.preventDefault()}
+                >
+                  НЕТ В НАЛИЧИИ
+                </p>
+              )}
             </div>
           </div>
         </div>

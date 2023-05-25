@@ -91,7 +91,6 @@ export const RenderPurchase = ({ data }) => {
     // const event = document.querySelectorAll(".tooltip");
     data?.map((e, $) => {
       if (id == e.id) {
-        console.log(e, "e.id");
         event.target?.children[0]?.classList?.add("active");
         setTimeout(() => {
           event.target?.children[0]?.classList?.remove("active");
@@ -111,6 +110,9 @@ export const RenderPurchase = ({ data }) => {
               dispatch(
                 getSingleProductRequest(localStorage.getItem("item_id"))
               );
+              window.scrollTo(0, 0, {
+                behavior: "smooth",
+              });
             }
           }}
           className="rendered_item"
@@ -135,7 +137,11 @@ export const RenderPurchase = ({ data }) => {
               onClick={(e) => {
                 e.stopPropagation();
                 e.preventDefault();
-                takeFavorite(item.id);
+                if (user_token) {
+                  takeFavorite(item.id);
+                } else {
+                  value.setLoginPopup(true);
+                }
               }}
             >
               {verifyFavorite(item.id) === true ? (
@@ -162,7 +168,6 @@ export const RenderPurchase = ({ data }) => {
                     e.preventDefault();
                     e.stopPropagation();
                     if (user_token) {
-                      console.log(item);
                       tooltipOpen(item.id, e);
                       dispatch(
                         addInBasketRequest({
@@ -178,7 +183,7 @@ export const RenderPurchase = ({ data }) => {
                   <span className="tooltip">
                     {maximum_error != ""
                       ? maximum_error
-                      : `корзине ${count_plus} штуки`}
+                      : `В корзине ${count_plus}-штука`}
                   </span>
                 </button>
               ) : (
@@ -203,9 +208,10 @@ export const RenderPurchase = ({ data }) => {
           height: "100%",
           justifyContent: "center",
           alignItems: "center",
+          textTransform: "uppercase",
         }}
       >
-        НЕТ ПРОДУКТИ
+        Нет продуктов
       </div>
     );
   }

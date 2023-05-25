@@ -46,7 +46,7 @@ export const Footer = () => {
                   style={{ width: "26px", height: "26px" }}
                 />
               </a>
-              <a href={data?.watsap_url} target="_blank">
+              <a href={"https://wa.me/" + data?.watsap_url} target="_blank">
                 <img
                   src={require("../../../assets/icons/whatsapp.png")}
                   alt="whatsapp"
@@ -71,7 +71,7 @@ export const Footer = () => {
             >
               {data?.footer_email}
             </a>
-            <h4>{data?.footer_phone}</h4>
+            <a className={"tell_number_footer"} href={`tel:${data?.footer_phone}`}>{data?.footer_phone}</a>
             <h4 style={{ textTransform: "uppercase" }}>
               {data?.footer_address}
             </h4>

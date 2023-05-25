@@ -34,21 +34,26 @@ export const changeFIORequest = createAsyncThunk(
 const changeFIOSlice = createSlice({
   name: "change_fio",
   initialState: {
-    loading: false,
-    success: false,
+    loading_fio: false,
+    success_fio: false,
     name_error: "",
   },
-  reducers: {},
+  reducers: {
+    closeSuccessModalFio(state) {
+      state.success_fio = false;
+      state.name_error = "";
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(changeFIORequest.pending, (state) => {
-        state.loading = true;
+        state.loading_fio = true;
       })
 
       .addCase(changeFIORequest.fulfilled, (state, action) => {
         if (action.payload.status) {
-          state.loading = false;
-          state.success = true;
+          state.loading_fio = false;
+          state.success_fio = true;
         }
       })
 
@@ -58,7 +63,7 @@ const changeFIOSlice = createSlice({
             state.name_error = action.payload.message?.name;
           }
 
-          state.loading = false;
+          state.loading_fio = false;
         }
         // localStorage.removeItem("userToken");
       });
@@ -66,3 +71,4 @@ const changeFIOSlice = createSlice({
 });
 
 export default changeFIOSlice.reducer;
+export const { closeSuccessModalFio } = changeFIOSlice.actions;

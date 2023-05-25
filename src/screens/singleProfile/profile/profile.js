@@ -12,8 +12,8 @@ export const Profile = () => {
   const state = useSelector((state) => state);
   const value = useContext(Context);
   const { userInfo } = state.authUserInfo;
-  const { email_error, loading, success } = state.changeEmailSlice;
-  const { name_error, success_fio } = state.changeFIOSlice;
+  const { email_error, loading_email, success } = state.changeEmailSlice;
+  const { name_error, success_fio, loading_fio } = state.changeFIOSlice;
 
   const [formData, setFormData] = useState({
     email: "",
@@ -35,21 +35,6 @@ export const Profile = () => {
     }
   }, [success]);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // grum en api n
-    dispatch(
-      changeEmailRequest({
-        email: formData.email,
-      })
-    );
-    dispatch(
-      changeFIORequest({
-        name: formData.name,
-      })
-    );
-  };
-
   // useEffect(() => {
   //     if (success) {
   //         value.setNewPassword(false);
@@ -63,7 +48,7 @@ export const Profile = () => {
   // }, [success]);
 
   return (
-    <form className={styles.Form} onSubmit={handleSubmit}>
+    <form className={styles.Form}>
       <InputContainer
         id={formData.name}
         inputTitle={"Ф. И. О.*"}
@@ -86,7 +71,41 @@ export const Profile = () => {
         inputValue={formData.name}
         error={name_error}
       />
-
+      <div className={styles.Button_Parent} style={{ marginBottom: 50 }}>
+        <SyncLoader
+          color={"white"}
+          loading={loading_fio}
+          cssOverride={{
+            borderColor: "black",
+            width: 262,
+            border: "1px solid",
+            alignItems: "center",
+            justifyContent: "center",
+            display: "flex",
+            background: "black",
+            height: 34,
+            borderRadius: 5,
+          }}
+          size={10}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+        {!loading_fio && (
+          <button
+            className={styles.Button}
+            onClick={(e) => {
+              e.preventDefault();
+              dispatch(
+                changeFIORequest({
+                  name: formData.name,
+                })
+              );
+            }}
+          >
+            СОХРАНИТЬ ИЗМЕНЕНИЯ
+          </button>
+        )}
+      </div>
       <InputContainer
         inputTitle={"E-MAIL*"}
         inputType={"email"}
@@ -112,7 +131,7 @@ export const Profile = () => {
       <div className={styles.Button_Parent}>
         <SyncLoader
           color={"white"}
-          loading={loading}
+          loading={loading_email}
           cssOverride={{
             borderColor: "black",
             width: 262,
@@ -128,8 +147,18 @@ export const Profile = () => {
           aria-label="Loading Spinner"
           data-testid="loader"
         />
-        {!loading && (
-          <button type="submit" className={styles.Button}>
+        {!loading_email && (
+          <button
+            className={styles.Button}
+            onClick={(e) => {
+              e.preventDefault();
+              dispatch(
+                changeEmailRequest({
+                  email: formData.email,
+                })
+              );
+            }}
+          >
             СОХРАНИТЬ ИЗМЕНЕНИЯ
           </button>
         )}

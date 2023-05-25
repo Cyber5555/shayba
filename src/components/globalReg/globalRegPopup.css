@@ -125,12 +125,13 @@
   font-size: 20px;
   border-radius: 5px;
   cursor: pointer;
+  text-transform: uppercase;
 }
 
 .popup_title_and_close_button {
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   margin-bottom: 20px;
 }

@@ -10,6 +10,23 @@ export const BasketsProducts = ({ item }) => {
   const { maximum_error, count_plus, added_in_basket } = state.addInBasketSlice;
   const { count_minus, reduce_in_basket } = state.reduceInBasketSlice;
 
+  const tooltipOpen = (id, event) => {
+    // const event = document.querySelectorAll(".tooltip");
+    item?.product?.map((e, $) => {
+
+      if (id == e.id) {
+        event.target?.parentElement?.parentElement?.lastChild?.classList?.add(
+          "active"
+        );
+        setTimeout(() => {
+          event.target?.parentElement?.parentElement?.lastChild?.classList?.remove(
+            "active"
+          );
+        }, 1500);
+      }
+    });
+  };
+
   return (
     <React.Fragment>
       <h2 style={{ marginBottom: 20, textTransform: "uppercase" }}>
@@ -59,18 +76,23 @@ export const BasketsProducts = ({ item }) => {
                 <button
                   className="buttons"
                   name="plus"
-                  onClick={() =>
-                    dispatch(addInBasketRequest({ product_id: element.id }))
-                  }
+                  onClick={(e) => {
+                    dispatch(addInBasketRequest({ product_id: element.id }));
+                    maximum_error && tooltipOpen(element.id, e);
+                  }}
                 >
                   <AiOutlinePlus fill="#fff" color="white" />
                 </button>
+
+                <span className="tooltip" style={{color: 'white'}}>
+                  {maximum_error != "" ? maximum_error : ""}
+                </span>
               </div>
             )}
           </div>
         </div>
       ))}
-      {maximum_error && <p style={{ color: "red" }}>{maximum_error}</p>}
+      {/*{maximum_error && <p style={{ color: "red" }}>{maximum_error}</p>}*/}
     </React.Fragment>
   );
 };

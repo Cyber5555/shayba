@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import styles from "../profile/profile.module.css";
 import { InputContainer } from "../../../components/inputContainer/inputContainer";
 import { SyncLoader } from "react-spinners";
-import {changePasswordRequest} from "../../../store/authReducer/cangePasswordSlice";
+import { changePasswordRequest } from "../../../store/authReducer/changePasswordSlice";
 
 export const ChangePassword = () => {
   const dispatch = useDispatch();
@@ -14,7 +14,8 @@ export const ChangePassword = () => {
     password_error,
     password_confirmation_error,
     loading,
-  } = state.cangePasswordSlice;
+    success_modal_password,
+  } = state.changePasswordSlice;
   const [formData, setFormData] = useState({
     old_password: "",
     password: "",
@@ -32,17 +33,15 @@ export const ChangePassword = () => {
     dispatch(changePasswordRequest(formData));
   };
 
-  // useEffect(() => {
-  //     if (success) {
-  //         value.setNewPassword(false);
-  //         localStorage.removeItem("phone");
-  //         localStorage.removeItem("phone_verify");
-  //         setFormData({
-  //             password: "",
-  //             password_confirmation: "",
-  //         });
-  //     }
-  // }, [success]);
+  useEffect(() => {
+    if (success_modal_password) {
+      setFormData({
+        old_password: "",
+        password: "",
+        password_confirmation: "",
+      });
+    }
+  }, [success_modal_password]);
 
   return (
     <form className={styles.Form} onSubmit={handleSubmit}>

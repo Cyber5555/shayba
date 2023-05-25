@@ -28,6 +28,7 @@ const verifyForgotSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(verifyForgotRequest.pending, (state) => {
       state.loading = true;
+      state.verify_error = "";
     });
 
     builder.addCase(verifyForgotRequest.fulfilled, (state, action) => {

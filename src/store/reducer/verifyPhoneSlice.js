@@ -33,6 +33,7 @@ const verifyPhoneSlice = createSlice({
     builder
       .addCase(verifyPhoneRequest.pending, (state) => {
         state.loading = true;
+        state.verify_error = "";
       })
 
       .addCase(verifyPhoneRequest.fulfilled, (state, action) => {

@@ -85,7 +85,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 10rem;
+    margin-top: 5rem;
 }
 
 .net_parent {
@@ -99,7 +99,7 @@
 }
 
 .product_price {
-    font-size: 51px;
+    font-size: 45px;
     font-family: 'Black_';
 }
 

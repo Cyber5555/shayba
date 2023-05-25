@@ -31,6 +31,16 @@ export const Favorites = ({}) => {
       {my_favorites.map((item, index) => (
         <FavoriteProducts key={index} item={item} />
       ))}
+      {my_favorites.length == 0 && (
+        <p
+          style={{
+            textAlign: "center",
+            fontSize: 20,
+          }}
+        >
+          Нет избранных товаров
+        </p>
+      )}
     </main>
   );
 };

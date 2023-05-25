@@ -45,6 +45,12 @@ const registerSlice = createSlice({
     builder
       .addCase(registerRequest.pending, (state) => {
         state.loading = true;
+        state.name_error = "";
+        state.password_error = "";
+        state.password_confirmation_error = "";
+        state.phone_error = "";
+        state.loading = false;
+        state.registerSuccess = false;
       })
 
       .addCase(registerRequest.fulfilled, (state, action) => {
