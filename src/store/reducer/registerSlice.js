@@ -71,7 +71,12 @@ const registerSlice = createSlice({
             state.phone_error = action.payload.message;
           }
           state.name_error = action.payload.message.name;
-          state.password_error = action.payload.message.password;
+
+          if (action.payload.message.password.length > 1) {
+            state.password_error = action.payload.message.password[1];
+          } else if (action.payload.message.password.length === 1) {
+            state.password_error = action.payload.message.password[0];
+          }
           state.password_confirmation_error =
             action.payload.message.password_confirmation;
           state.loading = false;

@@ -130,6 +130,18 @@
     cursor: pointer;
 }
 
+@media screen and (max-width: 1024px) {
+    .product_price {
+        font-size: 30px;
+        font-family: 'Black_';
+    }
+
+    .add_card {
+
+        font-size: 24px;
+    }
+}
+
 @media screen and (max-width: 768px) {
     .single_product_box_parent {
         grid-template-columns: auto;
@@ -150,6 +162,7 @@
         font-size: 16px;
         padding: 5px;
     }
+
     .single_product_box_parent {
         padding: 0 20px 20px;
     }

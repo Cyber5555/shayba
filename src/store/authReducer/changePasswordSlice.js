@@ -57,10 +57,10 @@ const changePasswordSlice = createSlice({
 
       .addCase(changePasswordRequest.rejected, (state, action) => {
         if (action.payload.message) {
-
           if (action.payload.message.hasOwnProperty("old_password")) {
             state.old_password_error = action.payload.message?.old_password;
-          } else if (!action.payload?.message.hasOwnProperty("passwowd")) {
+          }
+          if (!action.payload?.message.hasOwnProperty("passwowd")) {
             if (action.payload.message?.password?.length > 1) {
               state.password_error = action.payload.message?.password[1];
             } else if (action.payload.message?.password?.length == 1) {

@@ -43,10 +43,23 @@ const loginSlice = createSlice({
 
       .addCase(loginRequest.rejected, (state, action) => {
         if (!action.payload.status) {
-          state.phone_error =
-            action.payload.message.phone || action.payload.message;
-          state.password_error =
-            action.payload.message.password || action.payload.message;
+          if (action.payload?.message?.hasOwnProperty("phone")) {
+            state.phone_error = action.payload.message.phone;
+          }
+          // else if (action.payload?.hasOwnProperty('message')) {
+          //   console.log(action.payload.message);
+          //   state.phone_error = action.payload?.message;
+          // }
+          if (action.payload?.message?.hasOwnProperty("password")) {
+            state.password_error = action.payload?.message?.password;
+          }
+          if (
+            !action.payload?.message.hasOwnProperty("phone") &&
+            !action.payload?.message.hasOwnProperty("password")
+          ) {
+            state.password_error = action.payload?.message;
+            state.phone_error = action.payload?.message;
+          }
           state.loading = false;
         }
       });

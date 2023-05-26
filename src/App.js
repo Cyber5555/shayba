@@ -200,7 +200,17 @@ function App() {
               />
             )}
             {token && <Route exact path="/favorites" element={<Favorites />} />}
-            {token && <Route path={"/single/*"} element={<ProfileRouter />} />}
+            {token && (
+              <Route path={"/single"} element={<ProfileRouter />}>
+                <Route exact path="profile" element={<Profile />} />
+                <Route
+                  exact
+                  path="change_password"
+                  element={<ChangePassword />}
+                />
+                <Route exact path="history" element={<HistoryPage />} />
+              </Route>
+            )}
             <Route path={"*"} element={<NotFound />} />
           </Routes>
           <Footer />

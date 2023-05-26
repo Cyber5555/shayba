@@ -12,11 +12,7 @@ export const ProfileRouter = () => {
       <ProfileBar />
       <Routes>
         <Route exact path="profile" element={<Profile />} />
-        <Route
-          exact
-          path="change_password"
-          element={<ChangePassword />}
-        />
+        <Route exact path="change_password" element={<ChangePassword />} />
         <Route exact path="history" element={<HistoryPage />} />
       </Routes>
     </div>
