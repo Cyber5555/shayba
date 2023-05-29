@@ -17,7 +17,7 @@ export const OrderFormation = ({}) => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
   const { data } = state.getBasketSlice;
-  const { BasketCount, BasketSum, userInfo } = state.authUserInfo;
+  const { BasketCount, BasketSum, userInfo, bonus_count } = state.authUserInfo;
   const {
     email_error,
     phone_error,
@@ -138,6 +138,9 @@ export const OrderFormation = ({}) => {
             {/*  <span className="edit_text">ИЗМЕНИТЬ</span>*/}
             {/*</div>*/}
             <p className="order_price">ТОВАРОВ НА СУММУ: {BasketSum} ₽</p>
+            <h3 className="bonus_price" style={{ marginBottom: 30 }}>
+              Ваша скидка {bonus_count} %{" "}
+            </h3>
             <button
               className="checkout_button"
               onClick={() => {

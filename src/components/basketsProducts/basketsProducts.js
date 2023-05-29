@@ -13,7 +13,6 @@ export const BasketsProducts = ({ item }) => {
   const tooltipOpen = (id, event) => {
     // const event = document.querySelectorAll(".tooltip");
     item?.product?.map((e, $) => {
-
       if (id == e.id) {
         event.target?.parentElement?.parentElement?.lastChild?.classList?.add(
           "active"
@@ -55,7 +54,10 @@ export const BasketsProducts = ({ item }) => {
           </div>
           <div className="baskets_products_right_child">
             <p className="baskets_products_price">
-              {element.basket_count * element.price} ₽
+              {element.basket_count * element.price} ₽ <br />
+              <p style={{ fontSize: 14 }}>
+                Ваша скидка {element.basket_sum_count} %
+              </p>
             </p>
             {window.location.pathname !== "/order-formation" && (
               <div className="add_price">
@@ -84,7 +86,7 @@ export const BasketsProducts = ({ item }) => {
                   <AiOutlinePlus fill="#fff" color="white" />
                 </button>
 
-                <span className="tooltip" style={{color: 'white'}}>
+                <span className="tooltip" style={{ color: "white" }}>
                   {maximum_error != "" ? maximum_error : ""}
                 </span>
               </div>

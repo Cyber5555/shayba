@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 export const BasketFull = ({ res }) => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
-  const { BasketCount, BasketSum } = state.authUserInfo;
+  const { BasketCount, BasketSum, bonus_count } = state.authUserInfo;
   return (
     <main className="full_basket_layout">
       <div className="basket_header">
@@ -24,7 +24,10 @@ export const BasketFull = ({ res }) => {
           ВАШ ЗАКАЗ ВЫ СМОЖЕТЕ ЗАБРАТЬ В НАШЕМ <br />
           МАГАЗИНЕ ПО АДРЕСУ: УЛ. КРАХМАЛЕВА, 37
         </h3> */}
-        <h3 className="total_price">ИТОГО: {BasketSum} ₽ </h3>
+        <span>
+          <h3 className="total_price">ИТОГ: {BasketSum} ₽ </h3>
+          <h3 className="bonus_price">Ваша скидка {bonus_count} % </h3>
+        </span>
         <Link to={"/order-formation"} className="checkout_button">
           ОФОРМИТЬ ЗАКАЗ
         </Link>

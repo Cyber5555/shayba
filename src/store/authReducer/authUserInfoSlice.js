@@ -26,6 +26,7 @@ const authUserInfoSlice = createSlice({
     Favorite_Count: 0,
     loading: false,
     userInfo: {},
+    bonus_count: 0,
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -40,6 +41,7 @@ const authUserInfoSlice = createSlice({
           state.BasketSum = action.payload.BasketSum;
           state.Favorite_Count = action.payload.Favorite_Count;
           state.userInfo = action.payload.data;
+          state.bonus_count = action.payload.bonus_count;
         }
       })
       .addCase(authUserInfoRequest.rejected, (state, action) => {
