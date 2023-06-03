@@ -90,6 +90,7 @@
     padding: 5px 15px;
     border-radius: 10px;
     opacity: 0;
+    visibility: hidden;
     transition: .5s;
     width: 200px;
     height: auto;
@@ -97,6 +98,7 @@
 
 .tooltip.active {
     opacity: 1;
+    visibility: visible;
     bottom: 200%;
 }
 

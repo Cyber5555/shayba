@@ -24,6 +24,7 @@ export const OrderFormation = ({}) => {
     order_type_error,
     name_error,
     order_is_added,
+    empty_error,
   } = state.checkoutProductsSlice;
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -113,20 +114,40 @@ export const OrderFormation = ({}) => {
               {/*  }}*/}
               {/*>*/}
               <p>ОПЛАТА:</p>
-              <select
-                name=""
-                id=""
+              <div
                 style={{
                   background: "#E6E6E6",
                   borderRadius: 10,
-                  height: 35,
+                  // height: 35,
                   borderColor: order_type_error && "red",
+                  display: "flex",
+                  flexDirection: "column",
+                  padding: 10,
+                  gap: 10,
                 }}
-                onChange={(e) => setOrderType(e.target.value)}
+                onChange={(e) => {
+                  setOrderType(e.target.value);
+                }}
               >
-                <option value={"Shops"}>НАЛИЧНЫМИ ИЛИ КАРТОЙ В МАГАЗИНЕ</option>
-                <option value={"Drugoi"}>Другой</option>
-              </select>
+                <label value={"Shops"}>
+                  <input
+                    value={"Shops"}
+                    type="radio"
+                    name={"radio11"}
+                    checked={order_type == "Shops"}
+                  />{" "}
+                  НАЛИЧНЫМИ ИЛИ КАРТОЙ В МАГАЗИНЕ
+                </label>
+                <label>
+                  <input
+                    value={"Drugoi"}
+                    type="radio"
+                    name={"radio11"}
+                    checked={order_type == "Drugoi"}
+                  />{" "}
+                  Другой
+                </label>
+              </div>
               {/*</div>*/}
             </div>
           </form>
@@ -138,9 +159,14 @@ export const OrderFormation = ({}) => {
             {/*  <span className="edit_text">ИЗМЕНИТЬ</span>*/}
             {/*</div>*/}
             <p className="order_price">ТОВАРОВ НА СУММУ: {BasketSum} ₽</p>
-            <h3 className="bonus_price" style={{ marginBottom: 30 }}>
-              Ваша скидка {bonus_count} %{" "}
-            </h3>
+            {bonus_count > 0 && (
+              <h3
+                className="bonus_price"
+                style={{ marginBottom: 30, color: "red" }}
+              >
+                Ваша скидка {bonus_count} %
+              </h3>
+            )}
             <button
               className="checkout_button"
               onClick={() => {
@@ -163,6 +189,7 @@ export const OrderFormation = ({}) => {
             >
               ОФОРМИТЬ ЗАКАЗ
             </button>
+            <p style={{ color: "red" }}>{empty_error}</p>
           </div>
           <div className="switch_parent">
             <input

@@ -83,7 +83,7 @@ function App() {
 
     setToken(localStorage.getItem("userToken"));
     let page = window.location.pathname;
-    if (!token) {
+    if (!localStorage.getItem("userToken")) {
       if (
         page == "/single/history" ||
         page == "/basket" ||
@@ -175,11 +175,11 @@ function App() {
           <VerifyEmailCode />
           <SuccessModal />
 
-          {window.location.pathname == "/single/change-password" && (
-            <ProfileRouter />
-          )}
-          {window.location.pathname == "/single/profile" && <ProfileRouter />}
-          {window.location.pathname == "/single/history" && <ProfileRouter />}
+          {/*{window.location.pathname == "/single/change-password" && (*/}
+          {/*  <ProfileRouter />*/}
+          {/*)}*/}
+          {/*{window.location.pathname == "/single/profile" && <ProfileRouter />}*/}
+          {/*{window.location.pathname == "/single/history" && <ProfileRouter />}*/}
           <Routes>
             <Route exact path="/" element={<HomeScreen />} />
             <Route exact path="/contact" element={<Contacts />} />

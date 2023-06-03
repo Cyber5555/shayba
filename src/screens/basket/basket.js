@@ -39,11 +39,11 @@ export const Basket = () => {
     first_render,
   ]);
 
-  window.on = () => {
-    dispatch(getBasketRequest(localStorage.getItem("userToken")));
-    setRandom(random_product);
-    setFirstRender(true);
-  };
+  // window.on = () => {
+  //   dispatch(getBasketRequest(localStorage.getItem("userToken")));
+  //   setRandom(random_product);
+  //   setFirstRender(true);
+  // };
 
   return (
     <React.Fragment>

@@ -31,6 +31,7 @@ const checkoutProductsSlice = createSlice({
     name_error: "",
     success_message: "",
     order_is_added: false,
+    empty_error: "",
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -41,6 +42,7 @@ const checkoutProductsSlice = createSlice({
         state.phone_error = "";
         state.order_type_error = "";
         state.name_error = "";
+        state.empty_error = "";
       })
       .addCase(checkoutProductRequest.fulfilled, (state, action) => {
         if (action.payload.status) {
@@ -67,6 +69,9 @@ const checkoutProductsSlice = createSlice({
         state.phone_error = action.payload.message.phone;
         state.order_type_error = action.payload.message.order_type;
         state.name_error = action.payload.message.name;
+        if (action.payload?.message == "Ваша карзина пустая") {
+          state.empty_error = action.payload.message;
+        }
       });
   },
 });

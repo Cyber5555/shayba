@@ -3,12 +3,13 @@ import { PurchaseField } from "../../components/purchaseField/PurchaseField";
 import { RenderPurchase } from "../../components/purchaseField/renderPurchase";
 import "./SingleProduct.css";
 import { useDispatch, useSelector } from "react-redux";
-import React, {useEffect, useRef, useState} from "react";
+import React, {useContext, useEffect, useRef, useState} from "react";
 import { getSingleProductRequest } from "../../store/reducer/getSingleProductSlice";
 import PuffLoader from "react-spinners/PuffLoader";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import { addInBasketRequest } from "../../store/authReducer/addInBasketSlice";
+import {Context} from "../../context/Context";
 
 export const SingleProduct = () => {
   const dispatch = useDispatch();
@@ -16,19 +17,18 @@ export const SingleProduct = () => {
   const { data, is_random_data, loading } = state.getSingleProduct;
   const [open, setOpen] = useState(true);
   const { count_plus, maximum_error } = state.addInBasketSlice;
-  const pageRef = useRef()
-
+  const pageRef = useRef();
+  const [token, setToken] = useState(null);
+  const value = useContext(Context)
   useEffect(() => {
     dispatch(getSingleProductRequest(localStorage.getItem("item_id")));
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: "smooth"
+      behavior: "smooth",
     });
+    setToken(localStorage.getItem("userToken"));
   }, [localStorage.getItem("item_id")]);
-
-
-
 
   return data?.photo ? (
     <main className="layout_home_screen">
@@ -113,11 +113,7 @@ export const SingleProduct = () => {
               ВКУС — <span>{data?.taste?.name}</span>
             </p>
           )}
-          {data?.strength && (
-            <p className="info_for_products">
-              КРЕПОСТЬ (%) — <span>{data?.strength}</span>
-            </p>
-          )}
+
           {data?.puffs_count && (
             <p className="info_for_products">
               КОЛИЧЕСТВО ЗАТЯЖЕК — <span>{data?.puffs_count}</span>
@@ -266,7 +262,7 @@ export const SingleProduct = () => {
               className="info_for_products"
               style={{ textTransform: "uppercase" }}
             >
-              Объем картриджа — <span>{data?.volume}</span>
+              картриджа — <span>{data?.volume}</span>
             </p>
           )}
           {data?.which_device_is_suitable_for_this_vaporizer && (
@@ -297,13 +293,19 @@ export const SingleProduct = () => {
               <button
                 className="add_card"
                 onClick={(e) => {
-                  dispatch(addInBasketRequest({ product_id: data.id }));
-                  document.querySelector(".tooltip")?.classList?.add("active");
-                  setTimeout(() => {
+                  if (token) {
+                    dispatch(addInBasketRequest({ product_id: data.id }));
                     document
                       .querySelector(".tooltip")
-                      ?.classList?.remove("active");
-                  }, 1000);
+                      ?.classList?.add("active");
+                    setTimeout(() => {
+                      document
+                        .querySelector(".tooltip")
+                        ?.classList?.remove("active");
+                    }, 1000);
+                  }else {
+                    value.setLoginPopup(true);
+                  }
                 }}
               >
                 В КОРЗИНУ

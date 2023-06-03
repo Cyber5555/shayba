@@ -126,7 +126,9 @@ export const Header = ({}) => {
             />
             <p className="counter">{BasketCount > 0 && BasketCount}</p>
           </Link>
-          <p className="budget">{BasketSum} ₽</p>
+          <Link to={"/basket"} className="budget">
+            {BasketSum} ₽
+          </Link>
           <BiExit
             style={{ marginLeft: 20, cursor: "pointer" }}
             size={20}

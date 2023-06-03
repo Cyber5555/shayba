@@ -31,7 +31,6 @@ const addInBasketSlice = createSlice({
     added_in_basket: false,
     count_plus: null,
     maximum_error: "",
-
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -51,8 +50,9 @@ const addInBasketSlice = createSlice({
       })
       .addCase(addInBasketRequest.rejected, (state, action) => {
         state.loading = false;
-        state.maximum_error = action.payload?.message;
-
+        if (action.payload.message != "Unauthenticated") {
+          state.maximum_error = action.payload?.message;
+        }
       });
   },
 });

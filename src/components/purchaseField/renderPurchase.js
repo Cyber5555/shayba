@@ -120,16 +120,17 @@ export const RenderPurchase = ({ data }) => {
         >
           <div
             className="item_image"
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-            }}
+            // onClick={(e) => {
+            //   e.preventDefault();
+            //   e.stopPropagation();
+            // }}
           >
-            <InnerImageZoom
+            <img
               src={
                 "https://admin.shayba.store/uploads/" + item?.photo[0]?.photo
               }
               alt=""
+              loading={'lazy'}
               className="rendered_image"
             />
             <div

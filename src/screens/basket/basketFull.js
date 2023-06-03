@@ -26,7 +26,9 @@ export const BasketFull = ({ res }) => {
         </h3> */}
         <span>
           <h3 className="total_price">ИТОГ: {BasketSum} ₽ </h3>
-          <h3 className="bonus_price">Ваша скидка {bonus_count} % </h3>
+          {bonus_count > 0 && (
+            <h3 style={{ color: "red" }}>Ваша скидка {bonus_count} % </h3>
+          )}
         </span>
         <Link to={"/order-formation"} className="checkout_button">
           ОФОРМИТЬ ЗАКАЗ
@@ -35,11 +37,11 @@ export const BasketFull = ({ res }) => {
       <ul className="delate_or_add">
         <li>
           В КОРЗИНЕ {BasketCount} ТОВАР(А){" "}
-          <img
-            src={require("../../assets/icons/arrow_down.png")}
-            alt=""
-            style={{ width: 20, height: 20, cursor: "pointer" }}
-          />
+          {/*<img*/}
+          {/*  src={require("../../assets/icons/arrow_down.png")}*/}
+          {/*  alt=""*/}
+          {/*  style={{ width: 20, height: 20, cursor: "pointer" }}*/}
+          {/*/>*/}
         </li>
         <li
           onClick={() =>

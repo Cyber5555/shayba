@@ -46,7 +46,8 @@ export const PurchaseField = ({ children }) => {
     <section className="purchase_field">
       {purchase}
       {children?.props?.data?.length > 0 &&
-        window.location.pathname !== "/basket" && (
+        window.location.pathname !== "/basket" &&
+        window.location.pathname !== "/single-product" && (
           <div className="next_prev_buttons_parent">
             <button
               className="next_prev"

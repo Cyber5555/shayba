@@ -100,13 +100,15 @@ export const PhoneInputFunc = ({
 export const Search = ({ onChange, value, margin }) => {
   const navigate = useNavigate();
   const [isFocus, setIsFocus] = useState(false);
+
   document.body.onkeydown = (e) => {
     if (isFocus) {
-      if (e.key === "Enter") {
+      if (e.key == "Enter") {
         navigate("/filter-catalog");
       }
     }
   };
+
   return (
     <div className={styles.SearchParent} style={{ margin: margin }}>
       <input

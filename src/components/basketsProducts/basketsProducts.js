@@ -9,6 +9,7 @@ export const BasketsProducts = ({ item }) => {
   const state = useSelector((state) => state);
   const { maximum_error, count_plus, added_in_basket } = state.addInBasketSlice;
   const { count_minus, reduce_in_basket } = state.reduceInBasketSlice;
+  const { bonus_count } = state.authUserInfo;
 
   const tooltipOpen = (id, event) => {
     // const event = document.querySelectorAll(".tooltip");
@@ -53,12 +54,37 @@ export const BasketsProducts = ({ item }) => {
             </div>
           </div>
           <div className="baskets_products_right_child">
-            <p className="baskets_products_price">
-              {element.basket_count * element.price} ₽ <br />
-              <p style={{ fontSize: 14 }}>
-                Ваша скидка {element.basket_sum_count} %
+            <div style={{ textAlign: "right" }}>
+              <p
+                className="baskets_products_price"
+                style={{ textDecoration: bonus_count > 0 && "line-through" }}
+              >
+                {element.basket_count * element.price} ₽ <br />
               </p>
-            </p>
+              {bonus_count > 0 && (
+                <p
+                  style={{
+                    fontSize: 14,
+                    color: "red",
+                    textDecoration: "initial",
+                    fontFamily: "Black_",
+                  }}
+                >
+                  Скидка на {bonus_count} %
+                </p>
+              )}
+              {bonus_count > 0 && (
+                <p
+                  style={{
+                    fontSize: 25,
+                    fontFamily: "Black_",
+                    color: "red",
+                  }}
+                >
+                  {element.basket_count * element.bonus_price} ₽ <br />
+                </p>
+              )}
+            </div>
             {window.location.pathname !== "/order-formation" && (
               <div className="add_price">
                 <button

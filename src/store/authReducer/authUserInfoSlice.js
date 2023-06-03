@@ -47,6 +47,7 @@ const authUserInfoSlice = createSlice({
       .addCase(authUserInfoRequest.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
+        localStorage.clear();
       });
   },
 });
