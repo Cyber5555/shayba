@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./inputContainer.module.css";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AiOutlineSearch } from "react-icons/ai";
 
 export const InputContainer = ({
@@ -97,17 +97,15 @@ export const PhoneInputFunc = ({
   );
 };
 
-export const Search = ({ onChange, value, margin }) => {
-  const navigate = useNavigate();
-  const [isFocus, setIsFocus] = useState(false);
-
-  document.body.onkeydown = (e) => {
-    if (isFocus) {
-      if (e.key == "Enter") {
-        navigate("/filter-catalog");
-      }
-    }
-  };
+export const Search = ({
+  onChange,
+  value,
+  margin,
+  isFocus,
+  onFocus,
+  onBlur,
+}) => {
+  // const [isFocus, setIsFocus] = useState(false);
 
   return (
     <div className={styles.SearchParent} style={{ margin: margin }}>
@@ -118,8 +116,8 @@ export const Search = ({ onChange, value, margin }) => {
         placeholder="Поиск"
         onChange={onChange}
         value={value}
-        onFocus={() => setIsFocus(true)}
-        onBlur={() => setIsFocus(false)}
+        onFocus={onFocus}
+        onBlur={onBlur}
       />
       <Link to={"/filter-catalog"}>
         <AiOutlineSearch color={"grey"} className={styles.SearchIcon} />

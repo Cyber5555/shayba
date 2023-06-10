@@ -3,13 +3,13 @@ import { PurchaseField } from "../../components/purchaseField/PurchaseField";
 import { RenderPurchase } from "../../components/purchaseField/renderPurchase";
 import "./SingleProduct.css";
 import { useDispatch, useSelector } from "react-redux";
-import React, {useContext, useEffect, useRef, useState} from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { getSingleProductRequest } from "../../store/reducer/getSingleProductSlice";
 import PuffLoader from "react-spinners/PuffLoader";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import { addInBasketRequest } from "../../store/authReducer/addInBasketSlice";
-import {Context} from "../../context/Context";
+import { Context } from "../../context/Context";
 
 export const SingleProduct = () => {
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ export const SingleProduct = () => {
   const { count_plus, maximum_error } = state.addInBasketSlice;
   const pageRef = useRef();
   const [token, setToken] = useState(null);
-  const value = useContext(Context)
+  const value = useContext(Context);
   useEffect(() => {
     dispatch(getSingleProductRequest(localStorage.getItem("item_id")));
     window.scrollTo({
@@ -254,7 +254,7 @@ export const SingleProduct = () => {
               className="info_for_products"
               style={{ textTransform: "uppercase" }}
             >
-              Крепкость(%) — <span>{data?.strength}</span>
+              Крепость(%) — <span>{data?.strength}</span>
             </p>
           )}
           {data?.volume && (
@@ -303,7 +303,7 @@ export const SingleProduct = () => {
                         .querySelector(".tooltip")
                         ?.classList?.remove("active");
                     }, 1000);
-                  }else {
+                  } else {
                     value.setLoginPopup(true);
                   }
                 }}

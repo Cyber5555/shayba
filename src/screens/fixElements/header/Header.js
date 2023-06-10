@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./header.css";
 import { FaPhoneVolume } from "react-icons/fa";
 import { BiExit } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { TitleIcon } from "./../../../assets/svgIcons/SvgIcons";
 import { useContext } from "react";
 import { Context } from "../../../context/Context";
@@ -27,6 +27,8 @@ export const Header = ({}) => {
   const { reduce_in_basket } = state.reduceInBasketSlice;
   const { delate } = state.delateAllBasketsSlice;
   const [isOpen, setIsOpen] = useState(false);
+  const [isFocus, setIsFocus] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     let token = localStorage.getItem("userToken");
@@ -57,6 +59,14 @@ export const Header = ({}) => {
     if (e.target.className !== "catalog_lists") setIsOpen(false);
   };
 
+  document.body.onkeydown = (e) => {
+    if (isFocus) {
+      if (e.key == "Enter") {
+        navigate("/filter-catalog");
+      }
+    }
+  };
+
   return (
     <header className="header_container">
       <div style={{ display: "flex", alignItems: "center" }}>
@@ -74,7 +84,12 @@ export const Header = ({}) => {
       <span className="search_on_header">
         <Search
           value={value.search}
-          onChange={(e) => value.setSearch(e.target.value)}
+          onFocus={() => setIsFocus(true)}
+          onBlur={() => setIsFocus(false)}
+          onChange={(e) => {
+            setIsFocus(true);
+            value.setSearch(e.target.value);
+          }}
         />
       </span>
 
