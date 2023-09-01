@@ -78,7 +78,7 @@ export const SingleProduct = () => {
               АРТ- {data?.art}
             </p>
           )}
-          {data?.count > 0 ? (
+          {/* {data?.count > 0 ? (
             <p style={{ color: "#FD4A27", fontSize: 22, marginBottom: "3rem" }}>
               НАЛИЧИЕ: {data?.count} ШТ
             </p>
@@ -93,8 +93,8 @@ export const SingleProduct = () => {
               }}
             >
               Нет в наличии
-            </p>
-          )}
+            </p> 
+          )}*/}
           {data?.made_in?.name && (
             <p className="info_for_products">
               БРЕНД — <span>{data?.made_in?.name}</span>
@@ -122,48 +122,42 @@ export const SingleProduct = () => {
           {data?.battery_type && (
             <p
               className="info_for_products"
-              style={{ textTransform: "uppercase" }}
-            >
+              style={{ textTransform: "uppercase" }}>
               тип аккумулятора — <span>{data?.battery_type}</span>
             </p>
           )}
           {data?.battery_capacity && (
             <p
               className="info_for_products"
-              style={{ textTransform: "uppercase" }}
-            >
+              style={{ textTransform: "uppercase" }}>
               Емкость аккумулятора — <span>{data?.battery_capacity}</span>
             </p>
           )}
           {data?.capacity && (
             <p
               className="info_for_products"
-              style={{ textTransform: "uppercase" }}
-            >
+              style={{ textTransform: "uppercase" }}>
               Емкость — <span>{data?.capacity}</span>
             </p>
           )}
           {data?.cartridge_volume && (
             <p
               className="info_for_products"
-              style={{ textTransform: "uppercase" }}
-            >
+              style={{ textTransform: "uppercase" }}>
               объем картриджа — <span>{data?.cartridge_volume}</span>
             </p>
           )}
           {data?.equipment && (
             <p
               className="info_for_products"
-              style={{ textTransform: "uppercase" }}
-            >
+              style={{ textTransform: "uppercase" }}>
               Комплектация — <span>{data?.equipment}</span>
             </p>
           )}
           {data?.evaporator_resistance && (
             <p
               className="info_for_products"
-              style={{ textTransform: "uppercase" }}
-            >
+              style={{ textTransform: "uppercase" }}>
               Сопротивление испарителей —{" "}
               <span>{data?.evaporator_resistance}</span>
             </p>
@@ -171,8 +165,7 @@ export const SingleProduct = () => {
           {data?.manufacturers_recommended_power && (
             <p
               className="info_for_products"
-              style={{ textTransform: "uppercase" }}
-            >
+              style={{ textTransform: "uppercase" }}>
               Рекомендуемая производителем мощность —{" "}
               <span>{data?.manufacturers_recommended_power}</span>
             </p>
@@ -180,96 +173,84 @@ export const SingleProduct = () => {
           {data?.marking && (
             <p
               className="info_for_products"
-              style={{ textTransform: "uppercase" }}
-            >
+              style={{ textTransform: "uppercase" }}>
               Маркировка — <span>{data?.marking}</span>
             </p>
           )}
           {data?.maximum_power && (
             <p
               className="info_for_products"
-              style={{ textTransform: "uppercase" }}
-            >
+              style={{ textTransform: "uppercase" }}>
               Максимальная мощность — <span>{data?.maximum_power}</span>
             </p>
           )}
           {data?.output_power && (
             <p
               className="info_for_products"
-              style={{ textTransform: "uppercase" }}
-            >
+              style={{ textTransform: "uppercase" }}>
               Выходная мощность — <span>{data?.output_power}</span>
             </p>
           )}
           {data?.puffs_count && (
             <p
               className="info_for_products"
-              style={{ textTransform: "uppercase" }}
-            >
+              style={{ textTransform: "uppercase" }}>
               Количество затяжек — <span>{data?.puffs_count}</span>
             </p>
           )}
           {data?.rechargeable && (
             <p
               className="info_for_products"
-              style={{ textTransform: "uppercase" }}
-            >
+              style={{ textTransform: "uppercase" }}>
               Перезаряжаемая или нет — <span>{data?.rechargeable}</span>
             </p>
           )}
           {data?.replacement_coils && (
             <p
               className="info_for_products"
-              style={{ textTransform: "uppercase" }}
-            >
+              style={{ textTransform: "uppercase" }}>
               Сменные испарители — <span>{data?.replacement_coils}</span>
             </p>
           )}
           {data?.resistance && (
             <p
               className="info_for_products"
-              style={{ textTransform: "uppercase" }}
-            >
+              style={{ textTransform: "uppercase" }}>
               Сопротивление — <span>{data?.resistance}</span>
             </p>
           )}
           {data?.screen && (
             <p
               className="info_for_products"
-              style={{ textTransform: "uppercase" }}
-            >
+              style={{ textTransform: "uppercase" }}>
               Экран — <span>{data?.screen}</span>
             </p>
           )}
           {data?.size && (
             <p
               className="info_for_products"
-              style={{ textTransform: "uppercase" }}
-            >
+              style={{ textTransform: "uppercase" }}>
               Размер — <span>{data?.size}</span>
             </p>
           )}
           {data?.strength && (
             <p
               className="info_for_products"
-              style={{ textTransform: "uppercase" }}
-            >
+              style={{ textTransform: "uppercase" }}>
               Крепость(%) — <span>{data?.strength}</span>
             </p>
           )}
           {data?.volume && (
             <p
               className="info_for_products"
-              style={{ textTransform: "uppercase" }}
-            >
+              style={{ textTransform: "uppercase" }}>
               картриджа — <span>{data?.volume}</span>
             </p>
           )}
           {data?.which_device_is_suitable_for_this_vaporizer && (
             <p
               className="info_for_products"
-              style={{ textTransform: "uppercase" }}
-            >
+              style={{ textTransform: "uppercase" }}>
               На какое устройство подойдет данный испаритель —{" "}
               <span>{data?.which_device_is_suitable_for_this_vaporizer}</span>
             </p>
@@ -289,33 +270,29 @@ export const SingleProduct = () => {
                 <FontAwesomeIcon icon={faPlus} />
               </button>
             </div> */}
-            {data?.count > 0 && (
-              <button
-                className="add_card"
-                onClick={(e) => {
-                  if (token) {
-                    dispatch(addInBasketRequest({ product_id: data.id }));
+
+            <button
+              className="add_card"
+              onClick={(e) => {
+                if (token) {
+                  dispatch(addInBasketRequest({ product_id: data.id }));
+                  document.querySelector(".tooltip")?.classList?.add("active");
+                  setTimeout(() => {
                     document
                       .querySelector(".tooltip")
-                      ?.classList?.add("active");
-                    setTimeout(() => {
-                      document
-                        .querySelector(".tooltip")
-                        ?.classList?.remove("active");
-                    }, 1000);
-                  } else {
-                    value.setLoginPopup(true);
-                  }
-                }}
-              >
-                В КОРЗИНУ
-                <span className="tooltip">
-                  {maximum_error != ""
-                    ? maximum_error
-                    : `В корзине ${count_plus}-штука`}
-                </span>
-              </button>
-            )}
+                      ?.classList?.remove("active");
+                  }, 1000);
+                } else {
+                  value.setLoginPopup(true);
+                }
+              }}>
+              В КОРЗИНУ
+              <span className="tooltip">
+                {maximum_error != ""
+                  ? maximum_error
+                  : `В корзине ${count_plus}-штука`}
+              </span>
+            </button>
           </div>
         </div>
       </section>

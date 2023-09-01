@@ -120,11 +120,11 @@ export const HistoryPage = () => {
                     <h2>{product.product.name}</h2>
                     <p>Количество в заказе{product.count}</p>
                     <p>ЦЕНА {product.product.price} ₽</p>
-                    <p style={{ color: "rgb(253, 74, 39)" }}>
+                    {/* <p style={{ color: "rgb(253, 74, 39)" }}>
                       {product.product.count <= 0
                         ? "НЕТ В НАЛИЧИИ"
                         : `НАЛИЧИЕ: ${product.product.count} ШТ`}
-                    </p>
+                    </p> */}
                   </div>
                 </fieldset>
               ))}

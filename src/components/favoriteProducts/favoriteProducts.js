@@ -60,8 +60,7 @@ export const FavoriteProducts = ({ item }) => {
                     product_id: item.product_id,
                   })
                 );
-              }}
-            >
+              }}>
               <AiFillStar size={20} />
             </div>
             <img
@@ -78,9 +77,9 @@ export const FavoriteProducts = ({ item }) => {
               {item.product?.art && (
                 <p className="baskets_products_art">АРТ.: {item.product.art}</p>
               )}
-              <span className="baskets_products_all_count">
+              {/* <span className="baskets_products_all_count">
                 НАЛИЧИЕ: {item.product?.count} ШТ
-              </span>
+              </span> */}
             </div>
           </div>
           <div className="baskets_products_right_child">
@@ -92,32 +91,31 @@ export const FavoriteProducts = ({ item }) => {
               ₽
             </p>
             <div className="add_price">
-              {item.product?.count > 0 ? (
-                <button
-                  className="buttons"
-                  name="minus"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    if (user_token) {
-                      tooltipOpen(item.product_id, e);
-                      dispatch(
-                        addInBasketRequest({
-                          product_id: item.product_id,
-                        })
-                      );
-                    } else {
-                      value.setLoginPopup(true);
-                    }
-                  }}
-                >
-                  +ДОБАВИТЬ
-                  <span className="tooltip">
-                    {maximum_error != ""
-                      ? maximum_error
-                      : `В корзине ${count_plus}-штука`}
-                  </span>
-                </button>
-              ) : (
+              {/* {item.product?.count > 0 ? ( */}
+              <button
+                className="buttons"
+                name="minus"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (user_token) {
+                    tooltipOpen(item.product_id, e);
+                    dispatch(
+                      addInBasketRequest({
+                        product_id: item.product_id,
+                      })
+                    );
+                  } else {
+                    value.setLoginPopup(true);
+                  }
+                }}>
+                +ДОБАВИТЬ
+                <span className="tooltip">
+                  {maximum_error != ""
+                    ? maximum_error
+                    : `В корзине ${count_plus}-штука`}
+                </span>
+              </button>
+              {/* ) : (
                 <p
                   className={"buttons"}
                   style={{ cursor: "not-allowed" }}
@@ -125,7 +123,7 @@ export const FavoriteProducts = ({ item }) => {
                 >
                   НЕТ В НАЛИЧИИ
                 </p>
-              )}
+              )} */}
             </div>
           </div>
         </div>

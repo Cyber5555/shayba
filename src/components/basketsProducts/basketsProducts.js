@@ -48,9 +48,9 @@ export const BasketsProducts = ({ item }) => {
               {element?.art && (
                 <p className="baskets_products_art">АРТ.: {element.art}</p>
               )}
-              <span className="baskets_products_all_count">
+              {/* <span className="baskets_products_all_count">
                 НАЛИЧИЕ: {element.count} ШТ
-              </span>
+              </span> */}
             </div>
           </div>
           <div className="baskets_products_right_child">

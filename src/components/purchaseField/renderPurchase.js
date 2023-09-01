@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import "zoom-loading-detector/lib/InnerImageZoom/styles.css";
 import InnerImageZoom from "zoom-loading-detector";
 import React, { useCallback, useContext, useEffect, useState } from "react";
@@ -116,8 +117,7 @@ export const RenderPurchase = ({ data }) => {
             }
           }}
           className="rendered_item"
-          key={item.id}
-        >
+          key={item.id}>
           <div
             className="item_image"
             // onClick={(e) => {
@@ -130,7 +130,7 @@ export const RenderPurchase = ({ data }) => {
                 "https://admin.shayba.store/uploads/" + item?.photo[0]?.photo
               }
               alt=""
-              loading={'lazy'}
+              loading={"lazy"}
               className="rendered_image"
             />
             <div
@@ -143,8 +143,7 @@ export const RenderPurchase = ({ data }) => {
                 } else {
                   value.setLoginPopup(true);
                 }
-              }}
-            >
+              }}>
               {verifyFavorite(item.id) === true ? (
                 <AiFillStar size={30} />
               ) : (
@@ -155,47 +154,36 @@ export const RenderPurchase = ({ data }) => {
           <h3>{item.name}</h3>
           <div className="count_apt">
             <p>{item.art}</p>
-            <p>{item.count}</p>
+            {/* <p>{item.count}</p> */}
           </div>
           <div className="add_price_parent">
             <p>{item.price} ₽</p>
 
             <div className="add_price">
-              {item.count > 0 ? (
-                <button
-                  className="buttons"
-                  name="minus"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    if (user_token) {
-                      tooltipOpen(item.id, e);
-                      dispatch(
-                        addInBasketRequest({
-                          product_id: item.id,
-                        })
-                      );
-                    } else {
-                      value.setLoginPopup(true);
-                    }
-                  }}
-                >
-                  +ДОБАВИТЬ
-                  <span className="tooltip">
-                    {maximum_error != ""
-                      ? maximum_error
-                      : `В корзине ${count_plus}-штука`}
-                  </span>
-                </button>
-              ) : (
-                <p
-                  className={"buttons"}
-                  style={{ cursor: "not-allowed" }}
-                  onClick={(e) => e.preventDefault()}
-                >
-                  НЕТ В НАЛИЧИИ
-                </p>
-              )}
+              <button
+                className="buttons"
+                name="minus"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  if (user_token) {
+                    tooltipOpen(item.id, e);
+                    dispatch(
+                      addInBasketRequest({
+                        product_id: item.id,
+                      })
+                    );
+                  } else {
+                    value.setLoginPopup(true);
+                  }
+                }}>
+                +ДОБАВИТЬ
+                <span className="tooltip">
+                  {maximum_error != ""
+                    ? maximum_error
+                    : `В корзине ${count_plus}-штука`}
+                </span>
+              </button>
             </div>
           </div>
         </Link>
@@ -210,8 +198,7 @@ export const RenderPurchase = ({ data }) => {
           justifyContent: "center",
           alignItems: "center",
           textTransform: "uppercase",
-        }}
-      >
+        }}>
         Нет продуктов
       </div>
     );

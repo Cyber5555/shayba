@@ -67,8 +67,7 @@ export const PurchaseField = ({ children }) => {
                     dispatch(prevPage());
                   }
                 }
-              }}
-            >
+              }}>
               назад
             </button>
             <button
@@ -89,8 +88,7 @@ export const PurchaseField = ({ children }) => {
                     dispatch(nextPage());
                   }
                 }
-              }}
-            >
+              }}>
               далее
             </button>
           </div>
